@@ -11,6 +11,10 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
+$C:\Users\al3615\AppData\Local\Temp\sa54.obj
+idloc IDLOC 0 200000 200000 8 1
+end_init CODE 0 0 0 4 1
+config CONFIG 0 300000 300000 E 1
 $dist/default/production\ECM.production.obj
 cinit CODE 0 1DE0 1DE0 6 1
 text0 CODE 0 1ECE 1ECE 8C 1
@@ -20,10 +24,6 @@ text3 CODE 0 1DF4 1DF4 26 1
 text4 CODE 0 1E56 1E56 78 1
 text5 CODE 0 1DE6 1DE6 E 1
 cstackCOMRAM COMRAM 1 1 1 5 1
-$C:\Users\al3615\AppData\Local\Temp\s9l4.obj
-idloc IDLOC 0 200000 200000 8 1
-end_init CODE 0 0 0 4 1
-config CONFIG 0 300000 300000 E 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -57,61 +57,61 @@ MEDIUMCONST 300-1DDF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\ECM.production.obj
-1DE6 text5 CODE >62:H:\MPLABXProjects\ECM\main.c
-1DE6 text5 CODE >65:H:\MPLABXProjects\ECM\main.c
-1DE8 text5 CODE >66:H:\MPLABXProjects\ECM\main.c
-1DF0 text5 CODE >67:H:\MPLABXProjects\ECM\main.c
-1DF2 text5 CODE >68:H:\MPLABXProjects\ECM\main.c
-1E56 text4 CODE >70:H:\MPLABXProjects\ECM\main.c
-1E58 text4 CODE >72:H:\MPLABXProjects\ECM\main.c
-1E78 text4 CODE >73:H:\MPLABXProjects\ECM\main.c
-1E92 text4 CODE >74:H:\MPLABXProjects\ECM\main.c
-1EAC text4 CODE >75:H:\MPLABXProjects\ECM\main.c
-1EC0 text4 CODE >77:H:\MPLABXProjects\ECM\main.c
-1EC4 text4 CODE >78:H:\MPLABXProjects\ECM\main.c
-1ECC text4 CODE >79:H:\MPLABXProjects\ECM\main.c
-1DF4 text3 CODE >81:H:\MPLABXProjects\ECM\main.c
-1DF6 text3 CODE >84:H:\MPLABXProjects\ECM\main.c
-1E00 text3 CODE >86:H:\MPLABXProjects\ECM\main.c
-1E08 text3 CODE >87:H:\MPLABXProjects\ECM\main.c
-1E10 text3 CODE >89:H:\MPLABXProjects\ECM\main.c
-1E18 text3 CODE >90:H:\MPLABXProjects\ECM\main.c
-1F5A text2 CODE >91:H:\MPLABXProjects\ECM\main.c
-1F5A text2 CODE >93:H:\MPLABXProjects\ECM\main.c
-1F5C text2 CODE >94:H:\MPLABXProjects\ECM\main.c
-1F60 text2 CODE >95:H:\MPLABXProjects\ECM\main.c
-1F64 text2 CODE >97:H:\MPLABXProjects\ECM\main.c
-1F66 text2 CODE >98:H:\MPLABXProjects\ECM\main.c
-1F68 text2 CODE >99:H:\MPLABXProjects\ECM\main.c
-1F6A text2 CODE >100:H:\MPLABXProjects\ECM\main.c
-1F6C text2 CODE >101:H:\MPLABXProjects\ECM\main.c
-1F6E text2 CODE >102:H:\MPLABXProjects\ECM\main.c
-1F70 text2 CODE >105:H:\MPLABXProjects\ECM\main.c
-1F76 text2 CODE >106:H:\MPLABXProjects\ECM\main.c
-1F84 text2 CODE >107:H:\MPLABXProjects\ECM\main.c
-1F8A text2 CODE >108:H:\MPLABXProjects\ECM\main.c
-1F92 text2 CODE >109:H:\MPLABXProjects\ECM\main.c
-1F98 text2 CODE >110:H:\MPLABXProjects\ECM\main.c
-1FA0 text2 CODE >112:H:\MPLABXProjects\ECM\main.c
-1FA6 text2 CODE >113:H:\MPLABXProjects\ECM\main.c
-1FAE text2 CODE >115:H:\MPLABXProjects\ECM\main.c
-1FB8 text2 CODE >116:H:\MPLABXProjects\ECM\main.c
-1FC0 text2 CODE >118:H:\MPLABXProjects\ECM\main.c
-1FCA text2 CODE >119:H:\MPLABXProjects\ECM\main.c
-1FDA text2 CODE >121:H:\MPLABXProjects\ECM\main.c
-1FE4 text2 CODE >122:H:\MPLABXProjects\ECM\main.c
-1FEC text2 CODE >124:H:\MPLABXProjects\ECM\main.c
-1FF6 text2 CODE >125:H:\MPLABXProjects\ECM\main.c
-1FFE text2 CODE >128:H:\MPLABXProjects\ECM\main.c
-1E1A text1 CODE >130:H:\MPLABXProjects\ECM\main.c
-1E1C text1 CODE >133:H:\MPLABXProjects\ECM\main.c
-1E22 text1 CODE >134:H:\MPLABXProjects\ECM\main.c
-1E2C text1 CODE >135:H:\MPLABXProjects\ECM\main.c
-1E36 text1 CODE >136:H:\MPLABXProjects\ECM\main.c
-1E40 text1 CODE >137:H:\MPLABXProjects\ECM\main.c
-1E42 text1 CODE >138:H:\MPLABXProjects\ECM\main.c
-1E4C text1 CODE >140:H:\MPLABXProjects\ECM\main.c
-1E54 text1 CODE >141:H:\MPLABXProjects\ECM\main.c
+1DE6 text5 CODE >55:H:\MPLABXProjects\ECM\main.c
+1DE6 text5 CODE >56:H:\MPLABXProjects\ECM\main.c
+1DE8 text5 CODE >57:H:\MPLABXProjects\ECM\main.c
+1DF0 text5 CODE >58:H:\MPLABXProjects\ECM\main.c
+1DF2 text5 CODE >59:H:\MPLABXProjects\ECM\main.c
+1E56 text4 CODE >61:H:\MPLABXProjects\ECM\main.c
+1E58 text4 CODE >63:H:\MPLABXProjects\ECM\main.c
+1E78 text4 CODE >64:H:\MPLABXProjects\ECM\main.c
+1E92 text4 CODE >65:H:\MPLABXProjects\ECM\main.c
+1EAC text4 CODE >66:H:\MPLABXProjects\ECM\main.c
+1EC0 text4 CODE >68:H:\MPLABXProjects\ECM\main.c
+1EC4 text4 CODE >69:H:\MPLABXProjects\ECM\main.c
+1ECC text4 CODE >70:H:\MPLABXProjects\ECM\main.c
+1DF4 text3 CODE >72:H:\MPLABXProjects\ECM\main.c
+1DF6 text3 CODE >75:H:\MPLABXProjects\ECM\main.c
+1E00 text3 CODE >77:H:\MPLABXProjects\ECM\main.c
+1E08 text3 CODE >78:H:\MPLABXProjects\ECM\main.c
+1E10 text3 CODE >80:H:\MPLABXProjects\ECM\main.c
+1E18 text3 CODE >81:H:\MPLABXProjects\ECM\main.c
+1F5A text2 CODE >82:H:\MPLABXProjects\ECM\main.c
+1F5A text2 CODE >84:H:\MPLABXProjects\ECM\main.c
+1F5C text2 CODE >85:H:\MPLABXProjects\ECM\main.c
+1F60 text2 CODE >86:H:\MPLABXProjects\ECM\main.c
+1F64 text2 CODE >88:H:\MPLABXProjects\ECM\main.c
+1F66 text2 CODE >89:H:\MPLABXProjects\ECM\main.c
+1F68 text2 CODE >90:H:\MPLABXProjects\ECM\main.c
+1F6A text2 CODE >91:H:\MPLABXProjects\ECM\main.c
+1F6C text2 CODE >92:H:\MPLABXProjects\ECM\main.c
+1F6E text2 CODE >93:H:\MPLABXProjects\ECM\main.c
+1F70 text2 CODE >96:H:\MPLABXProjects\ECM\main.c
+1F76 text2 CODE >97:H:\MPLABXProjects\ECM\main.c
+1F84 text2 CODE >98:H:\MPLABXProjects\ECM\main.c
+1F8A text2 CODE >99:H:\MPLABXProjects\ECM\main.c
+1F92 text2 CODE >100:H:\MPLABXProjects\ECM\main.c
+1F98 text2 CODE >101:H:\MPLABXProjects\ECM\main.c
+1FA0 text2 CODE >103:H:\MPLABXProjects\ECM\main.c
+1FA6 text2 CODE >104:H:\MPLABXProjects\ECM\main.c
+1FAE text2 CODE >106:H:\MPLABXProjects\ECM\main.c
+1FB8 text2 CODE >107:H:\MPLABXProjects\ECM\main.c
+1FC0 text2 CODE >109:H:\MPLABXProjects\ECM\main.c
+1FCA text2 CODE >110:H:\MPLABXProjects\ECM\main.c
+1FDA text2 CODE >112:H:\MPLABXProjects\ECM\main.c
+1FE4 text2 CODE >113:H:\MPLABXProjects\ECM\main.c
+1FEC text2 CODE >115:H:\MPLABXProjects\ECM\main.c
+1FF6 text2 CODE >116:H:\MPLABXProjects\ECM\main.c
+1FFE text2 CODE >117:H:\MPLABXProjects\ECM\main.c
+1E1A text1 CODE >119:H:\MPLABXProjects\ECM\main.c
+1E1C text1 CODE >122:H:\MPLABXProjects\ECM\main.c
+1E22 text1 CODE >123:H:\MPLABXProjects\ECM\main.c
+1E2C text1 CODE >124:H:\MPLABXProjects\ECM\main.c
+1E36 text1 CODE >125:H:\MPLABXProjects\ECM\main.c
+1E40 text1 CODE >126:H:\MPLABXProjects\ECM\main.c
+1E42 text1 CODE >127:H:\MPLABXProjects\ECM\main.c
+1E4C text1 CODE >129:H:\MPLABXProjects\ECM\main.c
+1E54 text1 CODE >130:H:\MPLABXProjects\ECM\main.c
 1ECE text0 CODE >31:H:\MPLABXProjects\ECM\main.c
 1ECE text0 CODE >32:H:\MPLABXProjects\ECM\main.c
 1ED2 text0 CODE >33:H:\MPLABXProjects\ECM\main.c
@@ -130,12 +130,12 @@ $dist/default/production\ECM.production.obj
 1F44 text0 CODE >48:H:\MPLABXProjects\ECM\main.c
 1F4E text0 CODE >49:H:\MPLABXProjects\ECM\main.c
 1F58 text0 CODE >50:H:\MPLABXProjects\ECM\main.c
-1DE0 cinit CODE >539:C:\Users\al3615\AppData\Local\Temp\s9l4.
-1DE0 cinit CODE >541:C:\Users\al3615\AppData\Local\Temp\s9l4.
-1DE0 cinit CODE >544:C:\Users\al3615\AppData\Local\Temp\s9l4.
-1DE0 cinit CODE >550:C:\Users\al3615\AppData\Local\Temp\s9l4.
-1DE0 cinit CODE >552:C:\Users\al3615\AppData\Local\Temp\s9l4.
-1DE2 cinit CODE >553:C:\Users\al3615\AppData\Local\Temp\s9l4.
+1DE0 cinit CODE >539:C:\Users\al3615\AppData\Local\Temp\sa54.
+1DE0 cinit CODE >541:C:\Users\al3615\AppData\Local\Temp\sa54.
+1DE0 cinit CODE >544:C:\Users\al3615\AppData\Local\Temp\sa54.
+1DE0 cinit CODE >550:C:\Users\al3615\AppData\Local\Temp\sa54.
+1DE0 cinit CODE >552:C:\Users\al3615\AppData\Local\Temp\sa54.
+1DE2 cinit CODE >553:C:\Users\al3615\AppData\Local\Temp\sa54.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -153,31 +153,31 @@ __Hspace_0 30000E 0 ABS 0 - dist/default/production\ECM.production.obj
 __Hspace_1 6 0 ABS 0 - dist/default/production\ECM.production.obj
 __Hspace_2 0 0 ABS 0 - dist/default/production\ECM.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\ECM.production.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\al3615\AppData\Local\Temp\sa54.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\ECM.production.obj
 __end_of_LCDout 1ECE 0 CODE 0 text4 dist/default/production\ECM.production.obj
 __Lsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production\ECM.production.obj
-___sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+___sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\sa54.obj
 _main 1ECE 0 CODE 0 text0 dist/default/production\ECM.production.obj
-start 0 0 CODE 0 init C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+start 0 0 CODE 0 init C:\Users\al3615\AppData\Local\Temp\sa54.obj
 _SendLCD 1DF4 0 CODE 0 text3 dist/default/production\ECM.production.obj
 _SetLine 1E1A 0 CODE 0 text1 dist/default/production\ECM.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\ECM.production.obj
 _LCD_Init 1F5A 0 CODE 0 text2 dist/default/production\ECM.production.obj
 __Hpowerup 0 0 CODE 0 powerup dist/default/production\ECM.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+__accesstop 60 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\sa54.obj
 __end_of_LCD_Init 2000 0 CODE 0 text2 dist/default/production\ECM.production.obj
-intlevel0 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s9l4.obj
-intlevel1 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s9l4.obj
-intlevel2 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s9l4.obj
-intlevel3 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+intlevel0 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\sa54.obj
+intlevel1 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\sa54.obj
+intlevel2 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\sa54.obj
+intlevel3 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\sa54.obj
 _OSCCONbits FD3 0 ABS 0 - dist/default/production\ECM.production.obj
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\ECM.production.obj
 __Hifardata 0 0 CODE 0 ifardata dist/default/production\ECM.production.obj
 SetLine@line 5 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM.production.obj
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production\ECM.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s9l4.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\sa54.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\sa54.obj
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\ECM.production.obj
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\ECM.production.obj
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\ECM.production.obj
@@ -210,7 +210,7 @@ __Htext4 0 0 ABS 0 text4 dist/default/production\ECM.production.obj
 __Htext5 0 0 ABS 0 text5 dist/default/production\ECM.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\ECM.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production\ECM.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\al3615\AppData\Local\Temp\sa54.obj
 __Hcomram 0 0 ABS 0 comram dist/default/production\ECM.production.obj
 __Hconfig 30000E 0 CONFIG 0 config dist/default/production\ECM.production.obj
 __Lbank0 0 0 ABS 0 bank0 dist/default/production\ECM.production.obj
@@ -271,8 +271,8 @@ _LATCbits F8B 0 ABS 0 - dist/default/production\ECM.production.obj
 _LATDbits F8C 0 ABS 0 - dist/default/production\ECM.production.obj
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\ECM.production.obj
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\ECM.production.obj
-stackhi 2FF 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s9l4.obj
-stacklo 60 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+stackhi 2FF 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\sa54.obj
+stacklo 60 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\sa54.obj
 __Lintcode 0 0 CODE 0 intcode dist/default/production\ECM.production.obj
 __Lintret 0 0 ABS 0 intret dist/default/production\ECM.production.obj
 __Lirdata 0 0 CODE 0 irdata dist/default/production\ECM.production.obj
@@ -297,7 +297,7 @@ __ptext3 1DF4 0 CODE 0 text3 dist/default/production\ECM.production.obj
 __ptext4 1E56 0 CODE 0 text4 dist/default/production\ECM.production.obj
 __ptext5 1DE6 0 CODE 0 text5 dist/default/production\ECM.production.obj
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\ECM.production.obj
-__ramtop 300 0 RAM 0 ramtop C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+__ramtop 300 0 RAM 0 ramtop C:\Users\al3615\AppData\Local\Temp\sa54.obj
 __Lpowerup 0 0 CODE 0 powerup dist/default/production\ECM.production.obj
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\ECM.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\ECM.production.obj

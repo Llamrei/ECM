@@ -4665,10 +4665,7 @@ while(1);
 
 }
 
-# 62
 void E_TOG(void){
-
-
 LATCbits.LC0 = 1;
 _delay((unsigned long)((5)*(8000000/4000000.0)));
 LATCbits.LC0 = 0;
@@ -4688,7 +4685,7 @@ _delay((unsigned long)((5)*(8000000/4000000.0)));
 void SendLCD(unsigned char Byte, char type){
 
 
-LATAbits.LA6 = type;
+LATAbits.LATA6 = type;
 
 LCDout(Byte >> 4);
 _delay((unsigned long)((10)*(8000000/4000000.0)));
@@ -4702,7 +4699,7 @@ TRISC &= 0b11111000;
 TRISD &= 0b11111100;
 
 LATCbits.LC0 = 0;
-LATAbits.LA6 = 0;
+LATAbits.LATA6 = 0;
 LATDbits.LD1 = 0;
 LATDbits.LD0 = 0;
 LATCbits.LC2 = 0;
@@ -4730,8 +4727,6 @@ _delay((unsigned long)((50)*(8000000/4000000.0)));
 
 SendLCD(0b00001100, 0);
 _delay((unsigned long)((50)*(8000000/4000000.0)));
-
-
 }
 
 void SetLine (char line){

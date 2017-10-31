@@ -25,15 +25,15 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "31 H:\MPLABXProjects\ECM\main.c
 [v _main main `(v  1 e 0 0 ]
-"62
+"55
 [v _E_TOG E_TOG `(v  1 e 0 0 ]
-"70
+"61
 [v _LCDout LCDout `(v  1 e 0 0 ]
-"81
+"72
 [v _SendLCD SendLCD `(v  1 e 0 0 ]
-"91
+"82
 [v _LCD_Init LCD_Init `(v  1 e 0 0 ]
-"130
+"119
 [v _SetLine SetLine `(v  1 e 0 0 ]
 [s S230 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
@@ -191,41 +191,41 @@
 {
 "53
 } 0
-"130
+"119
 [v _SetLine SetLine `(v  1 e 0 0 ]
 {
 [v SetLine@line line `uc  1 a 1 wreg ]
 [v SetLine@line line `uc  1 a 1 wreg ]
-"133
+"122
 [v SetLine@line line `uc  1 a 1 4 ]
-"141
+"130
 } 0
-"91
+"82
 [v _LCD_Init LCD_Init `(v  1 e 0 0 ]
 {
-"128
+"117
 } 0
-"81
+"72
 [v _SendLCD SendLCD `(v  1 e 0 0 ]
 {
 [v SendLCD@Byte Byte `uc  1 a 1 wreg ]
 [v SendLCD@Byte Byte `uc  1 a 1 wreg ]
 [v SendLCD@type type `uc  1 p 1 2 ]
-"84
+"75
 [v SendLCD@Byte Byte `uc  1 a 1 3 ]
-"90
+"81
 } 0
-"70
+"61
 [v _LCDout LCDout `(v  1 e 0 0 ]
 {
 [v LCDout@number number `uc  1 a 1 wreg ]
 [v LCDout@number number `uc  1 a 1 wreg ]
-"72
+"63
 [v LCDout@number number `uc  1 a 1 1 ]
-"79
+"70
 } 0
-"62
+"55
 [v _E_TOG E_TOG `(v  1 e 0 0 ]
 {
-"68
+"59
 } 0

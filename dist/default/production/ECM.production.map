@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.35\dat\en_msgs.txt -cs \
   -h+dist/default/production\ECM.production.sym \
   --cmf=dist/default/production\ECM.production.cmf -z -Q18F4331 \
-  -oC:\Users\al3615\AppData\Local\Temp\s9l4.2 \
+  -oC:\Users\al3615\AppData\Local\Temp\sa54.2 \
   -Mdist/default/production/ECM.production.map -E1 -ver=XC8 \
   -ASTACK=060h-02ffh -pstack=STACK -ACODE=00h-01FFFh -ACONST=00h-01FFFh \
   -ASMALLCONST=0300h-03FFhx29 -AMEDIUMCONST=0300h-01FFFh -ACOMRAM=01h-05Fh \
@@ -20,7 +20,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\al3615\AppData\Local\Temp\s9l4.obj \
+  C:\Users\al3615\AppData\Local\Temp\sa54.obj \
   dist/default/production\ECM.production.obj 
 
 Object code version is 3.11
@@ -33,7 +33,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+C:\Users\al3615\AppData\Local\Temp\sa54.obj
                 end_init                              0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
@@ -349,7 +349,7 @@ Total ram usage:        0 bytes
 
  *************** function _SetLine *****************
  Defined at:
-		line 130 in file "main.c"
+		line 119 in file "main.c"
  Parameters:    Size  Location     Type
   line            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -379,7 +379,7 @@ Total ram usage:        1 bytes
 
  *************** function _LCD_Init *****************
  Defined at:
-		line 91 in file "main.c"
+		line 82 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -410,7 +410,7 @@ Total ram usage:        1 bytes
 
  *************** function _SendLCD *****************
  Defined at:
-		line 81 in file "main.c"
+		line 72 in file "main.c"
  Parameters:    Size  Location     Type
   Byte            1    wreg     unsigned char 
   type            1    2[COMRAM] unsigned char 
@@ -443,7 +443,7 @@ Total ram usage:        2 bytes
 
  *************** function _LCDout *****************
  Defined at:
-		line 70 in file "main.c"
+		line 61 in file "main.c"
  Parameters:    Size  Location     Type
   number          1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -474,7 +474,7 @@ Total ram usage:        2 bytes
 
  *************** function _E_TOG *****************
  Defined at:
-		line 62 in file "main.c"
+		line 55 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type

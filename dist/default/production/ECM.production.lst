@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.35 build -356382666 
-                                                                                               Tue Oct 31 12:15:19 2017
+                                                                                               Tue Oct 31 12:56:56 2017
 
 Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080246
      1                           	processor	18F4331
@@ -206,7 +206,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    200                           
    201 ;; *************** function _SetLine *****************
    202 ;; Defined at:
-   203 ;;		line 130 in file "main.c"
+   203 ;;		line 119 in file "main.c"
    204 ;; Parameters:    Size  Location     Type
    205 ;;  line            1    wreg     unsigned char 
    206 ;; Auto vars:     Size  Location     Type
@@ -244,18 +244,18 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    238                           ;SetLine@line stored from wreg
    239  001E1A  6E05               	movwf	SetLine@line,c
    240                           
-   241                           ;main.c: 133: if(line == 1) {
+   241                           ;main.c: 122: if(line == 1) {
    242  001E1C  0405               	decf	SetLine@line,w,c
    243  001E1E  A4D8               	btfss	status,2,c
    244  001E20  D006               	goto	l794
    245                           
-   246                           ;main.c: 134: SendLCD(0x80,0);
+   246                           ;main.c: 123: SendLCD(0x80,0);
    247  001E22  0E00               	movlw	0
    248  001E24  6E03               	movwf	SendLCD@type,c
    249  001E26  0E80               	movlw	128
    250  001E28  ECFA  F00E         	call	_SendLCD
    251                           
-   252                           ;main.c: 135: } else if (line == 2) {
+   252                           ;main.c: 124: } else if (line == 2) {
    253  001E2C  D00F               	goto	l800
    254  001E2E                     l794:
    255  001E2E  0E02               	movlw	2
@@ -263,25 +263,25 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    257  001E32  A4D8               	btfss	status,2,c
    258  001E34  D006               	goto	l798
    259                           
-   260                           ;main.c: 136: SendLCD(0xC0,0);
+   260                           ;main.c: 125: SendLCD(0xC0,0);
    261  001E36  0E00               	movlw	0
    262  001E38  6E03               	movwf	SendLCD@type,c
    263  001E3A  0EC0               	movlw	192
    264  001E3C  ECFA  F00E         	call	_SendLCD
    265                           
-   266                           ;main.c: 137: } else {
+   266                           ;main.c: 126: } else {
    267  001E40  D005               	goto	l800
    268  001E42                     l798:
    269                           
-   270                           ;main.c: 138: SendLCD(0x80,0);
+   270                           ;main.c: 127: SendLCD(0x80,0);
    271  001E42  0E00               	movlw	0
    272  001E44  6E03               	movwf	SendLCD@type,c
    273  001E46  0E80               	movlw	128
    274  001E48  ECFA  F00E         	call	_SendLCD
    275  001E4C                     l800:
    276                           
-   277                           ;main.c: 139: }
-   278                           ;main.c: 140: _delay((unsigned long)((50)*(8000000/4000000.0)));
+   277                           ;main.c: 128: }
+   278                           ;main.c: 129: _delay((unsigned long)((50)*(8000000/4000000.0)));
    279  001E4C  0E21               	movlw	33
    280  001E4E                     u97:
    281  001E4E  2EE8               	decfsz	wreg,f,c
@@ -295,7 +295,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    289                           
    290 ;; *************** function _LCD_Init *****************
    291 ;; Defined at:
-   292 ;;		line 91 in file "main.c"
+   292 ;;		line 82 in file "main.c"
    293 ;; Parameters:    Size  Location     Type
    294 ;;		None
    295 ;; Auto vars:     Size  Location     Type
@@ -330,42 +330,42 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    324  001F5A                     _LCD_Init:
    325                           	opt stack 27
    326                           
-   327                           ;main.c: 93: TRISAbits.RA6 = 0;
+   327                           ;main.c: 84: TRISAbits.RA6 = 0;
    328                           
    329                           ;incstack = 0
    330  001F5A  9C92               	bcf	3986,6,c	;volatile
    331                           
-   332                           ;main.c: 94: TRISC &= 0b11111000;
+   332                           ;main.c: 85: TRISC &= 0b11111000;
    333  001F5C  0EF8               	movlw	248
    334  001F5E  1694               	andwf	3988,f,c	;volatile
    335                           
-   336                           ;main.c: 95: TRISD &= 0b11111100;
+   336                           ;main.c: 86: TRISD &= 0b11111100;
    337  001F60  0EFC               	movlw	252
    338  001F62  1695               	andwf	3989,f,c	;volatile
    339                           
-   340                           ;main.c: 97: LATCbits.LC0 = 0;
+   340                           ;main.c: 88: LATCbits.LC0 = 0;
    341  001F64  908B               	bcf	3979,0,c	;volatile
    342                           
-   343                           ;main.c: 98: LATAbits.LA6 = 0;
+   343                           ;main.c: 89: LATAbits.LATA6 = 0;
    344  001F66  9C89               	bcf	3977,6,c	;volatile
    345                           
-   346                           ;main.c: 99: LATDbits.LD1 = 0;
+   346                           ;main.c: 90: LATDbits.LD1 = 0;
    347  001F68  928C               	bcf	3980,1,c	;volatile
    348                           
-   349                           ;main.c: 100: LATDbits.LD0 = 0;
+   349                           ;main.c: 91: LATDbits.LD0 = 0;
    350  001F6A  908C               	bcf	3980,0,c	;volatile
    351                           
-   352                           ;main.c: 101: LATCbits.LC2 = 0;
+   352                           ;main.c: 92: LATCbits.LC2 = 0;
    353  001F6C  948B               	bcf	3979,2,c	;volatile
    354                           
-   355                           ;main.c: 102: LATCbits.LC1 = 0;
+   355                           ;main.c: 93: LATCbits.LC1 = 0;
    356  001F6E  928B               	bcf	3979,1,c	;volatile
    357                           
-   358                           ;main.c: 105: LCDout(0b0011);
+   358                           ;main.c: 96: LCDout(0b0011);
    359  001F70  0E03               	movlw	3
    360  001F72  EC2B  F00F         	call	_LCDout
    361                           
-   362                           ;main.c: 106: _delay((unsigned long)((5000)*(8000000/4000000.0)));
+   362                           ;main.c: 97: _delay((unsigned long)((5000)*(8000000/4000000.0)));
    363  001F76  0E0D               	movlw	13
    364  001F78  6E05               	movwf	??_LCD_Init& (0+255),c
    365  001F7A  0EFC               	movlw	252
@@ -375,59 +375,59 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    369  001F80  2E05               	decfsz	??_LCD_Init& (0+255),f,c
    370  001F82  D7FC               	goto	u107
    371                           
-   372                           ;main.c: 107: LCDout(0b0011);
+   372                           ;main.c: 98: LCDout(0b0011);
    373  001F84  0E03               	movlw	3
    374  001F86  EC2B  F00F         	call	_LCDout
    375                           
-   376                           ;main.c: 108: _delay((unsigned long)((200)*(8000000/4000000.0)));
+   376                           ;main.c: 99: _delay((unsigned long)((200)*(8000000/4000000.0)));
    377  001F8A  0E85               	movlw	133
    378  001F8C                     u117:
    379  001F8C  2EE8               	decfsz	wreg,f,c
    380  001F8E  D7FE               	goto	u117
    381  001F90  F000               	nop	
    382                           
-   383                           ;main.c: 109: LCDout(0b0011);
+   383                           ;main.c: 100: LCDout(0b0011);
    384  001F92  0E03               	movlw	3
    385  001F94  EC2B  F00F         	call	_LCDout
    386                           
-   387                           ;main.c: 110: _delay((unsigned long)((50)*(8000000/4000000.0)));
+   387                           ;main.c: 101: _delay((unsigned long)((50)*(8000000/4000000.0)));
    388  001F98  0E21               	movlw	33
    389  001F9A                     u127:
    390  001F9A  2EE8               	decfsz	wreg,f,c
    391  001F9C  D7FE               	goto	u127
    392  001F9E  F000               	nop	
    393                           
-   394                           ;main.c: 112: LCDout(0b0010);
+   394                           ;main.c: 103: LCDout(0b0010);
    395  001FA0  0E02               	movlw	2
    396  001FA2  EC2B  F00F         	call	_LCDout
    397                           
-   398                           ;main.c: 113: _delay((unsigned long)((50)*(8000000/4000000.0)));
+   398                           ;main.c: 104: _delay((unsigned long)((50)*(8000000/4000000.0)));
    399  001FA6  0E21               	movlw	33
    400  001FA8                     u137:
    401  001FA8  2EE8               	decfsz	wreg,f,c
    402  001FAA  D7FE               	goto	u137
    403  001FAC  F000               	nop	
    404                           
-   405                           ;main.c: 115: SendLCD(0b00001000,0);
+   405                           ;main.c: 106: SendLCD(0b00001000,0);
    406  001FAE  0E00               	movlw	0
    407  001FB0  6E03               	movwf	SendLCD@type,c
    408  001FB2  0E08               	movlw	8
    409  001FB4  ECFA  F00E         	call	_SendLCD
    410                           
-   411                           ;main.c: 116: _delay((unsigned long)((50)*(8000000/4000000.0)));
+   411                           ;main.c: 107: _delay((unsigned long)((50)*(8000000/4000000.0)));
    412  001FB8  0E21               	movlw	33
    413  001FBA                     u147:
    414  001FBA  2EE8               	decfsz	wreg,f,c
    415  001FBC  D7FE               	goto	u147
    416  001FBE  F000               	nop	
    417                           
-   418                           ;main.c: 118: SendLCD(0b00000001,0);
+   418                           ;main.c: 109: SendLCD(0b00000001,0);
    419  001FC0  0E00               	movlw	0
    420  001FC2  6E03               	movwf	SendLCD@type,c
    421  001FC4  0E01               	movlw	1
    422  001FC6  ECFA  F00E         	call	_SendLCD
    423                           
-   424                           ;main.c: 119: _delay((unsigned long)((1700)*(8000000/4000000.0)));
+   424                           ;main.c: 110: _delay((unsigned long)((1700)*(8000000/4000000.0)));
    425  001FCA  0E05               	movlw	5
    426  001FCC  6E05               	movwf	??_LCD_Init& (0+255),c
    427  001FCE  0E69               	movlw	105
@@ -438,26 +438,26 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    432  001FD6  D7FC               	goto	u157
    433  001FD8  F000               	nop	
    434                           
-   435                           ;main.c: 121: SendLCD(0b00000110,0);
+   435                           ;main.c: 112: SendLCD(0b00000110,0);
    436  001FDA  0E00               	movlw	0
    437  001FDC  6E03               	movwf	SendLCD@type,c
    438  001FDE  0E06               	movlw	6
    439  001FE0  ECFA  F00E         	call	_SendLCD
    440                           
-   441                           ;main.c: 122: _delay((unsigned long)((50)*(8000000/4000000.0)));
+   441                           ;main.c: 113: _delay((unsigned long)((50)*(8000000/4000000.0)));
    442  001FE4  0E21               	movlw	33
    443  001FE6                     u167:
    444  001FE6  2EE8               	decfsz	wreg,f,c
    445  001FE8  D7FE               	goto	u167
    446  001FEA  F000               	nop	
    447                           
-   448                           ;main.c: 124: SendLCD(0b00001100, 0);
+   448                           ;main.c: 115: SendLCD(0b00001100, 0);
    449  001FEC  0E00               	movlw	0
    450  001FEE  6E03               	movwf	SendLCD@type,c
    451  001FF0  0E0C               	movlw	12
    452  001FF2  ECFA  F00E         	call	_SendLCD
    453                           
-   454                           ;main.c: 125: _delay((unsigned long)((50)*(8000000/4000000.0)));
+   454                           ;main.c: 116: _delay((unsigned long)((50)*(8000000/4000000.0)));
    455  001FF6  0E21               	movlw	33
    456  001FF8                     u177:
    457  001FF8  2EE8               	decfsz	wreg,f,c
@@ -471,7 +471,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    465                           
    466 ;; *************** function _SendLCD *****************
    467 ;; Defined at:
-   468 ;;		line 81 in file "main.c"
+   468 ;;		line 72 in file "main.c"
    469 ;; Parameters:    Size  Location     Type
    470 ;;  Byte            1    wreg     unsigned char 
    471 ;;  type            1    2[COMRAM] unsigned char 
@@ -512,7 +512,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    506                           ;SendLCD@Byte stored from wreg
    507  001DF4  6E04               	movwf	SendLCD@Byte,c
    508                           
-   509                           ;main.c: 84: LATAbits.LA6 = type;
+   509                           ;main.c: 75: LATAbits.LATA6 = type;
    510  001DF6  B003               	btfsc	SendLCD@type,0,c
    511  001DF8  D002               	bra	u55
    512  001DFA  9C89               	bcf	3977,6,c	;volatile
@@ -521,19 +521,19 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    515  001DFE  8C89               	bsf	3977,6,c	;volatile
    516  001E00                     u56:
    517                           
-   518                           ;main.c: 86: LCDout(Byte >> 4);
+   518                           ;main.c: 77: LCDout(Byte >> 4);
    519  001E00  3804               	swapf	SendLCD@Byte,w,c
    520  001E02  0B0F               	andlw	15
    521  001E04  EC2B  F00F         	call	_LCDout
    522                           
-   523                           ;main.c: 87: _delay((unsigned long)((10)*(8000000/4000000.0)));
+   523                           ;main.c: 78: _delay((unsigned long)((10)*(8000000/4000000.0)));
    524  001E08  0E06               	movlw	6
    525  001E0A                     u187:
    526  001E0A  2EE8               	decfsz	wreg,f,c
    527  001E0C  D7FE               	goto	u187
    528  001E0E  D000               	nop2		;nop
    529                           
-   530                           ;main.c: 89: LCDout(Byte & 0b00001111);
+   530                           ;main.c: 80: LCDout(Byte & 0b00001111);
    531  001E10  5004               	movf	SendLCD@Byte,w,c
    532  001E12  0B0F               	andlw	15
    533  001E14  EC2B  F00F         	call	_LCDout
@@ -545,7 +545,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    539                           
    540 ;; *************** function _LCDout *****************
    541 ;; Defined at:
-   542 ;;		line 70 in file "main.c"
+   542 ;;		line 61 in file "main.c"
    543 ;; Parameters:    Size  Location     Type
    544 ;;  number          1    wreg     unsigned char 
    545 ;; Auto vars:     Size  Location     Type
@@ -584,7 +584,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    578                           ;LCDout@number stored from wreg
    579  001E56  6E02               	movwf	LCDout@number,c
    580                           
-   581                           ;main.c: 72: LATDbits.LD1 = number >> 3 & 0b00000001;
+   581                           ;main.c: 63: LATDbits.LD1 = number >> 3 & 0b00000001;
    582  001E58  C002  F001         	movff	LCDout@number,??_LCDout
    583  001E5C  90D8               	bcf	status,0,c
    584  001E5E  3201               	rrcf	??_LCDout,f,c
@@ -601,7 +601,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    595  001E74  1801               	xorwf	??_LCDout,w,c
    596  001E76  6E8C               	movwf	3980,c	;volatile
    597                           
-   598                           ;main.c: 73: LATDbits.LD0 = (number >> 2) & 0b00000001;
+   598                           ;main.c: 64: LATDbits.LD0 = (number >> 2) & 0b00000001;
    599  001E78  C002  F001         	movff	LCDout@number,??_LCDout
    600  001E7C  90D8               	bcf	status,0,c
    601  001E7E  3201               	rrcf	??_LCDout,f,c
@@ -615,7 +615,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    609  001E8E  1801               	xorwf	??_LCDout,w,c
    610  001E90  6E8C               	movwf	3980,c	;volatile
    611                           
-   612                           ;main.c: 74: LATCbits.LC2 = (number >> 1) & 0b00000001;
+   612                           ;main.c: 65: LATCbits.LC2 = (number >> 1) & 0b00000001;
    613  001E92  C002  F001         	movff	LCDout@number,??_LCDout
    614  001E96  90D8               	bcf	status,0,c
    615  001E98  3201               	rrcf	??_LCDout,f,c
@@ -629,7 +629,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    623  001EA8  1801               	xorwf	??_LCDout,w,c
    624  001EAA  6E8B               	movwf	3979,c	;volatile
    625                           
-   626                           ;main.c: 75: LATCbits.LC1 = number & 0b00000001;
+   626                           ;main.c: 66: LATCbits.LC1 = number & 0b00000001;
    627  001EAC  C002  F001         	movff	LCDout@number,??_LCDout
    628  001EB0  0E01               	movlw	1
    629  001EB2  1601               	andwf	??_LCDout,f,c
@@ -640,10 +640,10 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    634  001EBC  1801               	xorwf	??_LCDout,w,c
    635  001EBE  6E8B               	movwf	3979,c	;volatile
    636                           
-   637                           ;main.c: 77: E_TOG();
+   637                           ;main.c: 68: E_TOG();
    638  001EC0  ECF3  F00E         	call	_E_TOG	;wreg free
    639                           
-   640                           ;main.c: 78: _delay((unsigned long)((5)*(8000000/4000000.0)));
+   640                           ;main.c: 69: _delay((unsigned long)((5)*(8000000/4000000.0)));
    641  001EC4  0E03               	movlw	3
    642  001EC6                     u197:
    643  001EC6  2EE8               	decfsz	wreg,f,c
@@ -657,7 +657,7 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    651                           
    652 ;; *************** function _E_TOG *****************
    653 ;; Defined at:
-   654 ;;		line 62 in file "main.c"
+   654 ;;		line 55 in file "main.c"
    655 ;; Parameters:    Size  Location     Type
    656 ;;		None
    657 ;; Auto vars:     Size  Location     Type
@@ -690,19 +690,19 @@ Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080
    684  001DE6                     _E_TOG:
    685                           	opt stack 27
    686                           
-   687                           ;main.c: 65: LATCbits.LC0 = 1;
+   687                           ;main.c: 56: LATCbits.LC0 = 1;
    688                           
    689                           ;incstack = 0
    690  001DE6  808B               	bsf	3979,0,c	;volatile
    691                           
-   692                           ;main.c: 66: _delay((unsigned long)((5)*(8000000/4000000.0)));
+   692                           ;main.c: 57: _delay((unsigned long)((5)*(8000000/4000000.0)));
    693  001DE8  0E03               	movlw	3
    694  001DEA                     u207:
    695  001DEA  2EE8               	decfsz	wreg,f,c
    696  001DEC  D7FE               	goto	u207
    697  001DEE  F000               	nop	
    698                           
-   699                           ;main.c: 67: LATCbits.LC0 = 0;
+   699                           ;main.c: 58: LATCbits.LC0 = 0;
    700  001DF0  908B               	bcf	3979,0,c	;volatile
    701  001DF2  0012               	return		;funcret
    702  001DF4                     __end_of_E_TOG:
@@ -827,7 +827,7 @@ SFR                  0      0       0      40        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.35 build -356382666 
-Symbol Table                                                                                   Tue Oct 31 12:15:19 2017
+Symbol Table                                                                                   Tue Oct 31 12:56:56 2017
 
                      l31 1F58                       l27 1ED2                       u55 1DFE  
                      u56 1E00                       u97 1E4E                      l800 1E4C  
