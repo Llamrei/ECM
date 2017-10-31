@@ -1,7 +1,27 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"18 main.c
-[v _initialiseLED `(v ~T0 @X0 0 ef ]
+"6964 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4331.h
+[v _OSCCON `Vuc ~T0 @X0 0 e@4051 ]
+"6970
+[s S377 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S377 . SCS IOFS OSTS IRCF IDLEN ]
+"6977
+[s S378 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S378 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
+"6985
+[s S379 :2 `uc 1 :1 `uc 1 ]
+[n S379 . . FLTS ]
+"6969
+[u S376 `S377 1 `S378 1 `S379 1 ]
+[n S376 . . . . ]
+"6990
+[v _OSCCONbits `VS376 ~T0 @X0 0 e@4051 ]
+"28 main.c
+[v _LCD_Init `(v ~T0 @X0 0 ef ]
+"29
+[v _SetLine `(v ~T0 @X0 0 ef1`uc ]
+"27
+[v _SendLCD `(v ~T0 @X0 0 ef2`uc`uc ]
 "2110 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4331.h
 [s S106 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S106 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
@@ -38,6 +58,85 @@ Version 3.2 HI-TECH Software Intermediate Code
 "152 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18.h
 [v __delay `JF3644 ~T0 @X0 0 e ]
 [p i __delay ]
+"2242 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4331.h
+[s S116 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S116 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"2252
+[s S117 :1 `uc 1 ]
+[n S117 . LD0 ]
+"2255
+[s S118 :1 `uc 1 :1 `uc 1 ]
+[n S118 . . LD1 ]
+"2259
+[s S119 :2 `uc 1 :1 `uc 1 ]
+[n S119 . . LD2 ]
+"2263
+[s S120 :3 `uc 1 :1 `uc 1 ]
+[n S120 . . LD3 ]
+"2267
+[s S121 :4 `uc 1 :1 `uc 1 ]
+[n S121 . . LD4 ]
+"2271
+[s S122 :5 `uc 1 :1 `uc 1 ]
+[n S122 . . LD5 ]
+"2275
+[s S123 :6 `uc 1 :1 `uc 1 ]
+[n S123 . . LD6 ]
+"2279
+[s S124 :7 `uc 1 :1 `uc 1 ]
+[n S124 . . LD7 ]
+"2241
+[u S115 `S116 1 `S117 1 `S118 1 `S119 1 `S120 1 `S121 1 `S122 1 `S123 1 `S124 1 ]
+[n S115 . . . . . . . . . . ]
+"2284
+[v _LATDbits `VS115 ~T0 @X0 0 e@3980 ]
+"1846
+[s S86 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S86 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"1856
+[s S87 :1 `uc 1 ]
+[n S87 . LA0 ]
+"1859
+[s S88 :1 `uc 1 :1 `uc 1 ]
+[n S88 . . LA1 ]
+"1863
+[s S89 :2 `uc 1 :1 `uc 1 ]
+[n S89 . . LA2 ]
+"1867
+[s S90 :3 `uc 1 :1 `uc 1 ]
+[n S90 . . LA3 ]
+"1871
+[s S91 :4 `uc 1 :1 `uc 1 ]
+[n S91 . . LA4 ]
+"1875
+[s S92 :5 `uc 1 :1 `uc 1 ]
+[n S92 . . LA5 ]
+"1879
+[s S93 :6 `uc 1 :1 `uc 1 ]
+[n S93 . . LA6 ]
+"1883
+[s S94 :7 `uc 1 :1 `uc 1 ]
+[n S94 . . LA7 ]
+"1845
+[u S85 `S86 1 `S87 1 `S88 1 `S89 1 `S90 1 `S91 1 `S92 1 `S93 1 `S94 1 ]
+[n S85 . . . . . . . . . . ]
+"1888
+[v _LATAbits `VS85 ~T0 @X0 0 e@3977 ]
+"2499
+[s S136 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S136 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
+"2509
+[s S137 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S137 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"2498
+[u S135 `S136 1 `S137 1 ]
+[n S135 . . . ]
+"2520
+[v _TRISAbits `VS135 ~T0 @X0 0 e@3986 ]
+"2930
+[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
+"3151
+[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -3517,104 +3616,280 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 152: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 154: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 156: extern __nonreentrant void _delay3(unsigned char);
-[; ;main.c: 13: void E_TOG(void);
-[; ;main.c: 14: void LCDout(unsigned char number);
-[; ;main.c: 15: void SendLCD(unsigned char Byte, char type);
-[; ;main.c: 16: void LCD_Init(void);
-[; ;main.c: 17: void SetLine (char line);
-[; ;main.c: 18: void initialiseLED();
-"20 main.c
+"10 main.c
+[p x OSC=IRCIO ]
+[; ;main.c: 25: void E_TOG(void);
+[; ;main.c: 26: void LCDout(unsigned char number);
+[; ;main.c: 27: void SendLCD(unsigned char Byte, char type);
+[; ;main.c: 28: void LCD_Init(void);
+[; ;main.c: 29: void SetLine (char line);
+"31
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 20: void main(void) {
+[; ;main.c: 31: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 22: initialiseLED();
-"22
-[e ( _initialiseLED ..  ]
-[; ;main.c: 24: }
-"24
+[; ;main.c: 32: OSCCON = 0x72;
+"32
+[e = _OSCCON -> -> 114 `i `uc ]
+[; ;main.c: 33: while(!OSCCONbits.IOFS);
+"33
+[e $U 406  ]
+[e :U 407 ]
+[e :U 406 ]
+[e $ ! != -> . . _OSCCONbits 0 1 `i -> -> -> 0 `i `Vuc `i 407  ]
+[e :U 408 ]
+[; ;main.c: 35: LCD_Init();
+"35
+[e ( _LCD_Init ..  ]
+[; ;main.c: 37: SetLine(1);
+"37
+[e ( _SetLine (1 -> -> 1 `i `uc ]
+[; ;main.c: 38: SendLCD(0x48,1);
+"38
+[e ( _SendLCD (2 , -> -> 72 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 39: SendLCD(0x65,1);
+"39
+[e ( _SendLCD (2 , -> -> 101 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 40: SendLCD(0x6C,1);
+"40
+[e ( _SendLCD (2 , -> -> 108 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 41: SendLCD(0x6C,1);
+"41
+[e ( _SendLCD (2 , -> -> 108 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 42: SendLCD(0x6F,1);
+"42
+[e ( _SendLCD (2 , -> -> 111 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 43: SendLCD(0x20,1);
+"43
+[e ( _SendLCD (2 , -> -> 32 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 44: SendLCD(0x57,1);
+"44
+[e ( _SendLCD (2 , -> -> 87 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 45: SendLCD(0x6F,1);
+"45
+[e ( _SendLCD (2 , -> -> 111 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 46: SendLCD(0x72,1);
+"46
+[e ( _SendLCD (2 , -> -> 114 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 47: SendLCD(0x6C,1);
+"47
+[e ( _SendLCD (2 , -> -> 108 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 48: SendLCD(0x64,1);
+"48
+[e ( _SendLCD (2 , -> -> 100 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 49: SendLCD(0x21,1);
+"49
+[e ( _SendLCD (2 , -> -> 33 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 50: while(1);
+"50
+[e :U 410 ]
+[e :U 409 ]
+[e $U 410  ]
+[e :U 411 ]
+[; ;main.c: 53: }
+"53
 [e :UE 405 ]
 }
-"26
-[v _initialiseLED `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 26: void initialiseLED() {
-[e :U _initialiseLED ]
-[f ]
-[; ;main.c: 28: }
-"28
-[e :UE 406 ]
-}
-"37
+"62
 [v _E_TOG `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 37: void E_TOG(void){
+[; ;main.c: 62: void E_TOG(void){
 [e :U _E_TOG ]
 [f ]
-[; ;main.c: 40: LATCbits.LC0 = 1;
-"40
+[; ;main.c: 65: LATCbits.LC0 = 1;
+"65
 [e = . . _LATCbits 1 0 -> -> 1 `i `uc ]
-[; ;main.c: 41: _delay((unsigned long)((46)*(8000000/4000000.0)));
-"41
-[e ( __delay (1 -> * -> -> 46 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 42: LATCbits.LC0 = 0;
-"42
+[; ;main.c: 66: _delay((unsigned long)((5)*(8000000/4000000.0)));
+"66
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 67: LATCbits.LC0 = 0;
+"67
 [e = . . _LATCbits 1 0 -> -> 0 `i `uc ]
-[; ;main.c: 43: }
-"43
-[e :UE 407 ]
+[; ;main.c: 68: }
+"68
+[e :UE 412 ]
 }
-"45
+"70
 [v _LCDout `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;main.c: 45: void LCDout(unsigned char number){
+[; ;main.c: 70: void LCDout(unsigned char number){
 [e :U _LCDout ]
 [v _number `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 49: _delay((unsigned long)((5)*(8000000/4000000.0)));
-"49
+[; ;main.c: 72: LATDbits.LD1 = number >> 3 & 0b00000001;
+"72
+[e = . . _LATDbits 2 1 -> & >> -> _number `i -> 3 `i -> 1 `i `uc ]
+[; ;main.c: 73: LATDbits.LD0 = (number >> 2) & 0b00000001;
+"73
+[e = . . _LATDbits 1 0 -> & >> -> _number `i -> 2 `i -> 1 `i `uc ]
+[; ;main.c: 74: LATCbits.LC2 = (number >> 1) & 0b00000001;
+"74
+[e = . . _LATCbits 3 1 -> & >> -> _number `i -> 1 `i -> 1 `i `uc ]
+[; ;main.c: 75: LATCbits.LC1 = number & 0b00000001;
+"75
+[e = . . _LATCbits 2 1 -> & -> _number `i -> 1 `i `uc ]
+[; ;main.c: 77: E_TOG();
+"77
+[e ( _E_TOG ..  ]
+[; ;main.c: 78: _delay((unsigned long)((5)*(8000000/4000000.0)));
+"78
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 50: }
-"50
-[e :UE 408 ]
+[; ;main.c: 79: }
+"79
+[e :UE 413 ]
 }
-"52
+"81
 [v _SendLCD `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;main.c: 52: void SendLCD(unsigned char Byte, char type){
+[; ;main.c: 81: void SendLCD(unsigned char Byte, char type){
 [e :U _SendLCD ]
 [v _Byte `uc ~T0 @X0 1 r1 ]
 [v _type `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 56: _delay((unsigned long)((10)*(8000000/4000000.0)));
-"56
+[; ;main.c: 84: LATAbits.LA6 = type;
+"84
+[e = . . _LATAbits 7 1 _type ]
+[; ;main.c: 86: LCDout(Byte >> 4);
+"86
+[e ( _LCDout (1 -> >> -> _Byte `i -> 4 `i `uc ]
+[; ;main.c: 87: _delay((unsigned long)((10)*(8000000/4000000.0)));
+"87
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 58: }
-"58
-[e :UE 409 ]
+[; ;main.c: 89: LCDout(Byte & 0b00001111);
+"89
+[e ( _LCDout (1 -> & -> _Byte `i -> 15 `i `uc ]
+[; ;main.c: 90: }
+"90
+[e :UE 414 ]
 }
-"59
+"91
 [v _LCD_Init `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 59: void LCD_Init(void){
+[; ;main.c: 91: void LCD_Init(void){
 [e :U _LCD_Init ]
 [f ]
-[; ;main.c: 73: }
-"73
-[e :UE 410 ]
+[; ;main.c: 93: TRISAbits.RA6 = 0;
+"93
+[e = . . _TRISAbits 1 6 -> -> 0 `i `uc ]
+[; ;main.c: 94: TRISC &= 0b11111000;
+"94
+[e =& _TRISC -> -> 248 `i `uc ]
+[; ;main.c: 95: TRISD &= 0b11111100;
+"95
+[e =& _TRISD -> -> 252 `i `uc ]
+[; ;main.c: 97: LATCbits.LC0 = 0;
+"97
+[e = . . _LATCbits 1 0 -> -> 0 `i `uc ]
+[; ;main.c: 98: LATAbits.LA6 = 0;
+"98
+[e = . . _LATAbits 7 1 -> -> 0 `i `uc ]
+[; ;main.c: 99: LATDbits.LD1 = 0;
+"99
+[e = . . _LATDbits 2 1 -> -> 0 `i `uc ]
+[; ;main.c: 100: LATDbits.LD0 = 0;
+"100
+[e = . . _LATDbits 1 0 -> -> 0 `i `uc ]
+[; ;main.c: 101: LATCbits.LC2 = 0;
+"101
+[e = . . _LATCbits 3 1 -> -> 0 `i `uc ]
+[; ;main.c: 102: LATCbits.LC1 = 0;
+"102
+[e = . . _LATCbits 2 1 -> -> 0 `i `uc ]
+[; ;main.c: 105: LCDout(0b0011);
+"105
+[e ( _LCDout (1 -> -> 3 `i `uc ]
+[; ;main.c: 106: _delay((unsigned long)((5000)*(8000000/4000000.0)));
+"106
+[e ( __delay (1 -> * -> -> 5000 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 107: LCDout(0b0011);
+"107
+[e ( _LCDout (1 -> -> 3 `i `uc ]
+[; ;main.c: 108: _delay((unsigned long)((200)*(8000000/4000000.0)));
+"108
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 109: LCDout(0b0011);
+"109
+[e ( _LCDout (1 -> -> 3 `i `uc ]
+[; ;main.c: 110: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"110
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 112: LCDout(0b0010);
+"112
+[e ( _LCDout (1 -> -> 2 `i `uc ]
+[; ;main.c: 113: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"113
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 115: SendLCD(0b00001000,0);
+"115
+[e ( _SendLCD (2 , -> -> 8 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 116: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"116
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 118: SendLCD(0b00000001,0);
+"118
+[e ( _SendLCD (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 119: _delay((unsigned long)((1700)*(8000000/4000000.0)));
+"119
+[e ( __delay (1 -> * -> -> 1700 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 121: SendLCD(0b00000110,0);
+"121
+[e ( _SendLCD (2 , -> -> 6 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 122: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"122
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 124: SendLCD(0b00001100, 0);
+"124
+[e ( _SendLCD (2 , -> -> 12 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 125: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"125
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 128: }
+"128
+[e :UE 415 ]
 }
-"75
+"130
 [v _SetLine `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;main.c: 75: void SetLine (char line){
+[; ;main.c: 130: void SetLine (char line){
 [e :U _SetLine ]
 [v _line `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 78: _delay((unsigned long)((50)*(8000000/4000000.0)));
-"78
+[; ;main.c: 133: if(line == 1) {
+"133
+[e $ ! == -> _line `i -> 1 `i 417  ]
+{
+[; ;main.c: 134: SendLCD(0x80,0);
+"134
+[e ( _SendLCD (2 , -> -> 128 `i `uc -> -> 0 `i `uc ]
+"135
+}
+[; ;main.c: 135: } else if (line == 2) {
+[e $U 418  ]
+[e :U 417 ]
+[e $ ! == -> _line `i -> 2 `i 419  ]
+{
+[; ;main.c: 136: SendLCD(0xC0,0);
+"136
+[e ( _SendLCD (2 , -> -> 192 `i `uc -> -> 0 `i `uc ]
+"137
+}
+[; ;main.c: 137: } else {
+[e $U 420  ]
+[e :U 419 ]
+{
+[; ;main.c: 138: SendLCD(0x80,0);
+"138
+[e ( _SendLCD (2 , -> -> 128 `i `uc -> -> 0 `i `uc ]
+"139
+}
+[e :U 420 ]
+[e :U 418 ]
+[; ;main.c: 139: }
+[; ;main.c: 140: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"140
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 79: }
-"79
-[e :UE 411 ]
+[; ;main.c: 141: }
+"141
+[e :UE 416 ]
 }

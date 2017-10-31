@@ -4630,54 +4630,119 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 13 "main.c"
+
+# 10 "main.c"
+#pragma config OSC = IRCIO
+
+# 25
 void E_TOG(void);
 void LCDout(unsigned char number);
 void SendLCD(unsigned char Byte, char type);
 void LCD_Init(void);
 void SetLine (char line);
-void initialiseLED();
 
 void main(void) {
+OSCCON = 0x72;
+while(!OSCCONbits.IOFS);
 
-initialiseLED();
+LCD_Init();
+
+SetLine(1);
+SendLCD(0x48,1);
+SendLCD(0x65,1);
+SendLCD(0x6C,1);
+SendLCD(0x6C,1);
+SendLCD(0x6F,1);
+SendLCD(0x20,1);
+SendLCD(0x57,1);
+SendLCD(0x6F,1);
+SendLCD(0x72,1);
+SendLCD(0x6C,1);
+SendLCD(0x64,1);
+SendLCD(0x21,1);
+while(1);
+
 
 }
 
-void initialiseLED() {
-
-}
-
-# 37
+# 62
 void E_TOG(void){
 
 
 LATCbits.LC0 = 1;
-_delay((unsigned long)((46)*(8000000/4000000.0)));
+_delay((unsigned long)((5)*(8000000/4000000.0)));
 LATCbits.LC0 = 0;
 }
 
 void LCDout(unsigned char number){
 
+LATDbits.LD1 = number >> 3 & 0b00000001;
+LATDbits.LD0 = (number >> 2) & 0b00000001;
+LATCbits.LC2 = (number >> 1) & 0b00000001;
+LATCbits.LC1 = number & 0b00000001;
 
-
+E_TOG();
 _delay((unsigned long)((5)*(8000000/4000000.0)));
 }
 
 void SendLCD(unsigned char Byte, char type){
 
 
+LATAbits.LA6 = type;
 
+LCDout(Byte >> 4);
 _delay((unsigned long)((10)*(8000000/4000000.0)));
 
+LCDout(Byte & 0b00001111);
 }
 void LCD_Init(void){
 
-# 73
+TRISAbits.RA6 = 0;
+TRISC &= 0b11111000;
+TRISD &= 0b11111100;
+
+LATCbits.LC0 = 0;
+LATAbits.LA6 = 0;
+LATDbits.LD1 = 0;
+LATDbits.LD0 = 0;
+LATCbits.LC2 = 0;
+LATCbits.LC1 = 0;
+
+
+LCDout(0b0011);
+_delay((unsigned long)((5000)*(8000000/4000000.0)));
+LCDout(0b0011);
+_delay((unsigned long)((200)*(8000000/4000000.0)));
+LCDout(0b0011);
+_delay((unsigned long)((50)*(8000000/4000000.0)));
+
+LCDout(0b0010);
+_delay((unsigned long)((50)*(8000000/4000000.0)));
+
+SendLCD(0b00001000,0);
+_delay((unsigned long)((50)*(8000000/4000000.0)));
+
+SendLCD(0b00000001,0);
+_delay((unsigned long)((1700)*(8000000/4000000.0)));
+
+SendLCD(0b00000110,0);
+_delay((unsigned long)((50)*(8000000/4000000.0)));
+
+SendLCD(0b00001100, 0);
+_delay((unsigned long)((50)*(8000000/4000000.0)));
+
+
 }
 
 void SetLine (char line){
 
 
+if(line == 1) {
+SendLCD(0x80,0);
+} else if (line == 2) {
+SendLCD(0xC0,0);
+} else {
+SendLCD(0x80,0);
+}
 _delay((unsigned long)((50)*(8000000/4000000.0)));
 }

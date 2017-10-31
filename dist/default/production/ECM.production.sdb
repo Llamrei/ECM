@@ -23,11 +23,54 @@
 [v ___flmul __flmul `(d  1 e 3 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"20 H:\MPLABXProjects\ECM\main.c
+"31 H:\MPLABXProjects\ECM\main.c
 [v _main main `(v  1 e 0 0 ]
-"26
-[v _initialiseLED initialiseLED `(v  1 e 0 0 ]
-[s S25 . 1 `uc 1 LATC0 1 0 :1:0 
+"62
+[v _E_TOG E_TOG `(v  1 e 0 0 ]
+"70
+[v _LCDout LCDout `(v  1 e 0 0 ]
+"81
+[v _SendLCD SendLCD `(v  1 e 0 0 ]
+"91
+[v _LCD_Init LCD_Init `(v  1 e 0 0 ]
+"130
+[v _SetLine SetLine `(v  1 e 0 0 ]
+[s S230 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 LATA3 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+`uc 1 LATA6 1 0 :1:6 
+`uc 1 LATA7 1 0 :1:7 
+]
+"1888 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4331.h
+[s S239 . 1 `uc 1 LA0 1 0 :1:0 
+]
+[s S241 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 LA1 1 0 :1:1 
+]
+[s S244 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 LA2 1 0 :1:2 
+]
+[s S247 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 LA3 1 0 :1:3 
+]
+[s S250 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 LA4 1 0 :1:4 
+]
+[s S253 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 LA5 1 0 :1:5 
+]
+[s S256 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 LA6 1 0 :1:6 
+]
+[s S259 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 LA7 1 0 :1:7 
+]
+[u S262 . 1 `S230 1 . 1 0 `S239 1 . 1 0 `S241 1 . 1 0 `S244 1 . 1 0 `S247 1 . 1 0 `S250 1 . 1 0 `S253 1 . 1 0 `S256 1 . 1 0 `S259 1 . 1 0 ]
+[v _LATAbits LATAbits `VES262  1 e 1 @3977 ]
+[s S74 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -36,39 +79,153 @@
 `uc 1 LATC6 1 0 :1:6 
 `uc 1 LATC7 1 0 :1:7 
 ]
-"2152 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4331.h
-[s S34 . 1 `uc 1 LC0 1 0 :1:0 
+"2152
+[s S83 . 1 `uc 1 LC0 1 0 :1:0 
 ]
-[s S36 . 1 `uc 1 . 1 0 :1:0 
+[s S85 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 ]
-[s S39 . 1 `uc 1 . 1 0 :2:0 
+[s S88 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 LC2 1 0 :1:2 
 ]
-[s S42 . 1 `uc 1 . 1 0 :3:0 
+[s S91 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 LC3 1 0 :1:3 
 ]
-[s S45 . 1 `uc 1 . 1 0 :4:0 
+[s S94 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 LC4 1 0 :1:4 
 ]
-[s S48 . 1 `uc 1 . 1 0 :5:0 
+[s S97 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 LC5 1 0 :1:5 
 ]
-[s S51 . 1 `uc 1 . 1 0 :6:0 
+[s S100 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 LC6 1 0 :1:6 
 ]
-[s S54 . 1 `uc 1 . 1 0 :7:0 
+[s S103 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S57 . 1 `S25 1 . 1 0 `S34 1 . 1 0 `S36 1 . 1 0 `S39 1 . 1 0 `S42 1 . 1 0 `S45 1 . 1 0 `S48 1 . 1 0 `S51 1 . 1 0 `S54 1 . 1 0 ]
-[v _LATCbits LATCbits `VES57  1 e 1 @3979 ]
-"20 H:\MPLABXProjects\ECM\main.c
+[u S106 . 1 `S74 1 . 1 0 `S83 1 . 1 0 `S85 1 . 1 0 `S88 1 . 1 0 `S91 1 . 1 0 `S94 1 . 1 0 `S97 1 . 1 0 `S100 1 . 1 0 `S103 1 . 1 0 ]
+[v _LATCbits LATCbits `VES106  1 e 1 @3979 ]
+[s S155 . 1 `uc 1 LATD0 1 0 :1:0 
+`uc 1 LATD1 1 0 :1:1 
+`uc 1 LATD2 1 0 :1:2 
+`uc 1 LATD3 1 0 :1:3 
+`uc 1 LATD4 1 0 :1:4 
+`uc 1 LATD5 1 0 :1:5 
+`uc 1 LATD6 1 0 :1:6 
+`uc 1 LATD7 1 0 :1:7 
+]
+"2284
+[s S164 . 1 `uc 1 LD0 1 0 :1:0 
+]
+[s S166 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 LD1 1 0 :1:1 
+]
+[s S169 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 LD2 1 0 :1:2 
+]
+[s S172 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 LD3 1 0 :1:3 
+]
+[s S175 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 LD4 1 0 :1:4 
+]
+[s S178 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 LD5 1 0 :1:5 
+]
+[s S181 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 LD6 1 0 :1:6 
+]
+[s S184 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 LD7 1 0 :1:7 
+]
+[u S187 . 1 `S155 1 . 1 0 `S164 1 . 1 0 `S166 1 . 1 0 `S169 1 . 1 0 `S172 1 . 1 0 `S175 1 . 1 0 `S178 1 . 1 0 `S181 1 . 1 0 `S184 1 . 1 0 ]
+[v _LATDbits LATDbits `VES187  1 e 1 @3980 ]
+[s S305 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+`uc 1 TRISA6 1 0 :1:6 
+`uc 1 TRISA7 1 0 :1:7 
+]
+"2520
+[s S314 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+[u S323 . 1 `S305 1 . 1 0 `S314 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES323  1 e 1 @3986 ]
+"2930
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"3151
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"6964
+[v _OSCCON OSCCON `VEuc  1 e 1 @4051 ]
+[s S22 . 1 `uc 1 SCS 1 0 :2:0 
+`uc 1 IOFS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+`uc 1 IDLEN 1 0 :1:7 
+]
+"6990
+[s S28 . 1 `uc 1 SCS0 1 0 :1:0 
+`uc 1 SCS1 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[s S35 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 FLTS 1 0 :1:2 
+]
+[u S38 . 1 `S22 1 . 1 0 `S28 1 . 1 0 `S35 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES38  1 e 1 @4051 ]
+"31 H:\MPLABXProjects\ECM\main.c
 [v _main main `(v  1 e 0 0 ]
 {
-"24
+"53
 } 0
-"26
-[v _initialiseLED initialiseLED `(v  1 e 0 0 ]
+"130
+[v _SetLine SetLine `(v  1 e 0 0 ]
 {
-"28
+[v SetLine@line line `uc  1 a 1 wreg ]
+[v SetLine@line line `uc  1 a 1 wreg ]
+"133
+[v SetLine@line line `uc  1 a 1 4 ]
+"141
+} 0
+"91
+[v _LCD_Init LCD_Init `(v  1 e 0 0 ]
+{
+"128
+} 0
+"81
+[v _SendLCD SendLCD `(v  1 e 0 0 ]
+{
+[v SendLCD@Byte Byte `uc  1 a 1 wreg ]
+[v SendLCD@Byte Byte `uc  1 a 1 wreg ]
+[v SendLCD@type type `uc  1 p 1 2 ]
+"84
+[v SendLCD@Byte Byte `uc  1 a 1 3 ]
+"90
+} 0
+"70
+[v _LCDout LCDout `(v  1 e 0 0 ]
+{
+[v LCDout@number number `uc  1 a 1 wreg ]
+[v LCDout@number number `uc  1 a 1 wreg ]
+"72
+[v LCDout@number number `uc  1 a 1 1 ]
+"79
+} 0
+"62
+[v _E_TOG E_TOG `(v  1 e 0 0 ]
+{
+"68
 } 0
