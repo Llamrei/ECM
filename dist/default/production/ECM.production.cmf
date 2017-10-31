@@ -11,10 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\al3615\AppData\Local\Temp\s1nk.obj
-idloc IDLOC 0 200000 200000 8 1
-end_init CODE 0 0 0 4 1
-config CONFIG 0 300000 300000 E 1
 $dist/default/production\ECM.production.obj
 cinit CODE 0 1DE0 1DE0 6 1
 text0 CODE 0 1ECE 1ECE 8C 1
@@ -24,6 +20,10 @@ text3 CODE 0 1DF4 1DF4 26 1
 text4 CODE 0 1E56 1E56 78 1
 text5 CODE 0 1DE6 1DE6 E 1
 cstackCOMRAM COMRAM 1 1 1 5 1
+$C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+idloc IDLOC 0 200000 200000 8 1
+end_init CODE 0 0 0 4 1
+config CONFIG 0 300000 300000 E 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -130,12 +130,12 @@ $dist/default/production\ECM.production.obj
 1F44 text0 CODE >48:H:\MPLABXProjects\ECM\main.c
 1F4E text0 CODE >49:H:\MPLABXProjects\ECM\main.c
 1F58 text0 CODE >50:H:\MPLABXProjects\ECM\main.c
-1DE0 cinit CODE >539:C:\Users\al3615\AppData\Local\Temp\s1nk.
-1DE0 cinit CODE >541:C:\Users\al3615\AppData\Local\Temp\s1nk.
-1DE0 cinit CODE >544:C:\Users\al3615\AppData\Local\Temp\s1nk.
-1DE0 cinit CODE >550:C:\Users\al3615\AppData\Local\Temp\s1nk.
-1DE0 cinit CODE >552:C:\Users\al3615\AppData\Local\Temp\s1nk.
-1DE2 cinit CODE >553:C:\Users\al3615\AppData\Local\Temp\s1nk.
+1DE0 cinit CODE >539:C:\Users\al3615\AppData\Local\Temp\s9l4.
+1DE0 cinit CODE >541:C:\Users\al3615\AppData\Local\Temp\s9l4.
+1DE0 cinit CODE >544:C:\Users\al3615\AppData\Local\Temp\s9l4.
+1DE0 cinit CODE >550:C:\Users\al3615\AppData\Local\Temp\s9l4.
+1DE0 cinit CODE >552:C:\Users\al3615\AppData\Local\Temp\s9l4.
+1DE2 cinit CODE >553:C:\Users\al3615\AppData\Local\Temp\s9l4.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -153,31 +153,31 @@ __Hspace_0 30000E 0 ABS 0 - dist/default/production\ECM.production.obj
 __Hspace_1 6 0 ABS 0 - dist/default/production\ECM.production.obj
 __Hspace_2 0 0 ABS 0 - dist/default/production\ECM.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\ECM.production.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\ECM.production.obj
 __end_of_LCDout 1ECE 0 CODE 0 text4 dist/default/production\ECM.production.obj
 __Lsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production\ECM.production.obj
-___sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+___sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 _main 1ECE 0 CODE 0 text0 dist/default/production\ECM.production.obj
-start 0 0 CODE 0 init C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+start 0 0 CODE 0 init C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 _SendLCD 1DF4 0 CODE 0 text3 dist/default/production\ECM.production.obj
 _SetLine 1E1A 0 CODE 0 text1 dist/default/production\ECM.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\ECM.production.obj
 _LCD_Init 1F5A 0 CODE 0 text2 dist/default/production\ECM.production.obj
 __Hpowerup 0 0 CODE 0 powerup dist/default/production\ECM.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+__accesstop 60 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 __end_of_LCD_Init 2000 0 CODE 0 text2 dist/default/production\ECM.production.obj
-intlevel0 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s1nk.obj
-intlevel1 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s1nk.obj
-intlevel2 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s1nk.obj
-intlevel3 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+intlevel0 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+intlevel1 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+intlevel2 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+intlevel3 0 0 CODE 0 text C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 _OSCCONbits FD3 0 ABS 0 - dist/default/production\ECM.production.obj
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\ECM.production.obj
 __Hifardata 0 0 CODE 0 ifardata dist/default/production\ECM.production.obj
 SetLine@line 5 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM.production.obj
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production\ECM.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s1nk.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\ECM.production.obj
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\ECM.production.obj
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\ECM.production.obj
@@ -210,7 +210,7 @@ __Htext4 0 0 ABS 0 text4 dist/default/production\ECM.production.obj
 __Htext5 0 0 ABS 0 text5 dist/default/production\ECM.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\ECM.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production\ECM.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 __Hcomram 0 0 ABS 0 comram dist/default/production\ECM.production.obj
 __Hconfig 30000E 0 CONFIG 0 config dist/default/production\ECM.production.obj
 __Lbank0 0 0 ABS 0 bank0 dist/default/production\ECM.production.obj
@@ -271,8 +271,8 @@ _LATCbits F8B 0 ABS 0 - dist/default/production\ECM.production.obj
 _LATDbits F8C 0 ABS 0 - dist/default/production\ECM.production.obj
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\ECM.production.obj
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\ECM.production.obj
-stackhi 2FF 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s1nk.obj
-stacklo 60 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+stackhi 2FF 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+stacklo 60 0 ABS 0 - C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 __Lintcode 0 0 CODE 0 intcode dist/default/production\ECM.production.obj
 __Lintret 0 0 ABS 0 intret dist/default/production\ECM.production.obj
 __Lirdata 0 0 CODE 0 irdata dist/default/production\ECM.production.obj
@@ -297,7 +297,7 @@ __ptext3 1DF4 0 CODE 0 text3 dist/default/production\ECM.production.obj
 __ptext4 1E56 0 CODE 0 text4 dist/default/production\ECM.production.obj
 __ptext5 1DE6 0 CODE 0 text5 dist/default/production\ECM.production.obj
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\ECM.production.obj
-__ramtop 300 0 RAM 0 ramtop C:\Users\al3615\AppData\Local\Temp\s1nk.obj
+__ramtop 300 0 RAM 0 ramtop C:\Users\al3615\AppData\Local\Temp\s9l4.obj
 __Lpowerup 0 0 CODE 0 powerup dist/default/production\ECM.production.obj
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\ECM.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\ECM.production.obj

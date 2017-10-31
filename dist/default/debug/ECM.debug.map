@@ -3,11 +3,11 @@ Microchip MPLAB XC8 Compiler V1.35 ()
 Linker command line:
 
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.35\dat\en_msgs.txt -cs \
-  -h+dist/default/production\ECM.production.sym \
-  --cmf=dist/default/production\ECM.production.cmf -z -Q18F4331 \
-  -oC:\Users\al3615\AppData\Local\Temp\s9l4.2 \
-  -Mdist/default/production/ECM.production.map -E1 -ver=XC8 \
-  -ASTACK=060h-02ffh -pstack=STACK -ACODE=00h-01FFFh -ACONST=00h-01FFFh \
+  -h+dist/default/debug\ECM.debug.sym \
+  --cmf=dist/default/debug\ECM.debug.cmf -z -Q18F4331 \
+  -oC:\Users\al3615\AppData\Local\Temp\saq8.2 \
+  -Mdist/default/debug/ECM.debug.map -E1 -ver=XC8 -ASTACK=060h-02ffh \
+  -pstack=STACK -ACODE=00h-01FFFh -ACONST=00h-01FFFh \
   -ASMALLCONST=0300h-03FFhx29 -AMEDIUMCONST=0300h-01FFFh -ACOMRAM=01h-05Fh \
   -AABS1=00h-02FFh -ABIGRAM=01h-02FFh -ARAM=060h-0FFh,0100h-01FFhx2 \
   -ABANK0=060h-0FFh -ABANK1=0100h-01FFh -ABANK2=0200h-02FFh \
@@ -20,8 +20,8 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\al3615\AppData\Local\Temp\s9l4.obj \
-  dist/default/production\ECM.production.obj 
+  C:\Users\al3615\AppData\Local\Temp\saq8.obj \
+  dist/default/debug\ECM.debug.obj 
 
 Object code version is 3.11
 
@@ -33,11 +33,11 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\al3615\AppData\Local\Temp\s9l4.obj
+C:\Users\al3615\AppData\Local\Temp\saq8.obj
                 end_init                              0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
-dist/default/production\ECM.production.obj
+dist/default/debug\ECM.debug.obj
                 text5                              1DE6     1DE6        E      EF3       0
                 text4                              1E56     1E56       78      F2B       0
                 text3                              1DF4     1DF4       26      EFA       0

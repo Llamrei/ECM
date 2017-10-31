@@ -194,9 +194,9 @@ text3 1DF4 1E19 CODE 1DF4 0
 text5 1DE6 1DF3 CODE 1DE6 0
 cinit 1DE0 1DE5 CODE 1DE0 0
 %locals
-dist/default/production\ECM.production.obj
+dist/default/debug\ECM.debug.obj
 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4331.h
-C:\Users\al3615\AppData\Local\Temp\s9l4.
+C:\Users\al3615\AppData\Local\Temp\saq8.
 539 1DE0 0 CODE 0
 541 1DE0 0 CODE 0
 544 1DE0 0 CODE 0
