@@ -1,27 +1,4 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[p mainexit ]
-"6964 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4331.h
-[v _OSCCON `Vuc ~T0 @X0 0 e@4051 ]
-"6970
-[s S377 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
-[n S377 . SCS IOFS OSTS IRCF IDLEN ]
-"6977
-[s S378 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S378 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
-"6985
-[s S379 :2 `uc 1 :1 `uc 1 ]
-[n S379 . . FLTS ]
-"6969
-[u S376 `S377 1 `S378 1 `S379 1 ]
-[n S376 . . . . ]
-"6990
-[v _OSCCONbits `VS376 ~T0 @X0 0 e@4051 ]
-"28 main.c
-[v _LCD_Init `(v ~T0 @X0 0 ef ]
-"29
-[v _SetLine `(v ~T0 @X0 0 ef1`uc ]
-"27
-[v _SendLCD `(v ~T0 @X0 0 ef2`uc`uc ]
 "2110 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4331.h
 [s S106 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S106 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
@@ -137,6 +114,56 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
 "3151
 [v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
+[p mainexit ]
+"6964
+[v _OSCCON `Vuc ~T0 @X0 0 e@4051 ]
+"6970
+[s S377 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S377 . SCS IOFS OSTS IRCF IDLEN ]
+"6977
+[s S378 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S378 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
+"6985
+[s S379 :2 `uc 1 :1 `uc 1 ]
+[n S379 . . FLTS ]
+"6969
+[u S376 `S377 1 `S378 1 `S379 1 ]
+[n S376 . . . . ]
+"6990
+[v _OSCCONbits `VS376 ~T0 @X0 0 e@4051 ]
+"2941
+[s S148 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S148 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"2951
+[s S149 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S149 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"2940
+[u S147 `S148 1 `S149 1 ]
+[n S147 . . . ]
+"2962
+[v _TRISCbits `VS147 ~T0 @X0 0 e@3988 ]
+"7549
+[s S397 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S397 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+"7559
+[s S398 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S398 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE GIE ]
+"7569
+[s S399 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S399 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE GIEL GIEH ]
+"7579
+[s S400 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S400 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+"7589
+[s S401 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S401 . . GIEL GIEH ]
+"7548
+[u S396 `S397 1 `S398 1 `S399 1 `S400 1 `S401 1 ]
+[n S396 . . . . . . ]
+"7595
+[v _INTCONbits `VS396 ~T0 @X0 0 e@4082 ]
+"194 C:\Program Files (x86)\Microchip\xc8\v1.35\include\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -3616,280 +3643,398 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 152: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 154: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 156: extern __nonreentrant void _delay3(unsigned char);
-"10 main.c
-[p x OSC=IRCIO ]
-[; ;main.c: 25: void E_TOG(void);
-[; ;main.c: 26: void LCDout(unsigned char number);
-[; ;main.c: 27: void SendLCD(unsigned char Byte, char type);
-[; ;main.c: 28: void LCD_Init(void);
-[; ;main.c: 29: void SetLine (char line);
-"31
-[v _main `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 31: void main(void) {
-[e :U _main ]
-[f ]
-[; ;main.c: 32: OSCCON = 0x72;
-"32
-[e = _OSCCON -> -> 114 `i `uc ]
-[; ;main.c: 33: while(!OSCCONbits.IOFS);
-"33
-[e $U 406  ]
-[e :U 407 ]
-[e :U 406 ]
-[e $ ! != -> . . _OSCCONbits 0 1 `i -> -> -> 0 `i `Vuc `i 407  ]
-[e :U 408 ]
-[; ;main.c: 35: LCD_Init();
-"35
-[e ( _LCD_Init ..  ]
-[; ;main.c: 37: SetLine(1);
-"37
-[e ( _SetLine (1 -> -> 1 `i `uc ]
-[; ;main.c: 38: SendLCD(0x48,1);
-"38
-[e ( _SendLCD (2 , -> -> 72 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 39: SendLCD(0x65,1);
-"39
-[e ( _SendLCD (2 , -> -> 101 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 40: SendLCD(0x6C,1);
-"40
-[e ( _SendLCD (2 , -> -> 108 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 41: SendLCD(0x6C,1);
-"41
-[e ( _SendLCD (2 , -> -> 108 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 42: SendLCD(0x6F,1);
-"42
-[e ( _SendLCD (2 , -> -> 111 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 43: SendLCD(0x20,1);
-"43
-[e ( _SendLCD (2 , -> -> 32 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 44: SendLCD(0x57,1);
-"44
-[e ( _SendLCD (2 , -> -> 87 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 45: SendLCD(0x6F,1);
-"45
-[e ( _SendLCD (2 , -> -> 111 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 46: SendLCD(0x72,1);
-"46
-[e ( _SendLCD (2 , -> -> 114 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 47: SendLCD(0x6C,1);
-"47
-[e ( _SendLCD (2 , -> -> 108 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 48: SendLCD(0x64,1);
-"48
-[e ( _SendLCD (2 , -> -> 100 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 49: SendLCD(0x21,1);
-"49
-[e ( _SendLCD (2 , -> -> 33 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 50: while(1);
-"50
-[e :U 410 ]
-[e :U 409 ]
-[e $U 410  ]
-[e :U 411 ]
-[; ;main.c: 53: }
-"53
-[e :UE 405 ]
-}
-"55
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
+[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
+[; ;string.h: 16: extern void * memset(void *, int, size_t);
+[; ;string.h: 34: extern char * strcat(char *, const char *);
+[; ;string.h: 35: extern char * strcpy(char *, const char *);
+[; ;string.h: 36: extern char * strncat(char *, const char *, size_t);
+[; ;string.h: 37: extern char * strncpy(char *, const char *, size_t);
+[; ;string.h: 38: extern char * strdup(const char *);
+[; ;string.h: 39: extern char * strtok(char *, const char *);
+[; ;string.h: 42: extern int memcmp(const void *, const void *, size_t);
+[; ;string.h: 43: extern int strcmp(const char *, const char *);
+[; ;string.h: 44: extern int stricmp(const char *, const char *);
+[; ;string.h: 45: extern int strncmp(const char *, const char *, size_t);
+[; ;string.h: 46: extern int strnicmp(const char *, const char *, size_t);
+[; ;string.h: 47: extern void * memchr(const void *, int, size_t);
+[; ;string.h: 48: extern size_t strcspn(const char *, const char *);
+[; ;string.h: 49: extern char * strpbrk(const char *, const char *);
+[; ;string.h: 50: extern size_t strspn(const char *, const char *);
+[; ;string.h: 51: extern char * strstr(const char *, const char *);
+[; ;string.h: 52: extern char * stristr(const char *, const char *);
+[; ;string.h: 53: extern char * strerror(int);
+[; ;string.h: 54: extern size_t strlen(const char *);
+[; ;string.h: 55: extern char * strchr(const char *, int);
+[; ;string.h: 56: extern char * strichr(const char *, int);
+[; ;string.h: 57: extern char * strrchr(const char *, int);
+[; ;string.h: 58: extern char * strrichr(const char *, int);
+[; ;stdarg.h: 7: typedef void * va_list[1];
+[; ;stdarg.h: 10: extern void * __va_start(void);
+[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
+[; ;stdio.h: 43: struct __prbuf
+[; ;stdio.h: 44: {
+[; ;stdio.h: 45: char * ptr;
+[; ;stdio.h: 46: void (* func)(char);
+[; ;stdio.h: 47: };
+[; ;errno.h: 25: extern int errno;
+[; ;conio.h: 12: extern void init_uart(void);
+[; ;conio.h: 14: extern char getch(void);
+[; ;conio.h: 15: extern char getche(void);
+[; ;conio.h: 16: extern void putch(char);
+[; ;conio.h: 17: extern void ungetch(char);
+[; ;conio.h: 19: extern __bit kbhit(void);
+[; ;conio.h: 23: extern char * cgets(char *);
+[; ;conio.h: 24: extern void cputs(const char *);
+[; ;stdio.h: 88: extern int cprintf(char *, ...);
+[; ;stdio.h: 93: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+[; ;stdio.h: 183: extern char * gets(char *);
+[; ;stdio.h: 184: extern int puts(const char *);
+[; ;stdio.h: 185: extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+[; ;stdio.h: 186: extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+[; ;stdio.h: 187: extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+[; ;stdio.h: 188: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+[; ;stdio.h: 189: extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+[; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+[; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
+[; ;stdio.h: 195: extern int printf(const char *, ...);
+"26 lcd.h
 [v _E_TOG `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 55: void E_TOG(void){
+[; ;lcd.h: 26: void E_TOG(void){
 [e :U _E_TOG ]
 [f ]
-[; ;main.c: 56: LATCbits.LC0 = 1;
-"56
+[; ;lcd.h: 27: LATCbits.LC0 = 1;
+"27
 [e = . . _LATCbits 1 0 -> -> 1 `i `uc ]
-[; ;main.c: 57: _delay((unsigned long)((5)*(8000000/4000000.0)));
-"57
+[; ;lcd.h: 28: _delay((unsigned long)((5)*(8000000/4000000.0)));
+"28
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 58: LATCbits.LC0 = 0;
-"58
+[; ;lcd.h: 29: LATCbits.LC0 = 0;
+"29
 [e = . . _LATCbits 1 0 -> -> 0 `i `uc ]
-[; ;main.c: 59: }
-"59
-[e :UE 412 ]
+[; ;lcd.h: 30: }
+"30
+[e :UE 406 ]
 }
-"61
+"33
 [v _LCDout `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;main.c: 61: void LCDout(unsigned char number){
+[; ;lcd.h: 33: void LCDout(unsigned char number){
 [e :U _LCDout ]
 [v _number `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 63: LATDbits.LD1 = number >> 3 & 0b00000001;
-"63
+[; ;lcd.h: 35: LATDbits.LD1 = number >> 3 & 0b00000001;
+"35
 [e = . . _LATDbits 2 1 -> & >> -> _number `i -> 3 `i -> 1 `i `uc ]
-[; ;main.c: 64: LATDbits.LD0 = (number >> 2) & 0b00000001;
-"64
+[; ;lcd.h: 36: LATDbits.LD0 = (number >> 2) & 0b00000001;
+"36
 [e = . . _LATDbits 1 0 -> & >> -> _number `i -> 2 `i -> 1 `i `uc ]
-[; ;main.c: 65: LATCbits.LC2 = (number >> 1) & 0b00000001;
-"65
+[; ;lcd.h: 37: LATCbits.LC2 = (number >> 1) & 0b00000001;
+"37
 [e = . . _LATCbits 3 1 -> & >> -> _number `i -> 1 `i -> 1 `i `uc ]
-[; ;main.c: 66: LATCbits.LC1 = number & 0b00000001;
-"66
+[; ;lcd.h: 38: LATCbits.LC1 = number & 0b00000001;
+"38
 [e = . . _LATCbits 2 1 -> & -> _number `i -> 1 `i `uc ]
-[; ;main.c: 68: E_TOG();
-"68
+[; ;lcd.h: 40: E_TOG();
+"40
 [e ( _E_TOG ..  ]
-[; ;main.c: 69: _delay((unsigned long)((5)*(8000000/4000000.0)));
-"69
+[; ;lcd.h: 41: _delay((unsigned long)((5)*(8000000/4000000.0)));
+"41
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 70: }
-"70
-[e :UE 413 ]
+[; ;lcd.h: 42: }
+"42
+[e :UE 407 ]
 }
-"72
+"45
 [v _SendLCD `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;main.c: 72: void SendLCD(unsigned char Byte, char type){
+[; ;lcd.h: 45: void SendLCD(unsigned char Byte, char type){
 [e :U _SendLCD ]
 [v _Byte `uc ~T0 @X0 1 r1 ]
 [v _type `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 75: LATAbits.LATA6 = type;
-"75
+[; ;lcd.h: 48: LATAbits.LATA6 = type;
+"48
 [e = . . _LATAbits 0 6 _type ]
-[; ;main.c: 77: LCDout(Byte >> 4);
-"77
+[; ;lcd.h: 50: LCDout(Byte >> 4);
+"50
 [e ( _LCDout (1 -> >> -> _Byte `i -> 4 `i `uc ]
-[; ;main.c: 78: _delay((unsigned long)((10)*(8000000/4000000.0)));
-"78
+[; ;lcd.h: 51: _delay((unsigned long)((10)*(8000000/4000000.0)));
+"51
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 80: LCDout(Byte & 0b00001111);
-"80
+[; ;lcd.h: 53: LCDout(Byte & 0b00001111);
+"53
 [e ( _LCDout (1 -> & -> _Byte `i -> 15 `i `uc ]
-[; ;main.c: 81: }
-"81
-[e :UE 414 ]
+[; ;lcd.h: 54: }
+"54
+[e :UE 408 ]
 }
-"82
+"55
 [v _LCD_Init `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 82: void LCD_Init(void){
+[; ;lcd.h: 55: void LCD_Init(void){
 [e :U _LCD_Init ]
 [f ]
-[; ;main.c: 84: TRISAbits.RA6 = 0;
-"84
+[; ;lcd.h: 57: TRISAbits.RA6 = 0;
+"57
 [e = . . _TRISAbits 1 6 -> -> 0 `i `uc ]
-[; ;main.c: 85: TRISC &= 0b11111000;
-"85
+[; ;lcd.h: 58: TRISC &= 0b11111000;
+"58
 [e =& _TRISC -> -> 248 `i `uc ]
-[; ;main.c: 86: TRISD &= 0b11111100;
-"86
+[; ;lcd.h: 59: TRISD &= 0b11111100;
+"59
 [e =& _TRISD -> -> 252 `i `uc ]
-[; ;main.c: 88: LATCbits.LC0 = 0;
-"88
+[; ;lcd.h: 61: LATCbits.LC0 = 0;
+"61
 [e = . . _LATCbits 1 0 -> -> 0 `i `uc ]
-[; ;main.c: 89: LATAbits.LATA6 = 0;
-"89
+[; ;lcd.h: 62: LATAbits.LATA6 = 0;
+"62
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 90: LATDbits.LD1 = 0;
-"90
+[; ;lcd.h: 63: LATDbits.LD1 = 0;
+"63
 [e = . . _LATDbits 2 1 -> -> 0 `i `uc ]
-[; ;main.c: 91: LATDbits.LD0 = 0;
-"91
+[; ;lcd.h: 64: LATDbits.LD0 = 0;
+"64
 [e = . . _LATDbits 1 0 -> -> 0 `i `uc ]
-[; ;main.c: 92: LATCbits.LC2 = 0;
-"92
+[; ;lcd.h: 65: LATCbits.LC2 = 0;
+"65
 [e = . . _LATCbits 3 1 -> -> 0 `i `uc ]
-[; ;main.c: 93: LATCbits.LC1 = 0;
-"93
+[; ;lcd.h: 66: LATCbits.LC1 = 0;
+"66
 [e = . . _LATCbits 2 1 -> -> 0 `i `uc ]
-[; ;main.c: 96: LCDout(0b0011);
-"96
+[; ;lcd.h: 69: LCDout(0b0011);
+"69
 [e ( _LCDout (1 -> -> 3 `i `uc ]
-[; ;main.c: 97: _delay((unsigned long)((5000)*(8000000/4000000.0)));
-"97
+[; ;lcd.h: 70: _delay((unsigned long)((5000)*(8000000/4000000.0)));
+"70
 [e ( __delay (1 -> * -> -> 5000 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 98: LCDout(0b0011);
-"98
+[; ;lcd.h: 71: LCDout(0b0011);
+"71
 [e ( _LCDout (1 -> -> 3 `i `uc ]
-[; ;main.c: 99: _delay((unsigned long)((200)*(8000000/4000000.0)));
-"99
+[; ;lcd.h: 72: _delay((unsigned long)((200)*(8000000/4000000.0)));
+"72
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 100: LCDout(0b0011);
-"100
+[; ;lcd.h: 73: LCDout(0b0011);
+"73
 [e ( _LCDout (1 -> -> 3 `i `uc ]
-[; ;main.c: 101: _delay((unsigned long)((50)*(8000000/4000000.0)));
-"101
+[; ;lcd.h: 74: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"74
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 103: LCDout(0b0010);
-"103
+[; ;lcd.h: 76: LCDout(0b0010);
+"76
 [e ( _LCDout (1 -> -> 2 `i `uc ]
-[; ;main.c: 104: _delay((unsigned long)((50)*(8000000/4000000.0)));
-"104
+[; ;lcd.h: 77: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"77
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 106: SendLCD(0b00001000,0);
-"106
+[; ;lcd.h: 79: SendLCD(0b00001000,0);
+"79
 [e ( _SendLCD (2 , -> -> 8 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 107: _delay((unsigned long)((50)*(8000000/4000000.0)));
-"107
+[; ;lcd.h: 80: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"80
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 109: SendLCD(0b00000001,0);
-"109
+[; ;lcd.h: 82: SendLCD(0b00000001,0);
+"82
 [e ( _SendLCD (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 110: _delay((unsigned long)((1700)*(8000000/4000000.0)));
-"110
+[; ;lcd.h: 83: _delay((unsigned long)((1700)*(8000000/4000000.0)));
+"83
 [e ( __delay (1 -> * -> -> 1700 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 112: SendLCD(0b00000110,0);
-"112
+[; ;lcd.h: 85: SendLCD(0b00000110,0);
+"85
 [e ( _SendLCD (2 , -> -> 6 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 113: _delay((unsigned long)((50)*(8000000/4000000.0)));
-"113
+[; ;lcd.h: 86: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"86
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 115: SendLCD(0b00001100, 0);
-"115
-[e ( _SendLCD (2 , -> -> 12 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 116: _delay((unsigned long)((50)*(8000000/4000000.0)));
-"116
+[; ;lcd.h: 88: SendLCD(0b00001110, 0);
+"88
+[e ( _SendLCD (2 , -> -> 14 `i `uc -> -> 0 `i `uc ]
+[; ;lcd.h: 89: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"89
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 117: }
-"117
-[e :UE 415 ]
+[; ;lcd.h: 90: }
+"90
+[e :UE 409 ]
 }
-"119
+"93
 [v _SetLine `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;main.c: 119: void SetLine (char line){
+[; ;lcd.h: 93: void SetLine (char line){
 [e :U _SetLine ]
 [v _line `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 122: if(line == 1) {
-"122
-[e $ ! == -> _line `i -> 1 `i 417  ]
+[; ;lcd.h: 96: if(line == 1) {
+"96
+[e $ ! == -> _line `i -> 1 `i 411  ]
 {
-[; ;main.c: 123: SendLCD(0x80,0);
-"123
+[; ;lcd.h: 97: SendLCD(0x80,0);
+"97
 [e ( _SendLCD (2 , -> -> 128 `i `uc -> -> 0 `i `uc ]
-"124
+"98
 }
-[; ;main.c: 124: } else if (line == 2) {
-[e $U 418  ]
-[e :U 417 ]
-[e $ ! == -> _line `i -> 2 `i 419  ]
+[; ;lcd.h: 98: } else if (line == 2) {
+[e $U 412  ]
+[e :U 411 ]
+[e $ ! == -> _line `i -> 2 `i 413  ]
 {
-[; ;main.c: 125: SendLCD(0xC0,0);
-"125
+[; ;lcd.h: 99: SendLCD(0xC0,0);
+"99
 [e ( _SendLCD (2 , -> -> 192 `i `uc -> -> 0 `i `uc ]
-"126
+"100
 }
-[; ;main.c: 126: } else {
-[e $U 420  ]
-[e :U 419 ]
+[; ;lcd.h: 100: } else {
+[e $U 414  ]
+[e :U 413 ]
 {
-[; ;main.c: 127: SendLCD(0x80,0);
-"127
+[; ;lcd.h: 101: SendLCD(0x80,0);
+"101
 [e ( _SendLCD (2 , -> -> 128 `i `uc -> -> 0 `i `uc ]
-"128
+"102
 }
-[e :U 420 ]
-[e :U 418 ]
-[; ;main.c: 128: }
-[; ;main.c: 129: _delay((unsigned long)((50)*(8000000/4000000.0)));
-"129
+[e :U 414 ]
+[e :U 412 ]
+[; ;lcd.h: 102: }
+[; ;lcd.h: 103: _delay((unsigned long)((50)*(8000000/4000000.0)));
+"103
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 130: }
-"130
-[e :UE 416 ]
+[; ;lcd.h: 104: }
+"104
+[e :UE 410 ]
 }
+"106
+[v _LCD_String `(v ~T0 @X0 1 ef1`*uc ]
+{
+[; ;lcd.h: 106: void LCD_String(char *string){
+[e :U _LCD_String ]
+[v _string `*uc ~T0 @X0 1 r1 ]
+[f ]
+[; ;lcd.h: 107: while(*string != 0){
+"107
+[e $U 416  ]
+[e :U 417 ]
+{
+[; ;lcd.h: 108: SendLCD(*string++,1);
+"108
+[e ( _SendLCD (2 , *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x -> -> 1 `i `uc ]
+[; ;lcd.h: 109: _delay((unsigned long)((50)*(8000000/4000.0)));
+"109
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"110
+}
+[e :U 416 ]
+"107
+[e $ != -> *U _string `i -> 0 `i 417  ]
+[e :U 418 ]
+[; ;lcd.h: 110: }
+[; ;lcd.h: 111: }
+"111
+[e :UE 415 ]
+}
+"7 main.c
+[p x OSC=IRCIO ]
+[; ;main.c: 14: void E_TOG(void);
+[; ;main.c: 15: void LCDout(unsigned char number);
+[; ;main.c: 16: void SendLCD(unsigned char Byte, char type);
+[; ;main.c: 17: void LCD_Init(void);
+[; ;main.c: 18: void SetLine (char line);
+[; ;main.c: 19: void LCD_String(char *string);
+"21
+[v _btnCount `Vi ~T0 @X0 1 e ]
+[i _btnCount
+-> 0 `i
+]
+[; ;main.c: 21: volatile int btnCount = 0;
+"22
+[v _buf `Vuc ~T0 @X0 -> 40 `i e ]
+[i _buf
+:U ..
+-> -> 0 `i `uc
+..
+]
+[; ;main.c: 22: volatile char buf[40] = 0;
+"24
+[v _main `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 24: void main(void){
+[e :U _main ]
+[f ]
+[; ;main.c: 25: OSCCON = 0x72;
+"25
+[e = _OSCCON -> -> 114 `i `uc ]
+[; ;main.c: 26: while(!OSCCONbits.IOFS);
+"26
+[e $U 420  ]
+[e :U 421 ]
+[e :U 420 ]
+[e $ ! != -> . . _OSCCONbits 0 1 `i -> -> -> 0 `i `Vuc `i 421  ]
+[e :U 422 ]
+[; ;main.c: 29: TRISCbits.RC3 = 1;
+"29
+[e = . . _TRISCbits 1 3 -> -> 1 `i `uc ]
+[; ;main.c: 30: INTCONbits.GIEH = 1;
+"30
+[e = . . _INTCONbits 2 7 -> -> 1 `i `uc ]
+[; ;main.c: 31: INTCONbits.INT0IE = 1;
+"31
+[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 33: LCD_Init();
+"33
+[e ( _LCD_Init ..  ]
+[; ;main.c: 34: SetLine(1);
+"34
+[e ( _SetLine (1 -> -> 1 `i `uc ]
+[; ;main.c: 36: while(1){
+"36
+[e :U 424 ]
+{
+"37
+}
+[e :U 423 ]
+"36
+[e $U 424  ]
+[e :U 425 ]
+[; ;main.c: 37: }
+[; ;main.c: 38: }
+"38
+[e :UE 419 ]
+}
+[v F3835 `(v ~T0 @X0 1 tf ]
+"40
+[v _InterruptHandlerHigh `IF3835 ~T0 @X0 1 e ]
+{
+[; ;main.c: 40: void interrupt InterruptHandlerHigh() {
+[e :U _InterruptHandlerHigh ]
+[f ]
+[; ;main.c: 41: if(INTCONbits.INT0IF) {
+"41
+[e $ ! != -> . . _INTCONbits 0 1 `i -> -> -> 0 `i `Vuc `i 427  ]
+{
+[; ;main.c: 42: btnCount++;
+"42
+[e ++ _btnCount -> 1 `i ]
+[; ;main.c: 43: SendLCD(0b00000001, 0);
+"43
+[e ( _SendLCD (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 44: _delay((unsigned long)((2)*(8000000/4000.0)));
+"44
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 45: sprintf(buf,"%d", btnCount);
+"45
+[e ( _sprintf (1 , (. , -> &U _buf `*uc :s 1C _btnCount ]
+[; ;main.c: 46: LCD_String(buf);
+"46
+[e ( _LCD_String (1 -> &U _buf `*uc ]
+[; ;main.c: 47: INTCONbits.INT0IF = 0;
+"47
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+"48
+}
+[e :U 427 ]
+[; ;main.c: 48: }
+[; ;main.c: 49: }
+"49
+[e :UE 426 ]
+}
+[p f _sprintf 8388736 ]
+[a 1C 37 100 0 ]
+

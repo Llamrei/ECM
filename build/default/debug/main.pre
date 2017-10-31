@@ -4630,49 +4630,108 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\__size_t.h"
+typedef unsigned size_t;
 
-# 10 "main.c"
-#pragma config OSC = IRCIO
+# 14 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
 
-# 25
-void E_TOG(void);
-void LCDout(unsigned char number);
-void SendLCD(unsigned char Byte, char type);
-void LCD_Init(void);
-void SetLine (char line);
-
-void main(void) {
-OSCCON = 0x72;
-while(!OSCCONbits.IOFS);
-
-LCD_Init();
-
-SetLine(1);
-SendLCD(0x48,1);
-SendLCD(0x65,1);
-SendLCD(0x6C,1);
-SendLCD(0x6C,1);
-SendLCD(0x6F,1);
-SendLCD(0x20,1);
-SendLCD(0x57,1);
-SendLCD(0x6F,1);
-SendLCD(0x72,1);
-SendLCD(0x6C,1);
-SendLCD(0x64,1);
-SendLCD(0x21,1);
-while(1);
+# 34
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
 
 
-}
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
 
-# 62
+# 7 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\stdarg.h"
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+
+# 43 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\stdio.h"
+struct __prbuf
+{
+char * ptr;
+void (* func)(char);
+};
+
+# 25 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\errno.h"
+extern int errno;
+
+# 12 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\conio.h"
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+# 23
+extern char * cgets(char *);
+extern void cputs(const char *);
+
+# 88 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\stdio.h"
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+
+
+# 180
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+
+# 26 "lcd.h"
 void E_TOG(void){
-
-
 LATCbits.LC0 = 1;
 _delay((unsigned long)((5)*(8000000/4000000.0)));
 LATCbits.LC0 = 0;
 }
+
 
 void LCDout(unsigned char number){
 
@@ -4685,10 +4744,11 @@ E_TOG();
 _delay((unsigned long)((5)*(8000000/4000000.0)));
 }
 
+
 void SendLCD(unsigned char Byte, char type){
 
 
-LATAbits.LA6 = type;
+LATAbits.LATA6 = type;
 
 LCDout(Byte >> 4);
 _delay((unsigned long)((10)*(8000000/4000000.0)));
@@ -4702,7 +4762,7 @@ TRISC &= 0b11111000;
 TRISD &= 0b11111100;
 
 LATCbits.LC0 = 0;
-LATAbits.LA6 = 0;
+LATAbits.LATA6 = 0;
 LATDbits.LD1 = 0;
 LATDbits.LD0 = 0;
 LATCbits.LC2 = 0;
@@ -4728,11 +4788,10 @@ _delay((unsigned long)((1700)*(8000000/4000000.0)));
 SendLCD(0b00000110,0);
 _delay((unsigned long)((50)*(8000000/4000000.0)));
 
-SendLCD(0b00001100, 0);
+SendLCD(0b00001110, 0);
 _delay((unsigned long)((50)*(8000000/4000000.0)));
-
-
 }
+
 
 void SetLine (char line){
 
@@ -4745,4 +4804,52 @@ SendLCD(0xC0,0);
 SendLCD(0x80,0);
 }
 _delay((unsigned long)((50)*(8000000/4000000.0)));
+}
+
+void LCD_String(char *string){
+while(*string != 0){
+SendLCD(*string++,1);
+_delay((unsigned long)((50)*(8000000/4000.0)));
+}
+}
+
+
+# 7 "main.c"
+#pragma config OSC = IRCIO
+
+# 14
+void E_TOG(void);
+void LCDout(unsigned char number);
+void SendLCD(unsigned char Byte, char type);
+void LCD_Init(void);
+void SetLine (char line);
+void LCD_String(char *string);
+
+volatile int btnCount = 0;
+volatile char buf[40] = 0;
+
+void main(void){
+OSCCON = 0x72;
+while(!OSCCONbits.IOFS);
+
+
+TRISCbits.RC3 = 1;
+INTCONbits.GIEH = 1;
+INTCONbits.INT0IE = 1;
+
+LCD_Init();
+SetLine(1);
+
+while(1){
+}
+}
+
+void interrupt InterruptHandlerHigh() {
+if(INTCONbits.INT0IF) {
+btnCount++;
+SendLCD(0b00000001, 0);
+sprintf(buf,"%d", btnCount);
+LCD_String(buf);
+INTCONbits.INT0IF = 0;
+}
 }
