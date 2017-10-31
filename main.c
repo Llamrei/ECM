@@ -23,7 +23,7 @@ void SetLine (char line);
 void LCD_String(char *string);
 
 void main(void){
-    char buf[16];                           // Buffer for characters for LCD
+    char buf[40];                           // Buffer for characters for LCD
     OSCCON = 0x72;
     while(!OSCCONbits.IOFS);                // Wait for OSCON to become stable
     
@@ -32,7 +32,16 @@ void main(void){
       
     strcpy(buf,"Hello World!");
     LCD_String(buf);
-    while(1);
+    
+    SetLine(2);                              // Set to line 1
+      
+    strcpy(buf,"Fubar");
+    LCD_String(buf);
+    
+    while(1){
+        SendLCD(0b00011000,command);
+        __delay_ms(50);
+        __delay_ms(50);}
 }
 
 // Function to toggle data read
@@ -95,10 +104,10 @@ void LCD_Init(void){
    SendLCD(0b00000001,command);         //Clear display
    __delay_us(1700);
 
-   SendLCD(0b00000110,command);         //Set entry mode
+   SendLCD(0b00000110,command);         //Set entry mode (Display is shifted LSB = 0)
    __delay_us(50);
    
-   SendLCD(0b00001100, command);        //Switch display on
+   SendLCD(0b00001110, command);        //Switch display on
    __delay_us(50);
 }
 
@@ -118,7 +127,7 @@ void SetLine (char line){
 
 void LCD_String(char *string){
     while(*string != 0){                // Increment until null (0x00) reached
-        SendLCD(*string++,data);        // Send each character
+        SendLCD(*string++,data);        // Send each character as data
         __delay_ms(50);                 // Short delay to print each character
     }
 }
