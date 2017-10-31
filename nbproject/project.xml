@@ -6,8 +6,8 @@
             <name>ECM</name>
             <creation-uuid>ee2af264-27c8-47ce-a06b-4402ea982e97</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions/>
-            <cpp-extensions>cpp</cpp-extensions>
+            <c-extensions>c</c-extensions>
+            <cpp-extensions/>
             <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
