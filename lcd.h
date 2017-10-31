@@ -106,7 +106,6 @@ void SetLine (char line){
 void LCD_String(char *string){
     while(*string != 0){                // Increment until null (0x00) reached
         SendLCD(*string++,data);        // Send each character as data
-        __delay_ms(50);                 // Short delay to print each character
     }
 }
 

@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "anRead.h"
 #include "lcd.h"
 
 #pragma config OSC = IRCIO              // Set internal clock
@@ -24,26 +25,19 @@ volatile char buf[40] = 0;
 void main(void){
     OSCCON = 0x72;
     while(!OSCCONbits.IOFS);                // Wait for OSCON to become stable
-
-    // Enable interrupt handling by button
-    TRISCbits.RC3 = 1;       //Set button to input
-    INTCONbits.GIEH = 1;     //Globally enable interrupts
-    INTCONbits.INT0IE = 1;   //Enable external interrupt on INT0
     
+    ADC_Init();
     LCD_Init();
     SetLine(1);
     
     while(1){
-    }
-}
-    
-    void interrupt InterruptHandlerHigh() {
-        if(INTCONbits.INT0IF) {
-            btnCount++;
-            SendLCD(0b00000001, command); //Clear display
-            __delay_ms(2);                //Let display update
-            sprintf(buf,"%d", btnCount);
-            LCD_String(buf);
-            INTCONbits.INT0IF = 0;
+        char buf[40] = "";
+        SendLCD(0b00000001, command);
+        __delay_ms(2);
+        sprintf(buf,"%d",ADC_Read());
+        LCD_String(buf);
+        for(int i = 0; i<4; i++){
+           __delay_ms(50);
         }
     }
+}
