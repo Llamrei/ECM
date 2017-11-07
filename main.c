@@ -10,15 +10,8 @@
 #ifndef _XTAL_FREQ
 #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
 #endif
-//TODO: Alias all commands
 
-void E_TOG(void);
-void LCDout(unsigned char number);
-void SendLCD(unsigned char Byte, char type);
-void LCD_Init(void);
-void SetLine (char line);
-void LCD_String(char *string);
-
+//Prototype definition
 void delay(){
     for(int i = 0; i< 5; i++) {
         __delay_ms(50);

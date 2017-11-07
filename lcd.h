@@ -11,7 +11,9 @@
 #ifndef LCD_H
 #define	LCD_H
 
+#ifndef _XTAL_FREQ
 #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
+#endif
 
 #define dispEnableL LATCbits.LC0        // Alias pins for use in display
 #define dispDataL LATAbits.LATA6
@@ -52,6 +54,8 @@ void SendLCD(unsigned char Byte, char type){
  // Send low nibble of Byte using LCDout function
     LCDout(Byte & 0b00001111);
 }
+
+// Function to initialise LCD screen
 void LCD_Init(void){
  // Set initial relevant TRIS registers to output
     TRISAbits.RA6 = 0;
@@ -103,6 +107,7 @@ void SetLine (char line){
  __delay_us(50); // 50us delay
 }
 
+// Function to display text on LCD
 void LCD_String(char *string){
     while(*string != 0){                // Increment until null (0x00) reached
         SendLCD(*string++,data);        // Send each character as data
