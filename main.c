@@ -1,12 +1,15 @@
 #include "dc_motor.h"
-#include "lcd.h"
-#include <string.h>
-#include <stdio.h>
 
 #pragma config OSC = IRCIO  // internal oscillator
 #define PWMcycle 100        //us
 
+#ifndef _XTAL_FREQ
+#define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
+#endif
+
+
 int calcPTPER(int period, int osc, char scaler);
+void delay_new(char time);
 
 void main(void){
 
@@ -17,38 +20,31 @@ void main(void){
 
     int PTPER = calcPTPER(PWMcycle, 8, 1);   //Get pwm cycle length for 10kHz
 
-    LCD_Init();
-
     initPWM(PTPER);  //setup PWM registers
 
     //some code to set initial values of each structure
     motorL.PWMperiod    = PWMcycle; //us
     motorL.dir_pin      = 2;   //Left servo is on pin B2
     motorL.direction    = 1;   //Forward
-    motorL.dutyHighByte = &PDC1H;  //Address of PDC1H
-    motorL.dutyLowByte  = &PDC1L;  //Address of PDC1L
+    motorL.dutyHighByte = (unsigned char *) &PDC1H;  //Address of PDC1H
+    motorL.dutyLowByte  = (unsigned char *) &PDC1L;  //Address of PDC1L
     motorL.power        =  50; //Power out of 100
 
     motorR.PWMperiod    = PWMcycle; //us
     motorR.dir_pin      = 0;   //Right servo is on pin B0
     motorR.direction    = 1;   //Forward
-    motorR.dutyHighByte = &PDC0H;  //Address of PDC0H
-    motorR.dutyLowByte  = &PDC0L;  //Address of PDC0L
+    motorR.dutyHighByte = (unsigned char *) &PDC0H;  //Address of PDC0H
+    motorR.dutyLowByte  = (unsigned char *) &PDC0L;  //Address of PDC0L
     motorR.power        =  50; //Power out of 100
-
-    setMotorPWM(&motorL);
-    setMotorPWM(&motorR);
-    char buf[16];
-    sprintf(buf, "%x %x %x", PDC1L, PDC1H, PTPER);
-    LCD_String(buf);
-    SetLine(2);
-    char buf2[16];
-    sprintf(buf2, "%x %x %x", PDC1L, PDC1H, PTPER);
-    LCD_String(buf2);
        
    while(1){
         //call your control functions, i.e. fullSpeedAhead(&motorL,&motorR);
-//        setMotorFullSpeed(&motorL);
+       fullSpeedAhead(&motorL, &motorR);
+       delay_new(5);
+       turnLeft(&motorL, &motorR, 1);
+       turnRight(&motorL, &motorR, 1);
+       stop(&motorL, &motorR);
+       delay_new(5);
    }
 
 }
@@ -57,4 +53,10 @@ void main(void){
 // period in microseconds, osc in MHz
 int calcPTPER(int period, int osc, char scaler) {
     return ((period*osc)/(4*scaler) - 1);
+}
+
+void delay_new(char time) {
+    for(int i; i < time*20; i++){
+        __delay_ms(50);
+    }
 }
