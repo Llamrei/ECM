@@ -29,15 +29,15 @@ void main(void){
     motorL.dutyLowByte  = &PDC1L;  //Address of PDC1L
     motorL.power        =  50; //Power out of 100
 
-//    motorR.PWMperiod    = PWMcycle; //us
-//    motorR.dir_pin      = 0;   //Right servo is on pin B0
-//    motorR.direction    = 1;   //Forward
-//    motorR.dutyHighByte = &PDC0H;  //Address of PDC0H
-//    motorR.dutyLowByte  = &PDC0L;  //Address of PDC0L
-//    motorR.power        =  50; //Power out of 100
+    motorR.PWMperiod    = PWMcycle; //us
+    motorR.dir_pin      = 0;   //Right servo is on pin B0
+    motorR.direction    = 1;   //Forward
+    motorR.dutyHighByte = &PDC0H;  //Address of PDC0H
+    motorR.dutyLowByte  = &PDC0L;  //Address of PDC0L
+    motorR.power        =  50; //Power out of 100
 
     setMotorPWM(&motorL);
-//    setMotorPWM(&motorR);
+    setMotorPWM(&motorR);
     char buf[16];
     sprintf(buf, "%x %x %x", PDC1L, PDC1H, PTPER);
     LCD_String(buf);
@@ -48,7 +48,7 @@ void main(void){
        
    while(1){
         //call your control functions, i.e. fullSpeedAhead(&motorL,&motorR);
-        setMotorFullSpeed(&motorL);
+//        setMotorFullSpeed(&motorL);
    }
 
 }
