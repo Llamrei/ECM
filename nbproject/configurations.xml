@@ -9,6 +9,7 @@
       <itemPath>anRead.h</itemPath>
       <itemPath>buttonInterrupts.h</itemPath>
       <itemPath>servoControl.h</itemPath>
+      <itemPath>dc_motor.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -18,6 +19,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.c</itemPath>
+      <itemPath>dc_motor.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

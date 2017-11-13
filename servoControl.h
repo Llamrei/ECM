@@ -13,7 +13,7 @@
 #endif
 
 // Function to get value of Tpwm calculations, T in 100ms, OSC in MHz, scaler 
-int getPT(int T, int OSC, char scaler) {
+int getTPWM(int T, int OSC, char scaler) {
     return ((T*10*(OSC))/(4*scaler) - 1);
 }
 

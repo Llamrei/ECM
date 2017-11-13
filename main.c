@@ -2,7 +2,7 @@
 
 #pragma config OSC = IRCIO  // internal oscillator
 
-#define PWMcycle 1 //need to calculate this
+#define PWMcycle calcPTPER(100, 8, 64) //Using formula given gives overall PWM period of 20ms
 
 void main(void){
 
