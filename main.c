@@ -16,11 +16,11 @@ volatile int threshold = 512;
 
 void main(void){   
     OSCCON = 0x72;
-    while(!OSCCONbits.IOFS);                // Wait for OSCON to become stable
-    initADC();
-    initButtonHigh();
-    initPWM(); //setup PWM registers
-     
+    while(!OSCCONbits.IOFS);    // Wait for OSCON to become stable
+    
+    initADC();                  //Set up analogue to digital convertor pins
+    initButtonHigh();           //Set up interrupt flags and configure them to listen on button
+    initPWM();                  //setup PWM registers
     
     while(1){
         //If darker than threshold we are in night
@@ -32,12 +32,14 @@ void main(void){
     }
 }
 
+//delay_s abstracts repeated calls to _delay_ms to surpass limit of 87ms
 void delay_s(char seconds) {
     for (int i = 0; i < (seconds*1000)/50; i++) {
         __delay_ms(50);
     }
 }
 
+//InterruptHandlerHigh() enables handling of high priority interrupt signals)
 void interrupt InterruptHandlerHigh() {
     if(INTCONbits.INT0IF) {
         threshold = readADC();
