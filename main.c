@@ -10,9 +10,9 @@
 #endif
 
 //Prototype definition
-void delay_s(char seconds); // function to delay in seconds
+void delay_s(char seconds);     //Function to delay in seconds
 
-volatile int threshold = 512;
+volatile int threshold = 512;   //Define threshold to be manipulated by button interrupt
 
 void main(void){   
     OSCCON = 0x72;
