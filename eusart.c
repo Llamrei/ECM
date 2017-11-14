@@ -17,7 +17,6 @@ void initEUSART() {
     
     //Finish configuration and enable
     RCSTAbits.SPEN=1; //enable serial port, other settings default
-//    PIE1bits.RCIE =1; // enable recieve interrupts
     TXSTAbits.TXEN=1; //enable transmitter, other settings default
     RCSTAbits.CREN=1; //continuous receive mode
 }
@@ -25,4 +24,26 @@ void initEUSART() {
 char getCharSerial() {
     while(!PIR1bits.RCIF);
     return RCREG;
+}
+
+void sendCharSerial(char message) {
+    while(!PIR1bits.TXIF);
+    TXREG = message;
+}
+
+void readUSART(char* buf, int bufSize, char startChar, char endChar) {
+    char byteIn = getCharSerial();
+    if(byteIn == startChar) {
+        char reading = 1;
+        int i = 0;
+        while(reading) {
+            byteIn = getCharSerial();
+            if(byteIn == endChar || i == bufSize) {
+                reading = 0;
+            } else {
+                buf[i++] = byteIn;
+            }           
+        }
+    }
+    return;
 }

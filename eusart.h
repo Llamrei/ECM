@@ -10,6 +10,8 @@
 
 void initEUSART();
 char getCharSerial();
+void sendCharSerial(char message);
+void readUSART(char* buf, int bufSize, char startChar, char endChar);
 
 #endif	/* EUSART_H */
 

@@ -13,36 +13,24 @@
 
 void delay_s(int time);
 
-volatile char inputBuffer[60];
-volatile char index=0;
-
 void main(void){
     
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
     
-    //Enable interrupts
-//    INTCONbits.GIEH = 1;        
-//    INTCONbits.PEIE = 1;
-    
     LCD_Init();
     initEUSART();
+    
+    char textbuf[60];
+    
     while(1){
-//        LCD_String(&inputBuffer);
-        char input = getCharSerial();
-        SendLCD(input, data);
+        readUSART(textbuf, sizeof(buf), 0x02, 0x03);
+        LCD_String(buf);
     }
 }
 
 void delay_s(int time) {
     for(int i = 0; i < time*20; i++){
            __delay_ms(50);
-    }
-}
-
-void interrupt InterrupHandlerHigh() {
-    if(PIR1bits.RCIF) {
-        inputBuffer[index] = RCREG;
-        index++;
     }
 }
