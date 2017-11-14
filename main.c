@@ -1,7 +1,6 @@
 #pragma config OSC = IRCIO  // internal oscillator
 
 #include <string.h>
-#include <stdio.h>
 #include <xc.h>
 
 #include "dc_motor.h"
@@ -33,19 +32,16 @@ void main(void){
     motorL.direction    = 1;   //Forward
     motorL.dutyHighByte = (unsigned char *) &PDC1H;  //Address of PDC1H
     motorL.dutyLowByte  = (unsigned char *) &PDC1L;  //Address of PDC1L
-    motorL.power        =  99; //Power out of 100
+    motorL.power        =  0; //Power out of 100
 
     motorR.PWMperiod    = PWMcycle; //us
     motorR.dir_pin      = 0;   //Right servo is on pin B0
     motorR.direction    = 1;   //Forward
     motorR.dutyHighByte = (unsigned char *) &PDC0H;  //Address of PDC0H
     motorR.dutyLowByte  = (unsigned char *) &PDC0L;  //Address of PDC0L
-    motorR.power        =  99; //Power out of 100
-   setMotorPWM(&motorR);
-   setMotorPWM(&motorL);     
-   while(1){
-        char buf[16];
-      
+    motorR.power        =  0; //Power out of 100
+  
+   while(1){     
         LCD_clear();
         LCD_String("Forward");
         forward(&motorL,&motorR);
