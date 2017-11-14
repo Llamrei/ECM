@@ -2,11 +2,10 @@
 
 #include <string.h>
 #include <xc.h>
+#include <stdio.h>
 
-#include "dc_motor.h"
+#include "eusart.h"
 #include "lcd.h"
-
-#define PWMcycle 100        //us
 
 #ifndef _XTAL_FREQ
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
@@ -14,60 +13,36 @@
 
 void delay_s(int time);
 
+volatile char inputBuffer[60];
+volatile char index=0;
+
 void main(void){
-
-    struct DC_motor motorL, motorR; //declare 2 motor structures
-
+    
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
-
-    int PTPER = getPT(PWMcycle, 8, 1);   //Get pwm cycle length for 10kHz
-
+    
+    //Enable interrupts
+//    INTCONbits.GIEH = 1;        
+//    INTCONbits.PEIE = 1;
+    
     LCD_Init();
-    initPWM(PTPER);  //setup PWM registers
-
-    //some code to set initial values of each structure
-    motorL.PWMperiod    = PWMcycle; //us
-    motorL.dir_pin      = 2;   //Left servo is on pin B2
-    motorL.direction    = 1;   //Forward
-    motorL.dutyHighByte = (unsigned char *) &PDC1H;  //Address of PDC1H
-    motorL.dutyLowByte  = (unsigned char *) &PDC1L;  //Address of PDC1L
-    motorL.power        =  0; //Power out of 100
-
-    motorR.PWMperiod    = PWMcycle; //us
-    motorR.dir_pin      = 0;   //Right servo is on pin B0
-    motorR.direction    = 1;   //Forward
-    motorR.dutyHighByte = (unsigned char *) &PDC0H;  //Address of PDC0H
-    motorR.dutyLowByte  = (unsigned char *) &PDC0L;  //Address of PDC0L
-    motorR.power        =  0; //Power out of 100
-  
-   while(1){     
-        LCD_clear();
-        LCD_String("Forward");
-        forward(&motorL,&motorR);
-        delay_s(1);
-       
-        LCD_clear();
-        SetLine(1);
-        LCD_String("Left");
-        turnLeft(&motorL,&motorR);
-        delay_s(1);
-        
-        LCD_clear();
-        SetLine(1);
-        LCD_String("Right");
-        turnRight(&motorL,&motorR);
-        delay_s(1);
-
-        LCD_clear();
-        LCD_String("Stop");
-        stop(&motorL, &motorR);
-        delay_s(1);
-   }
+    initEUSART();
+    while(1){
+//        LCD_String(&inputBuffer);
+        char input = getCharSerial();
+        SendLCD(input, data);
+    }
 }
 
 void delay_s(int time) {
     for(int i = 0; i < time*20; i++){
            __delay_ms(50);
+    }
+}
+
+void interrupt InterrupHandlerHigh() {
+    if(PIR1bits.RCIF) {
+        inputBuffer[index] = RCREG;
+        index++;
     }
 }
