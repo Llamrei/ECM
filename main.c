@@ -52,9 +52,9 @@ void delay_s(int time) {
 
 void interrupt low_priority InterrupHandlerHigh() {
     if(PIR1bits.RCIF) {
-        inputBuffer[index++] = RCREG;   //Read value from reg
-        updatingBuffer = 1;             //Let LCD know stuff has changed
-            
+        inputBuffer[index] = RCREG;   //Read value from reg
+        sendCharSerial(inputBuffer[index++]);   //Echo value back
+        updatingBuffer = 1;             //Let LCD know stuff has changed   
         RCSTAbits.CREN = 0; //clear error (if any)
         RCSTAbits.CREN = 1; //Enables Receiver
         
