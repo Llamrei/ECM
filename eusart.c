@@ -7,7 +7,7 @@ void initEUSART() {
     TRISCbits.RC7 = 1;
        
     // Calculation of baud rate from dependent on set values
-    SPBRG=200; //set baud rate to 9600 - for interrupts and handles echoing as close to good as we can expect
+    SPBRG=195; //set baud rate to 9600 - for interrupts and handles echoing as close to good as we can expect
     SPBRGH=0; 
     
     // Basic config
@@ -22,7 +22,7 @@ void initEUSART() {
     RCSTAbits.CREN=1; //continuous receive mode
 }
 
-char getCharSerial() {
+char pollCharSerial() {
     while(!PIR1bits.RCIF);
     return RCREG;
 }
