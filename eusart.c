@@ -8,8 +8,8 @@ void initEUSART() {
     TRISCbits.RC7 = 1;
        
     // Calculation of baud rate from dependent on set values
-    SPBRG=101; //set baud rate to 9600
-    SPBRGH=0;
+    SPBRG=200; //set baud rate to 9600 - for interrupts and handles echoing as close to good as we can expect
+    SPBRGH=0; 
     
     // Basic config
     BAUDCONbits.BRG16=1; //set baud rate scaling to 16 bit mode
@@ -27,6 +27,7 @@ char getCharSerial() {
     return RCREG;
 }
 
+<<<<<<< HEAD
 void sendCharSerial(char message) {
     while(!PIR1bits.TXIF);
     TXREG = message;
@@ -54,4 +55,16 @@ void readUSART(char* buf, int bufSize, char startChar, char endChar, char *flag)
         sendCharSerial('T');   
     }
     return;
+=======
+void sendCharSerial(char charToSend) {
+    while(!PIR1bits.TXIF);      //While waiting for transmit register to clear - set to 1
+    TXREG = charToSend;         //Once clear - sned char
+>>>>>>> cc8bf96... Lab 6 - Ex2a - Working with interrupts, exploring bauds
+}
+
+void sendStrSerial(char *string){
+    while(*string != 0){                // Increment until null (0x00) reached
+        while(!PIR1bits.TXIF);
+        TXREG = *string++;        // Send each character as data
+    }
 }

@@ -6,6 +6,7 @@
 
 #include "eusart.h"
 #include "lcd.h"
+#include "anRead.h"
 
 #ifndef _XTAL_FREQ
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
@@ -18,8 +19,18 @@ void main(void){
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
     
-    LCD_Init();
+    //Enable interrupts
+    INTCONbits.GIE = 1;        
+    INTCONbits.PEIE = 1;
+    
+    //Initialise hardware
+    initLCD();
     initEUSART();
+    initADC();
+    
+    int digitalReading;
+    int int_part;
+    int frac_part;
     
     char textbuf[60];
     char updated = 0;
@@ -28,11 +39,11 @@ void main(void){
         sendCharSerial('L');
         readUSART(textbuf, sizeof(textbuf), 0x02, 0x03, &updated);
         if(updated) {
-          LCD_clear();
+          clearLCD();
           sendCharSerial('C');
           updated = 0;
         }
-        LCD_String(textbuf);
+        sendStrLCD(textbuf);
         __delay_ms(50);
     }
 }
