@@ -7,7 +7,7 @@ void initEUSART() {
     TRISCbits.RC7 = 1;
        
     // Calculation of baud rate from dependent on set values
-    SPBRG=101; //set baud rate to 9600
+    SPBRG=99; //set baud rate to 19200 - for interrupts
     SPBRGH=0;
     
     // Basic config
@@ -17,7 +17,7 @@ void initEUSART() {
     
     //Finish configuration and enable
     RCSTAbits.SPEN=1; //enable serial port, other settings default
-//    PIE1bits.RCIE =1; // enable recieve interrupts
+    PIE1bits.RCIE =1; // enable recieve interrupts
     TXSTAbits.TXEN=1; //enable transmitter, other settings default
     RCSTAbits.CREN=1; //continuous receive mode
 }

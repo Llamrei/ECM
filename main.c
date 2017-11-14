@@ -15,6 +15,7 @@ void delay_s(int time);
 
 volatile char inputBuffer[60];
 volatile char index=0;
+volatile char updatingBuffer=0;
 
 void main(void){
     
@@ -22,15 +23,20 @@ void main(void){
     while(!OSCCONbits.IOFS); //wait until stable
     
     //Enable interrupts
-//    INTCONbits.GIEH = 1;        
-//    INTCONbits.PEIE = 1;
+    INTCONbits.GIE = 1;        
+    INTCONbits.PEIE = 1;
     
     LCD_Init();
     initEUSART();
+    
     while(1){
-//        LCD_String(&inputBuffer);
-        char input = getCharSerial();
-        SendLCD(input, data);
+        SetLine(2);
+        SendLCD(updatingBuffer ? '1' : '0', data);
+        if(updatingBuffer) {
+            SetLine(1);
+            LCD_String(&inputBuffer);
+            updatingBuffer = 0;
+        }
     }
 }
 
@@ -40,9 +46,13 @@ void delay_s(int time) {
     }
 }
 
-void interrupt InterrupHandlerHigh() {
+void interrupt low_priority InterrupHandlerHigh() {
     if(PIR1bits.RCIF) {
-        inputBuffer[index] = RCREG;
-        index++;
+        inputBuffer[index++] = RCREG;   //Read value from reg
+        updatingBuffer = 1;             //Let LCD know stuff has changed
+            
+        RCSTAbits.CREN = 0; //clear error (if any)
+        RCSTAbits.CREN = 1; //Enables Receiver
+        
     }
 }
