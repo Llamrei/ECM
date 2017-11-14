@@ -17,6 +17,8 @@ void delay_s(int time);
 volatile char inputBuffer[60];
 volatile char index=0;
 volatile char updatingBuffer=0;
+volatile char byteRead = 0;
+volatile char allowedToRead = 0;
 
 void main(void){
     
@@ -30,22 +32,18 @@ void main(void){
     //Initialise hardware
     LCD_Init();
     initEUSART();
-    initADC();
-    
-    int digitalReading;
-    int int_part;
-    int frac_part;
-    
+
     while(1){
-        char voltage[60] = "";
-        digitalReading = readADC();
-+       int_part = (int) (digitalReading/204.5);
-+       frac_part= (int) (digitalReading/2.045) - int_part*100;
-+       sprintf(voltage,"%d.%02d V",int_part,frac_part);
-        sendStrSerial(voltage);
-        LCD_clear();
-        LCD_String(voltage);
-        __delay_ms(50);
+        if (updatingBuffer){
+            LCD_clear();
+            LCD_String(&inputBuffer);       // Display text array between 0x02 and 0x03
+            if (!allowedToRead){
+                index = 0;                  // Reset index after finishing text array
+                memset(inputBuffer,0, sizeof(inputBuffer)); // Reset input buffer after finishing text array
+                updatingBuffer = 0;
+             }
+            __delay_ms(50);             
+        }
     }
 }
 
@@ -57,10 +55,18 @@ void delay_s(int time) {
 
 void interrupt low_priority InterrupHandlerHigh() {
     if(PIR1bits.RCIF) {
-        inputBuffer[index] = RCREG;   //Read value from reg
-        updatingBuffer = 1;           //Let LCD know stuff has changed   
+        byteRead = RCREG;
+        if (byteRead == 0x02){          // Check for first bit = 0x02
+            allowedToRead = 1;          // Start reading text array
+        }
+        else if (byteRead == 0x03){     // Check for last bit = 0x03
+            allowedToRead = 0;          // End reading text array
+        }
+        else if (allowedToRead){
+            inputBuffer[index++] = byteRead;    //Read value from reg
+            updatingBuffer = 1;                 //Let LCD know stuff has changed   
+        }
         RCSTAbits.CREN = 0; //clear error (if any)
-        RCSTAbits.CREN = 1; //Enables Receiver
-        
+        RCSTAbits.CREN = 1; //Enables Receiver      
     }
 }
