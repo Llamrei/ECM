@@ -7,7 +7,7 @@ void initEUSART() {
     TRISCbits.RC7 = 1;
        
     // Calculation of baud rate from dependent on set values
-    SPBRG=97; //set baud rate to 19200 - for interrupts and handles echoing
+    SPBRG=200; //set baud rate to 9600 - for interrupts and handles echoing as close to good as we can expect
     SPBRGH=0; 
     
     // Basic config
@@ -30,4 +30,11 @@ char getCharSerial() {
 void sendCharSerial(char charToSend) {
     while(!PIR1bits.TXIF);      //While waiting for transmit register to clear - set to 1
     TXREG = charToSend;         //Once clear - sned char
+}
+
+void sendStrSerial(char *string){
+    while(*string != 0){                // Increment until null (0x00) reached
+        while(!PIR1bits.TXIF);
+        TXREG = *string++;        // Send each character as data
+    }
 }

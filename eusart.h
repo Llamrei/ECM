@@ -11,6 +11,7 @@
 void initEUSART();
 char getCharSerial();
 void sendCharSerial(char charToSend);
+void sendStrSerial(char *string);
 
 #endif	/* EUSART_H */
 

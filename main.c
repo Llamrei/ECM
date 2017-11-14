@@ -6,6 +6,7 @@
 
 #include "eusart.h"
 #include "lcd.h"
+#include "anRead.h"
 
 #ifndef _XTAL_FREQ
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
@@ -29,18 +30,22 @@ void main(void){
     //Initialise hardware
     LCD_Init();
     initEUSART();
+    initADC();
+    
+    int digitalReading;
+    int int_part;
+    int frac_part;
     
     while(1){
-        //Print debugging information before results, on 2nd line
-        SetLine(2);                                 
-        SendLCD(updatingBuffer ? '1' : '0', data);
-        
-        //Update LCD
-        if(updatingBuffer) {
-            SetLine(1);
-            LCD_String(&inputBuffer);
-            updatingBuffer = 0;
-        }
+        char voltage[60] = "";
+        digitalReading = readADC();
++       int_part = (int) (digitalReading/204.5);
++       frac_part= (int) (digitalReading/2.045) - int_part*100;
++       sprintf(voltage,"%d.%02d V",int_part,frac_part);
+        sendStrSerial(voltage);
+        LCD_clear();
+        LCD_String(voltage);
+        __delay_ms(50);
     }
 }
 
@@ -53,8 +58,7 @@ void delay_s(int time) {
 void interrupt low_priority InterrupHandlerHigh() {
     if(PIR1bits.RCIF) {
         inputBuffer[index] = RCREG;   //Read value from reg
-        sendCharSerial(inputBuffer[index++]);   //Echo value back
-        updatingBuffer = 1;             //Let LCD know stuff has changed   
+        updatingBuffer = 1;           //Let LCD know stuff has changed   
         RCSTAbits.CREN = 0; //clear error (if any)
         RCSTAbits.CREN = 1; //Enables Receiver
         

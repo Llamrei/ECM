@@ -22,6 +22,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>dc_motor.c</itemPath>
       <itemPath>eusart.c</itemPath>
+      <itemPath>anRead.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
