@@ -26,12 +26,16 @@ void main(void){
     INTCONbits.GIE = 1;        
     INTCONbits.PEIE = 1;
     
+    //Initialise hardware
     LCD_Init();
     initEUSART();
     
     while(1){
-        SetLine(2);
+        //Print debugging information before results, on 2nd line
+        SetLine(2);                                 
         SendLCD(updatingBuffer ? '1' : '0', data);
+        
+        //Update LCD
         if(updatingBuffer) {
             SetLine(1);
             LCD_String(&inputBuffer);
