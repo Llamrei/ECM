@@ -2,7 +2,7 @@
 #include "dc_motor.h"
 
 #ifndef _XTAL_FREQ
-#define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
+    #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
 #endif
 
 // Function to get value of PTPER according to formula given in book
@@ -13,7 +13,7 @@ int getPT(int period, int osc, char scaler){
 
 void initPWM(int PWMperiod){
     PTCON0 = 0b00000000;    // free running mode
-    PTCON0bits.PTCKPS = 00; // 1:16 prescaler
+    PTCON0bits.PTCKPS = 00; // 1:1 prescaler
     PTCON1 = 0b10000000;    // enable PWM timer
     PWMCON0 = 0b01101111;   // PWM1 & 3 enabled, all independent mode
     PWMCON1 = 0x00;         // special features, all 0 (default)
@@ -51,9 +51,9 @@ void setMotorPWM(struct DC_motor *m)
 //increases a motor to full power over a period of time
 void setMotorFullSpeed(struct DC_motor *m)
 {
-	for (m->power; (m->power)<100; m->power++){ //increase motor power until 100
+	for (m->power; (m->power)< 99; m->power++){ //increase motor power until 100
 		setMotorPWM(m);	//pass pointer to m to setMotorSpeed function (not &m)
-		__delay_ms(10);	//delay of 1 ms (1000 ms from 0 to 100 full power)
+		__delay_ms(5);	//delay of 10 ms (1000 ms from 0 to 100 full power)
 	}
 }
 
@@ -62,62 +62,67 @@ void stopMotor(struct DC_motor *m)
 {
 	for (m->power; (m->power) > 0; m->power--){ //decrease motor power until 100
 		setMotorPWM(m);	//pass pointer to m to setMotorSpeed function (not &m)
-		__delay_ms(10);	//delay of 1 ms (1000 ms from 0 to 100 full power)
+		__delay_ms(5);	//delay of 10 ms (1000 ms from 0 to 100 full power)
 	}
 }
 
 //function to stop the robot gradually 
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
-    for (mL->power; (mL->power) > 0; mL->power--){ //decrease motor power until 100
-		mR = mL;
-        setMotorPWM(mL);	//pass pointer to m to setMotorSpeed function (not &m)
-        setMotorPWM(mR);	//pass pointer to m to setMotorSpeed function (not &m)
-		__delay_ms(10);	//delay of 1 ms (1000 ms from 0 to 100 full power)
-	}
+    // Not sensitive enough sensitive for 0
+    char minValue = 1;
+    while(mL->power > minValue || mR->power > minValue) {
+        if(mL->power > minValue){
+            mL->power--;
+            setMotorPWM(mL);
+        }
+        if(mR->power > minValue){
+            mR->power--;
+            setMotorPWM(mR);
+        }
+        __delay_ms(5);
+    }
 }
 
 //function to make the robot turn left for time in seconds
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int time)
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
-    char mL_oldDir = mL->direction;
-    char mR_oldDir = mR->direction;
     stop(mL,mR);
     mL->direction = 0;
     mR->direction = 1;
     fullSpeedAhead(mL, mR);
-    for(int i; i < time*20; i++){
-        __delay_ms(50);       
-    }
-    stop(mL,mR);
-    mL->direction = mL_oldDir;
-    mR->direction = mR_oldDir;
 }
 
 //function to make the robot turn right 
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, int time)
+void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 {
-    char mL_oldDir = mL->direction;
-    char mR_oldDir = mR->direction;
     stop(mL,mR);
     mL->direction = 1;
     mR->direction = 0;
     fullSpeedAhead(mL, mR);
-    for(int i; i < time*20; i++){
-        __delay_ms(50);       
-    }
-    stop(mL,mR);
-    mL->direction = mL_oldDir;
-    mR->direction = mR_oldDir;
+}
+
+void forward(struct DC_motor *mL, struct DC_motor *mR) {
+    mL->direction = 1;
+    mR->direction = 1;
+    
+    fullSpeedAhead(mL, mR);
 }
 
 //function to make the robot go straight
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
-    for (mL->power; (mL->power)<100; mL->power++){ //increase motor power until 100
-        mR = mL;
-		setMotorPWM(mL);	//pass pointer to m to setMotorSpeed function (not &m)
-        setMotorPWM(mR);	//pass pointer to m to setMotorSpeed function (not &m)
-		__delay_ms(10);	//delay of 1 ms (1000 ms from 0 to 100 full power)
+    //Not accurate enough for 100
+    char maxValue = 99;
+    while(mL->power < maxValue || mR->power < maxValue) {
+        if(mL->power < maxValue){
+            mL->power++;
+            setMotorPWM(mL);
+        }
+        if(mR->power < maxValue){
+            mR->power++;
+            setMotorPWM(mR);
+        }
+        __delay_ms(5);
 	}
 }

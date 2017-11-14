@@ -1,10 +1,6 @@
 #ifndef _DC_MOTOR_H
 #define _DC_MOTOR_H
 
-#define _XTAL_FREQ 8000000
-
-#include <xc.h>
-
 struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100 - affects speed
     char direction;     //motor direction, forward(1), reverse(0)
@@ -15,13 +11,15 @@ struct DC_motor { //definition of DC_motor structure
 };
 
 //function prototypes
+int getPT(int period, int osc, char scaler);
+void forward(struct DC_motor *mL, struct DC_motor *mR);
 void initPWM(int PWMperiod); // function to setup PWM
 void setMotorPWM(struct DC_motor *m);
 void setMotorFullSpeed(struct DC_motor *m);
 void stopMotor(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int time);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, int time);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 
 #endif

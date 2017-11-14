@@ -114,5 +114,10 @@ void LCD_String(char *string){
     }
 }
 
+void LCD_clear() {
+   SendLCD(0b00000001,command);         //Clear display
+   __delay_us(1700);
+}
+
 #endif	/* LCD_H */
 
