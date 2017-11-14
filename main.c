@@ -22,10 +22,18 @@ void main(void){
     initEUSART();
     
     char textbuf[60];
+    char updated = 0;
     
     while(1){
-        readUSART(textbuf, sizeof(buf), 0x02, 0x03);
-        LCD_String(buf);
+        sendCharSerial('L');
+        readUSART(textbuf, sizeof(textbuf), 0x02, 0x03, &updated);
+        if(updated) {
+          LCD_clear();
+          sendCharSerial('C');
+          updated = 0;
+        }
+        LCD_String(textbuf);
+        __delay_ms(50);
     }
 }
 

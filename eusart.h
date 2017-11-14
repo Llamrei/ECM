@@ -11,7 +11,7 @@
 void initEUSART();
 char getCharSerial();
 void sendCharSerial(char message);
-void readUSART(char* buf, int bufSize, char startChar, char endChar);
+void readUSART(char* buf, int bufSize, char startChar, char endChar, char *flag);
 
 #endif	/* EUSART_H */
 

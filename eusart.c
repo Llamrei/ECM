@@ -1,4 +1,5 @@
 #include <xc.h>
+#include <string.h>
 #include "eusart.h"
 
 void initEUSART() {
@@ -31,12 +32,16 @@ void sendCharSerial(char message) {
     TXREG = message;
 }
 
-void readUSART(char* buf, int bufSize, char startChar, char endChar) {
+void readUSART(char* buf, int bufSize, char startChar, char endChar, char *flag) {
+    sendCharSerial('W');
     char byteIn = getCharSerial();
+    memset(buf, 0, bufSize);
+    sendCharSerial('E');
     if(byteIn == startChar) {
         char reading = 1;
         int i = 0;
         while(reading) {
+            sendCharSerial('R');
             byteIn = getCharSerial();
             if(byteIn == endChar || i == bufSize) {
                 reading = 0;
@@ -44,6 +49,9 @@ void readUSART(char* buf, int bufSize, char startChar, char endChar) {
                 buf[i++] = byteIn;
             }           
         }
+        *flag = 1;
+    } else {
+        sendCharSerial('T');   
     }
     return;
 }
