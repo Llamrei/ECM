@@ -8,7 +8,7 @@ void initEUSART() {
     TRISCbits.RC7 = 1;
        
     // Calculation of baud rate from dependent on set values
-    SPBRG=101; //set baud rate to 9600
+    SPBRG=101; //set baud rate to 19200
     SPBRGH=0;
     
     // Basic config
@@ -45,6 +45,9 @@ void readUSART(char* buf, int bufSize, char startChar, char endChar, char *flag)
             byteIn = getCharSerial();
             if(byteIn == endChar || i == bufSize) {
                 reading = 0;
+            } else if (byteIn == startChar) {
+                i = 0;
+                memset(buf, 0, bufSize);
             } else {
                 buf[i++] = byteIn;
             }           
