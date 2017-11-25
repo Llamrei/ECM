@@ -27,7 +27,6 @@ char getCharSerial() {
     return RCREG;
 }
 
-<<<<<<< HEAD
 void sendCharSerial(char message) {
     while(!PIR1bits.TXIF);
     TXREG = message;
@@ -55,11 +54,6 @@ void readUSART(char* buf, int bufSize, char startChar, char endChar, char *flag)
         sendCharSerial('T');   
     }
     return;
-=======
-void sendCharSerial(char charToSend) {
-    while(!PIR1bits.TXIF);      //While waiting for transmit register to clear - set to 1
-    TXREG = charToSend;         //Once clear - sned char
->>>>>>> cc8bf96... Lab 6 - Ex2a - Working with interrupts, exploring bauds
 }
 
 void sendStrSerial(char *string){

@@ -27,11 +27,7 @@ void main(void){
     initLCD();
     initEUSART();
     initADC();
-    
-    int digitalReading;
-    int int_part;
-    int frac_part;
-    
+        
     char textbuf[60];
     char updated = 0;
     
