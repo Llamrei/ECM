@@ -11,6 +11,15 @@
 #ifndef LCD_H
 #define	LCD_H
 
+#define dispEnableL LATCbits.LC0        // Alias pins for use in display
+#define dispDataL LATAbits.LATA6
+#define disp7L LATDbits.LD1             // LD1 vs latd1
+#define disp6L LATDbits.LD0
+#define disp5L LATCbits.LC2
+#define disp4L LATCbits.LC1
+#define command 0                       // Alias commands for readability
+#define data 1
+
 void E_TOG(void);                           // Function to toggle data read - used internally
 void sendNibLCD(unsigned char number);      // Function to send four bits to the LCD - used internally
 void sendLCD(unsigned char Byte, char type);// Function to send data/commands over a 4bit interface

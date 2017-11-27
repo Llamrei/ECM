@@ -5,14 +5,7 @@
 #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
 #endif
 
-#define dispEnableL LATCbits.LC0        // Alias pins for use in display
-#define dispDataL LATAbits.LATA6
-#define disp7L LATDbits.LD1             // LD1 vs latd1
-#define disp6L LATDbits.LD0
-#define disp5L LATCbits.LC2
-#define disp4L LATCbits.LC1
-#define command 0                       // Alias commands for readability
-#define data 1
+
 
 // Function to toggle data read
 void E_TOG(void){

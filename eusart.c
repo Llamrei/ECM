@@ -1,14 +1,17 @@
 #include <xc.h>
 #include <string.h>
+#include <stdint.h>
 #include "eusart.h"
 
-void initEUSART() {
+#include "lcd.h"
+
+void initEUSART(int baudRate, char error) {
     //set data direction registers
     TRISCbits.RC6 = 1;
     TRISCbits.RC7 = 1;
        
     // Calculation of baud rate from dependent on set values
-    SPBRG=200; //set baud rate to 9600 - for interrupts and handles echoing as close to good as we can expect
+    SPBRG = (8000000/(baudRate)/4) - 1 + error; //set baud rate to 9600 - for interrupts and handles echoing as close to good as we can expect
     SPBRGH=0; 
     
     // Basic config
@@ -32,26 +35,27 @@ void sendCharSerial(char message) {
     TXREG = message;
 }
 
-void readUSART(char* buf, int bufSize, char startChar, char endChar, char *flag) {
-    sendCharSerial('W');
+void readUSART(char *buf, int bufSize, char startChar, char endChar, char *flag) {
     char byteIn = getCharSerial();
+                    sendCharSerial(byteIn);     //Debugging
     memset(buf, 0, bufSize);
-    sendCharSerial('E');
     if(byteIn == startChar) {
         char reading = 1;
         int i = 0;
         while(reading) {
-            sendCharSerial('R');
+            //Will discard 1st byte read - assuming it was right
             byteIn = getCharSerial();
+                            sendCharSerial(byteIn); //Debugging
+
+            //Stop reading if we see an end char or we fill the buffer
             if(byteIn == endChar || i == bufSize) {
                 reading = 0;
             } else {
                 buf[i++] = byteIn;
+                sendLCD(byteIn, 1);
             }           
         }
         *flag = 1;
-    } else {
-        sendCharSerial('T');   
     }
     return;
 }

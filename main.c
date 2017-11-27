@@ -25,20 +25,24 @@ void main(void){
     
     //Initialise hardware
     initLCD();
-    initEUSART();
+    initEUSART(9600, 0);
     initADC();
         
-    char textbuf[60];
+    char textbuf[16];
     char updated = 0;
     
+    setLine(1);
+    char debuggingBaud[10];
+    sprintf(debuggingBaud, "SPBRG %d", SPBRG);
+    sendStrLCD(debuggingBaud);
+        
     while(1){
-        sendCharSerial('L');
         readUSART(textbuf, sizeof(textbuf), 0x02, 0x03, &updated);
         if(updated) {
           clearLCD();
-          sendCharSerial('C');
           updated = 0;
         }
+        setLine(2);
         sendStrLCD(textbuf);
         __delay_ms(50);
     }
