@@ -50,7 +50,6 @@ void readUSART(char *buf, int bufSize, char startChar, char endChar, char *flag)
                 reading = 0;
             } else {
                 buf[i++] = byteIn;
-                sendLCD(byteIn, 1);
             }           
         }
         *flag = 1;

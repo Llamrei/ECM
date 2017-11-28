@@ -179,7 +179,6 @@ ${OBJECTDIR}/ir_reader.p1: ir_reader.c  nbproject/Makefile-${CND_CONF}.mk
 	@${FIXDEPS} ${OBJECTDIR}/ir_reader.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
->>>>>>> rfid
 ${OBJECTDIR}/anRead.p1: anRead.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/anRead.p1.d 
@@ -252,7 +251,7 @@ ${OBJECTDIR}/ir_reader.p1: ir_reader.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/ir_reader.d ${OBJECTDIR}/ir_reader.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ir_reader.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
->>>>>>> rfid
+
 endif
 
 # ------------------------------------------------------------------------------------
