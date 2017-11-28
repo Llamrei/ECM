@@ -4,6 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/H:/MPLabX/ECM/main.c</file>
+            <file>file:/H:/MPLabX/ECM/ir_reader.c</file>
+            <file>file:/H:/MPLabX/ECM/ir_reader.h</file>
         </group>
     </open-files>
 </project-private>
