@@ -48,7 +48,7 @@ void main(void){
         sendStrLCD(textbuf);
         setLine(2);
         if(textbuf[13] == 0xFF) {
-           sendStrLCD("Checksum invalid");
+           sendStrLCD("Error-readRFID");
         } else {
            sendStrLCD("Checksum valid"); 
         }  
