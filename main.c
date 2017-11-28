@@ -24,21 +24,29 @@ void main(void){
     
     //Initialise hardware
     initLCD();
-    initIRCapture(rightIR, resetDisable);
+    initIRCapture(leftIR, resetEnable);
+    initIRCapture(rightIR, resetEnable);
         
     char textbuf[16];
     char updated = 0;
-    int IRvalue = 0;
+    int IRvalueL, IRvalueR = 0;
             
     while(1){
-        IRvalue = readIRCapture(rightIR, &updated);
-        sprintf(textbuf, "IR value %u", IRvalue);
+        IRvalueL = readIRCapture(leftIR, &updated);
+        IRvalueR = readIRCapture(rightIR, &updated);
+        
         if(updated) {
           clearLCD();
           updated = 0;
-          setLine(1);
         }
+        
+        setLine(1);
+        sprintf(textbuf, "PWL %u us", IRvalueL);
         sendStrLCD(textbuf);
+        setLine(2);
+        sprintf(textbuf, "PWR %u us", IRvalueR);
+        sendStrLCD(textbuf);
+        
         __delay_ms(50);
     }
 }
