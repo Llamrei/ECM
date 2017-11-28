@@ -6,6 +6,8 @@
 
 #include "eusart.h"
 #include "lcd.h"
+#include "anRead.h"
+#include "ir_reader.h"
 
 #ifndef _XTAL_FREQ
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
@@ -18,21 +20,36 @@ void main(void){
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
     
-    LCD_Init();
-    initEUSART();
+    //Enable interrupts
+    INTCONbits.GIE = 1;        
+    INTCONbits.PEIE = 1;
     
-    char textbuf[60];
+    //Initialise hardware
+    initLCD();
+    initEUSART(9600, -2);
+    initADC();
+        
+    char textbuf[16];
     char updated = 0;
     
+    char debuggingBaud[10];
+    sprintf(debuggingBaud, "SPBRG %d", SPBRG);
+    sendStrLCD(debuggingBaud);
+        
     while(1){
-        sendCharSerial('L');
         readUSART(textbuf, sizeof(textbuf), 0x02, 0x03, &updated);
         if(updated) {
-          LCD_clear();
-          sendCharSerial('C');
+          clearLCD();
           updated = 0;
+          setLine(1);
         }
-        LCD_String(textbuf);
+        
+        readRFID(textbuf, sizeof(textbuf));
+        sendStrLCD(textbuf); 
+        if(textbuf[13] == 0xFF) {
+           setLine(2);
+           sendStrLCD("Checksum invalid");
+        }        
         __delay_ms(50);
     }
 }

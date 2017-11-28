@@ -1,6 +1,8 @@
 #ifndef _DC_MOTOR_H
 #define _DC_MOTOR_H
 
+//Functions to handle motor control
+
 struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100 - affects speed
     char direction;     //motor direction, forward(1), reverse(0)
@@ -11,15 +13,15 @@ struct DC_motor { //definition of DC_motor structure
 };
 
 //function prototypes
-int getPT(int period, int osc, char scaler);
-void forward(struct DC_motor *mL, struct DC_motor *mR);
-void initPWM(int PWMperiod); // function to setup PWM
-void setMotorPWM(struct DC_motor *m);
-void setMotorFullSpeed(struct DC_motor *m);
-void stopMotor(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+int getPT(int period, int osc, char scaler);            //Determines PTPER required for osc in MHz and period in us
+void forward(struct DC_motor *mL, struct DC_motor *mR); //Moves both motors at 100 power forward
+void initPWM(int PWMperiod);                            //Configure PWM 1 and 3 to output PWM with no special features, motors to go on RB2 and RB0
+void setMotorPWM(struct DC_motor *m);                   //Send out PWM relating to given motor config - takes direction into account
+void setMotorFullSpeed(struct DC_motor *m);             //Sets a single motor to full power incrementally
+void stopMotor(struct DC_motor *m);                     //Stops a single motor incrementally
+void stop(struct DC_motor *mL, struct DC_motor *mR);    //Decrementally stop both motors in parallel
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR);//Turns left by stopping, then sending turn signal + fullspeed ahead
+void turnRight(struct DC_motor *mL, struct DC_motor *mR);//Turns right by stopping, then sending turn signal + fullspeed ahead
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);  //Sets both motor to full speed whichever direction the face in parallel
 
 #endif
