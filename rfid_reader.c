@@ -1,6 +1,6 @@
 #include <xc.h>
 #include <string.h>
-#include "ir_reader.h"
+#include "rfid_reader.h"
 
 void readRFID(char* bufIn, int bufSize) {  
     // Check checksum works

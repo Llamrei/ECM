@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 #include "lcd.h"
-#include "anRead.h"
+#include "ir_handling.h"
 
 #ifndef _XTAL_FREQ
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
@@ -24,12 +24,15 @@ void main(void){
     
     //Initialise hardware
     initLCD();
-    initADC();
+    initIRCapture(rightIR, resetDisable);
         
     char textbuf[16];
     char updated = 0;
+    int IRvalue = 0;
             
     while(1){
+        IRvalue = readIRCapture(rightIR, &updated);
+        sprintf(textbuf, "IR value %u", IRvalue);
         if(updated) {
           clearLCD();
           updated = 0;

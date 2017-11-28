@@ -11,6 +11,8 @@
       <itemPath>servoControl.h</itemPath>
       <itemPath>dc_motor.h</itemPath>
       <itemPath>eusart.h</itemPath>
+      <itemPath>ir_handling.h</itemPath>
+      <itemPath>rfid_reader.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -27,6 +29,8 @@
         <itemPath>eusart.c</itemPath>
         <itemPath>lcd.c</itemPath>
         <itemPath>servoControl.c</itemPath>
+        <itemPath>ir_handling.c</itemPath>
+        <itemPath>rfid_reader.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -37,6 +41,9 @@
     </logicalFolder>
     <itemPath>.gitignore</itemPath>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
