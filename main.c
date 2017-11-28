@@ -7,6 +7,7 @@
 #include "eusart.h"
 #include "lcd.h"
 #include "anRead.h"
+#include "ir_reader.h"
 
 #ifndef _XTAL_FREQ
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
@@ -25,13 +26,12 @@ void main(void){
     
     //Initialise hardware
     initLCD();
-    initEUSART(9600, 0);
+    initEUSART(9600, -2);
     initADC();
         
     char textbuf[16];
     char updated = 0;
     
-    setLine(1);
     char debuggingBaud[10];
     sprintf(debuggingBaud, "SPBRG %d", SPBRG);
     sendStrLCD(debuggingBaud);
@@ -41,9 +41,17 @@ void main(void){
         if(updated) {
           clearLCD();
           updated = 0;
+          setLine(1);
         }
-        setLine(2);
+        
+        readRFID(textbuf, sizeof(textbuf));
         sendStrLCD(textbuf);
+        setLine(2);
+        if(textbuf[13] == 0xFF) {
+           sendStrLCD("Error-readRFID");
+        } else {
+           sendStrLCD("Checksum valid"); 
+        }  
         __delay_ms(50);
     }
 }

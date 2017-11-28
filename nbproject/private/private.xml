@@ -3,18 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/H:/MPLABXProjects/ECM/main.c</file>
-            <file>file:/H:/MPLABXProjects/ECM/eusart.c</file>
-            <file>file:/H:/MPLABXProjects/ECM/anRead.h</file>
-            <file>file:/H:/MPLABXProjects/ECM/binled.c</file>
-            <file>file:/H:/MPLABXProjects/ECM/servoControl.h</file>
-            <file>file:/H:/MPLABXProjects/ECM/dc_motor.c</file>
-            <file>file:/H:/MPLABXProjects/ECM/eusart.h</file>
-            <file>file:/H:/MPLABXProjects/ECM/anRead.c</file>
-            <file>file:/H:/MPLABXProjects/ECM/binled.h</file>
-            <file>file:/H:/MPLABXProjects/ECM/dc_motor.h</file>
-            <file>file:/H:/MPLABXProjects/ECM/lcd.h</file>
-            <file>file:/H:/MPLABXProjects/ECM/buttonInterrupts.h</file>
+            <file>file:/H:/MPLabX/ECM/main.c</file>
+            <file>file:/H:/MPLabX/ECM/ir_reader.c</file>
+            <file>file:/H:/MPLabX/ECM/ir_reader.h</file>
         </group>
     </open-files>
 </project-private>

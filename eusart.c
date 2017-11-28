@@ -3,8 +3,6 @@
 #include <stdint.h>
 #include "eusart.h"
 
-#include "lcd.h"
-
 void initEUSART(int baudRate, char error) {
     //set data direction registers
     TRISCbits.RC6 = 1;
@@ -37,7 +35,7 @@ void sendCharSerial(char message) {
 
 void readUSART(char *buf, int bufSize, char startChar, char endChar, char *flag) {
     char byteIn = getCharSerial();
-                    sendCharSerial(byteIn);     //Debugging
+    sendCharSerial(byteIn);     //Debugging
     memset(buf, 0, bufSize);
     if(byteIn == startChar) {
         char reading = 1;
@@ -45,7 +43,7 @@ void readUSART(char *buf, int bufSize, char startChar, char endChar, char *flag)
         while(reading) {
             //Will discard 1st byte read - assuming it was right
             byteIn = getCharSerial();
-                            sendCharSerial(byteIn); //Debugging
+            sendCharSerial(byteIn); //Debugging
 
             //Stop reading if we see an end char or we fill the buffer
             if(byteIn == endChar || i == bufSize) {
