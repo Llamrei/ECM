@@ -3,7 +3,7 @@
 #include "ir_reader.h"
 
 void readRFID(char* bufIn, int bufSize) {  
-//    Check checksum works
+    // Check checksum works
     checkRFIDSum(bufIn, sizeof(bufIn));
     
     if(bufIn[13] !=  0xFF){
@@ -13,28 +13,45 @@ void readRFID(char* bufIn, int bufSize) {
         }
     } 
 }
+
 void checkRFIDSum(char* buf, int bufSize) {
-    char xorOutput;
+    char xorOutput = 0;
+    char translatedASCII[12];
     char valid = 0;
-    memset(xorOutput, 0, 2);
+    char failedDecode = 0;
+    memset(translatedASCII, 0, 12);
     
-    //ASCII 0 is hex 30
-    //Convert input hex into ASCII and then xor
+    // ASCII 0 is hex 30
+    // Convert input hex into ASCII and then XOR
     
-    for(char i = 0; i < 5; i++){
-        xorOutput ^= buf[2*i] << 4 + buf[2*i + 1];
+    // Convert into local 'ASCII' represented by hex
+    for (char i = 0; i< 12; i++) {
+        if(buf[i] > 'F') {
+           failedDecode = 1;
+        } else if(buf[i] >= 'A') {
+            translatedASCII[i] = buf[i] - 'A' + 10;
+        } else if(buf[i] >= '0') {
+            translatedASCII[i] = buf[i] - '0';
+        } else {
+            failedDecode = 1;
+        } 
     }
-    xorOutput += 30;
-    //Compare to checksum sent - MSBits
-    if(buf[10] + == xorOutput[0]) {
-        //LSBits
-        if(buf[11] == xorOutput[1]){
-            //Valid checksum do nothing
-            valid = 1;
-        }
-    }    
     
-    if(!valid) {
-            buf[13] = 0xFF;
+    // Pair pseudo ASCII and XOR
+    for (char i = 0; i< 5; i++) {
+        xorOutput ^= (translatedASCII[2*i] << 4) + translatedASCII[2*i+1];
+    }
+    
+    // Pseudo ASCII of signal compared against pseudo ASCII checksum
+    
+    // Combine pseudo ASCII checksum nibbles
+    char ASCIIChecksum = (translatedASCII[10] << 4) + (translatedASCII[11] & 0xF);
+    
+    if(ASCIIChecksum == xorOutput) {
+        valid = 1;
+    }
+    
+    if(!valid || failedDecode) {
+        buf[13] = 0xFF;
     }
 }

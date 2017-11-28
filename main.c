@@ -45,11 +45,13 @@ void main(void){
         }
         
         readRFID(textbuf, sizeof(textbuf));
-        sendStrLCD(textbuf); 
+        sendStrLCD(textbuf);
+        setLine(2);
         if(textbuf[13] == 0xFF) {
-           setLine(2);
            sendStrLCD("Checksum invalid");
-        }        
+        } else {
+           sendStrLCD("Checksum valid"); 
+        }  
         __delay_ms(50);
     }
 }
