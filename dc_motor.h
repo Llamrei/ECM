@@ -14,14 +14,13 @@ struct DC_motor { //definition of DC_motor structure
 
 //function prototypes
 int getPT(int period, int osc, char scaler);            //Determines PTPER required for osc in MHz and period in us
-void forward(struct DC_motor *mL, struct DC_motor *mR); //Moves both motors at 100 power forward
+void forward(struct DC_motor *mL, struct DC_motor *mR, char power); //Moves both motors at 100 power forward
 void initPWM(int PWMperiod);                            //Configure PWM 1 and 3 to output PWM with no special features, motors to go on RB2 and RB0
 void setMotorPWM(struct DC_motor *m);                   //Send out PWM relating to given motor config - takes direction into account
 void setMotorFullSpeed(struct DC_motor *m);             //Sets a single motor to full power incrementally
 void stopMotor(struct DC_motor *m);                     //Stops a single motor incrementally
 void stop(struct DC_motor *mL, struct DC_motor *mR);    //Decrementally stop both motors in parallel
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);//Turns left by stopping, then sending turn signal + fullspeed ahead
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);//Turns right by stopping, then sending turn signal + fullspeed ahead
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);  //Sets both motor to full speed whichever direction the face in parallel
-
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, char power);//Turns left by stopping, then sending turn signal + fullspeed ahead
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, char power);//Turns right by stopping, then sending turn signal + fullspeed ahead
+void setSpeedAhead(struct DC_motor *mL, struct DC_motor *mR, char power); //Sets both motor to given power whichever direction the face in parallel
 #endif
