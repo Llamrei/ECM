@@ -5,23 +5,19 @@
 #include <stdio.h>
 
 #include "lcd.h"
-<<<<<<< Updated upstream
 #include "anRead.h"
-=======
 #include "ir_handling.h"
 #include "dc_motor.h"
 #include "buttonInterrupts.h"
 #include "rfid_reader.h"
 #include "eusart.h"
->>>>>>> Stashed changes
-
+        
 #ifndef _XTAL_FREQ
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
 #endif
 
 void delay_s(int time);
-<<<<<<< Updated upstream
-=======
+
 volatile char on = 0;
 volatile char cardPresent = 0;
 volatile char CAP1update = 1;
@@ -30,34 +26,12 @@ char searching = 1;
     
 //Declare motors
 struct DC_motor motorL, motorR; //declare 2 motor structures     
->>>>>>> Stashed changes
 
 void main(void){
     
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
     
-<<<<<<< Updated upstream
-    //Enable interrupts
-    INTCONbits.GIE = 1;        
-    INTCONbits.PEIE = 1;
-    
-    //Initialise hardware
-    initLCD();
-    initADC();
-        
-    char textbuf[16];
-    char updated = 0;
-            
-    while(1){
-        if(updated) {
-          clearLCD();
-          updated = 0;
-          setLine(1);
-        }
-        sendStrLCD(textbuf);
-        __delay_ms(50);
-=======
     //Construct PWM signal
     int PTPER = getPT(PWMcycle, 8, 1);   //Get pwm cycle length for 10kHz
     initPWM(PTPER);  //setup PWM registers
@@ -129,7 +103,6 @@ void main(void){
 
             __delay_ms(50);
         }
->>>>>>> Stashed changes
     }
 }
 
