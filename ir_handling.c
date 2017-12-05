@@ -13,6 +13,8 @@ void initIRCapture() {
        //See datasheet, configured to 2 8 bit operations and 1:8 prescaler with internal clock source
        T1CON = 0b01111001;
        //Prescaler choice dictated by the time unit desired, timer cycle = prescaler/(Fosc/4) 
+       setEdgeCapture(1, falling);
+       setEdgeCapture(2, falling);
 }
 
 void setEdgeCapture(char CCPselect, char edgeType) {
@@ -20,7 +22,7 @@ void setEdgeCapture(char CCPselect, char edgeType) {
        //Changing CCPxCon sets capture interrupt flag so we want to disable during change
        PIE1bits.CCP1IE = 0;
        PIE2bits.CCP2IE = 0;
-       int registerToAddress = 0xFBD + (CCPselect-1)*3;
+       int registerToAddress = 0xFBD - (CCPselect-1)*3;
        char* CCPxCON = registerToAddress;
        if(edgeType = falling) {
            CCPxCON = 0b00000100;

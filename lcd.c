@@ -44,6 +44,7 @@ void initLCD(void){
     TRISAbits.RA6 = 0;
     TRISC &= 0b11111000;
     TRISD &= 0b11111100;
+    TRISE &= 0b11111001;
  // Set initial LAT output values
     dispEnableL = 0;
     dispDataL = 0;

@@ -24,29 +24,27 @@ void main(void){
     
     //Initialise hardware
     initLCD();
-    sendStrLCD("Test string");
-//    initIRCapture(leftIR, resetEnable);
-//    initIRCapture(rightIR, resetEnable);
+    initIRCapture();
 
     char textbuf[16];
     char updated = 0;
     int IRvalueL, IRvalueR = 0;
             
     while(1){
-//        IRvalueL = readIRCapture(leftIR, &updated);
-//        IRvalueR = readIRCapture(rightIR, &updated);
-//        
-//        if(updated) {
-//          clearLCD();
-//          updated = 0;
-//        }
-//        
-//        setLine(1);
-//        sprintf(textbuf, "PWL %u *4 us", IRvalueL);
-//        sendStrLCD(textbuf);
-//        setLine(2);
-//        sprintf(textbuf, "PWR %u *4 us", IRvalueR);
-//        sendStrLCD(textbuf);
+        IRvalueL = readIRCapture(leftIR, &updated);
+        IRvalueR = readIRCapture(rightIR, &updated);
+        
+        if(updated) {
+          clearLCD();
+          updated = 0;
+        }
+        
+        setLine(1);
+        sprintf(textbuf, "PWL %u *4 us", IRvalueL);
+        sendStrLCD(textbuf);
+        setLine(2);
+        sprintf(textbuf, "PWR %u *4 us", IRvalueR);
+        sendStrLCD(textbuf);
         
         __delay_ms(50);
     }

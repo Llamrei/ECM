@@ -15,8 +15,8 @@
 #define dispDataL LATAbits.LATA6
 #define disp7L LATDbits.LD1             // LD1 vs latd1
 #define disp6L LATDbits.LD0
-#define disp5L LATCbits.LC2
-#define disp4L LATCbits.LC1
+#define disp5L LATEbits.LE2
+#define disp4L LATEbits.LE1
 #define command 0                       // Alias commands for readability
 #define data 1
 
