@@ -13,6 +13,7 @@
       <itemPath>eusart.h</itemPath>
       <itemPath>ir_handling.h</itemPath>
       <itemPath>rfid_reader.h</itemPath>
+      <itemPath>navigation.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

@@ -41,10 +41,10 @@ void main(void){
         }
         
         setLine(1);
-        sprintf(textbuf, "PWL %u us", IRvalueL);
+        sprintf(textbuf, "PWL %u *4 us", IRvalueL);
         sendStrLCD(textbuf);
         setLine(2);
-        sprintf(textbuf, "PWR %u us", IRvalueR);
+        sprintf(textbuf, "PWR %u *4 us", IRvalueR);
         sendStrLCD(textbuf);
         
         __delay_ms(50);

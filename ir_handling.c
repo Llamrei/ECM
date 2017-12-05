@@ -17,6 +17,7 @@ void initIRCapture(char ICPinNumber, char resetTimerFlag) {
        // T5CON <1> - 1 = clock source from pin, 0 = internal clock source
        // T5CON <0> - 1 = enable Timer5
        T5CON = 0b00011101;
+       //Choice dictated by the time unit desired, 
        
        int registerToAddress = 0xF63 - (ICPinNumber-1);
        char* CAPxCON = registerToAddress;
@@ -33,7 +34,7 @@ void initIRCapture(char ICPinNumber, char resetTimerFlag) {
     } 
 }
 
-unsigned int readIRCapture(char ICPinNumber, char* updateFlag) {
+int readIRCapture(char ICPinNumber, char* updateFlag) {
    
    //Only mess with memory if we are given a valid pin number - 1:3
     if( (ICPinNumber > 0) && (ICPinNumber < 4) ) {
@@ -43,7 +44,10 @@ unsigned int readIRCapture(char ICPinNumber, char* updateFlag) {
        char* CAPxBUFL = registerToAddressL;
        unsigned int toReturn = ((unsigned int) *CAPxBUFH << 8) + *CAPxBUFL; //TODO: Done in 2 lines to help debug - change later
        *updateFlag = 1;
-       return toReturn*4;
+       if(toReturn > 130000){
+           toReturn = -1;
+       }
+       return toReturn;
     }
     
     return -7;
