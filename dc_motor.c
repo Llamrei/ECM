@@ -84,41 +84,46 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 // Function to make the robot turn left for time in seconds
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, char power)
 {
-    stop(mL,mR);
-    mL->direction = 0;
-    mR->direction = 1;
-    fullSpeedAhead(mL, mR);
+    if(!(mL->direction == 0 && mR->direction == 1)){
+        stop(mL,mR);
+        mL->direction = 0;
+        mR->direction = 1;  
+    }
+    setSpeedAhead(mL, mR, power);
 }
 
 // Function to make the robot turn right 
-void turnRight(struct DC_motor *mL, struct DC_motor *mR)
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, char power)
 {
-    stop(mL,mR);
-    mL->direction = 1;
-    mR->direction = 0;
-    fullSpeedAhead(mL, mR);
+    if(!(mL->direction == 1 && mR->direction == 0)){
+        //If not already turning right - set to turn right
+        stop(mL,mR);
+        mL->direction = 1;
+        mR->direction = 0;   
+    }    
+    setSpeedAhead(mL, mR, power);
 }
 
-void forward(struct DC_motor *mL, struct DC_motor *mR) {
+void forward(struct DC_motor *mL, struct DC_motor *mR, char power) {
     mL->direction = 1;
     mR->direction = 1;
     
-    fullSpeedAhead(mL, mR);
+    setSpeedAhead(mL, mR, power);
 }
 
-// Function to make the robot go straight
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
-{
+void setSpeedAhead(struct DC_motor *mL, struct DC_motor *mR, char power) {
     //Not accurate enough for 100
-    char maxValue = 99;
-    while(mL->power < maxValue || mR->power < maxValue) {
-        if(mL->power < maxValue){
+    if(power > 98){
+        power = 98;
+    }
+    while(mL->power < power || mR->power < power) {
+        if(mL->power < power){
             mL->power++;
             setMotorPWM(mL);
         }
-        if(mR->power < maxValue){
+        if(mR->power < power){
             mR->power++;
             setMotorPWM(mR);
         }

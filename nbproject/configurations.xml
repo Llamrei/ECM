@@ -11,6 +11,11 @@
       <itemPath>servoControl.h</itemPath>
       <itemPath>dc_motor.h</itemPath>
       <itemPath>eusart.h</itemPath>
+<<<<<<< Updated upstream
+=======
+      <itemPath>ir_handling.h</itemPath>
+      <itemPath>rfid_reader.h</itemPath>
+>>>>>>> Stashed changes
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

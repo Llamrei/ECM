@@ -2,12 +2,13 @@
 #include <string.h>
 #include "ir_reader.h"
 
-void readRFID(char* bufIn, int bufSize) {  
+void readRFID(char* bufIn, int bufSize) {   
     // Check checksum works
     checkRFIDSum(bufIn, sizeof(bufIn));
     
+    // Check for errors
     if(bufIn[13] !=  0xFF){
-        // Extract first 10 bytes
+        // If error not present extract first 10 bytes
         for (char i = 10; i < bufSize; i++) {
             bufIn[i] = '\0';
         }
