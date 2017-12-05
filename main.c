@@ -5,25 +5,17 @@
 #include <stdio.h>
 
 #include "lcd.h"
-#include "anRead.h"
 #include "ir_handling.h"
 #include "dc_motor.h"
-#include "buttonInterrupts.h"
-#include "rfid_reader.h"
-#include "eusart.h"
         
 #ifndef _XTAL_FREQ
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
 #endif
 #define PWMcycle 100 
 
-void delay_s(int time);
-
-volatile char on = 0;
-volatile char cardPresent = 0;
-volatile char CAP1update = 1;
-volatile char CAP3update = 1;
-char searching = 1;
+int abs(int arg) {
+    return arg * ((arg>0) - (arg<0));
+}
     
 //Declare motors
 struct DC_motor motorL, motorR; //declare 2 motor structures     
@@ -33,18 +25,15 @@ void main(void){
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
     
+    //Initialise hardware   
     //Construct PWM signal
     int PTPER = getPT(PWMcycle, 8, 1);   //Get pwm cycle length for 10kHz
     initPWM(PTPER);  //setup PWM registers
-    initButtonHigh();
-    initEUSART(9600, 0); 
-        
-    //Initialise hardware
     initLCD();
     initIRCapture(leftIR, resetEnable);
     initIRCapture(rightIR, resetEnable); 
     
-    //Initialise motors
+    //Initialise motor structs
     motorL.PWMperiod    = PWMcycle; //us
     motorL.dir_pin      = 2;   //Left servo is on pin B2
     motorL.direction    = 1;   //Forward
@@ -63,78 +52,66 @@ void main(void){
     char textbuf[16];
     char updated = 0;
     unsigned int IRvalueL = 0, IRvalueR = 0;
-    char bombCode[16] = "z";
             
     while(1){
-        while(bombCode[0] = 'z'){
-            CLRWDT();
-            if(cardPresent){
-                readUSART(bombCode, 16, 0x02, 0x03, 0);
-                readRFID(bombCode, 16);  
-            }                       
-            
-            char leftError = 0, rightError = 0;
-            IRvalueL = readIRCapture(leftIR, &updated, &leftError);  
-            IRvalueR = readIRCapture(rightIR, &updated, &rightError);            
+        CLRWDT();                      
 
-            if(updated) {
-                clearLCD();
-                updated = 0;
-            }
-            setLine(1);
-            sprintf(textbuf, "L %d R %d", leftError ? leftError : IRvalueL, rightError ? rightError : IRvalueR);
-            sendStrLCD(textbuf);
+        char leftError = 0, rightError = 0;
+        IRvalueL = readIRCapture(leftIR, &updated, &leftError);  
+        IRvalueR = readIRCapture(rightIR, &updated, &rightError);            
 
-            if(searching) {
-
-                if(IRvalueL - IRvalueR > 0 ? IRvalueL - IRvalueR < 100 : IRvalueL - IRvalueR < 100) {
-                    forward(&motorL, &motorR, 50);
-                    setLine(2);
-                    sendStrLCD("Forward");
-                } else if(IRvalueR > IRvalueL) {
-                    turnRight(&motorL, &motorR, 50);
-                    setLine(2);
-                    sendStrLCD("Right");
-                } else if (IRvalueR < IRvalueL) {
-                    turnLeft(&motorL, &motorR, 50);
-                    setLine(2);
-                    sendStrLCD("Left");
-                }
-            }
-
-            __delay_ms(50);
+        if(updated) {
+            clearLCD();
+            updated = 0;
         }
-    }
-}
-
-void delay_s(int time) {
-    for(int i = 0; i < time*20; i++){
-           __delay_ms(50);
+        setLine(1);
+        sprintf(textbuf, "L - R = %d", (signed int) IRvalueL - IRvalueR);
+        sendStrLCD(textbuf);
+        int diff = (signed int)IRvalueL - (signed int) IRvalueR;
+                
+        if(IRvalueL < 1000 && IRvalueR < 1000){
+        // If both sensors drop signal we want to turn back, or at least turn instead of moving forward
+            if (motorR.dir_pin != motorL.dir_pin) {
+                motorR.dir_pin = ~motorR.dir_pin;
+                motorL.dir_pin = ~motorL.dir_pin;
+                setSpeedAhead(&motorL, &motorR, 50);
+            } else {
+                turnLeft(&motorL, &motorR, 50);
+            }
+        }
+        else if(abs(diff) < 35) {
+        //If we have a difference within a threshold we can assume that to be just noise and go forward
+            forward(&motorL, &motorR, 30);
+            setLine(2);
+            sendStrLCD("Forward");
+        } else if(IRvalueR > IRvalueL) {
+        //Otherwise turn to stronger signals
+            turnRight(&motorL, &motorR, 50);
+            setLine(2);
+            sendStrLCD("Right");
+        } else if (IRvalueR < IRvalueL) {
+            turnLeft(&motorL, &motorR, 50);
+            setLine(2);
+            sendStrLCD("Left");
+        }
+        
+        __delay_ms(50);
     }
 }
 
 void interrupt InterruptHandlerHigh() {
     if(INTCONbits.INT0IF){
-        if(on) {
-            on = 0;
-            stop(&motorL,&motorR);
-        } else {
-            on = 1;
-        }
+        
         INTCONbits.INT0F = 0;
     }
     
-    if(PIR3bits.IC1IF) {
-        CAP1update = 1;
-        PIR3bits.IC1IF = 0;
-    }
     
     if(PIR3bits.IC3DRIF) {
-        CAP3update = 1;
+
         PIR3bits.IC3DRIF = 0;
     }
     
     if (PIR1bits.RCIF) {
-        cardPresent = 1;
+        
     }
 }

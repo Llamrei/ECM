@@ -1,6 +1,10 @@
 #include <xc.h>
 #include "ir_handling.h"
 
+#ifndef _XTAL_FREQ
+#define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
+#endif
+
 //TODO: add prescaler as function argument
 void initIRCapture(char ICPinNumber, char resetTimerFlag) {
     //Only mess with memory if we are given a valid pin number - 1:3
@@ -34,23 +38,34 @@ void initIRCapture(char ICPinNumber, char resetTimerFlag) {
     } 
 }
 
-unsigned int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag) {
+int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag) {
    
    //Only mess with memory if we are given a valid pin number - 1:3
     if( (ICPinNumber > 0) && (ICPinNumber < 4) ) {
        int registerToAddressH = 0xF69 - (2*(ICPinNumber-1));
        int registerToAddressL = 0xF69 - (2*(ICPinNumber-1) + 1);
        //wait for reading
-       while(! (PIR3 & 0b1 < 1 + ICPinNumber));
+//       while(! (PIR3 & 0b1 < 1 + ICPinNumber));
        char* CAPxBUFH = registerToAddressH;
        char* CAPxBUFL = registerToAddressL;
-       unsigned int toReturn = ((unsigned int) *CAPxBUFH << 8) + *CAPxBUFL; //TODO: Done in 2 lines to help debug - change later
+       char debouncing = 1;
+       int toReturnOld = 0;
+       while(1) {
+       toReturnOld = ((int) *CAPxBUFH << 8) + *CAPxBUFL; //TODO: Done in 2 lines to help debug - change later
+            __delay_us(100);
+            int delayedDiff = ((int) *CAPxBUFH << 8) + *CAPxBUFL - toReturnOld;
+            if(delayedDiff * ((delayedDiff>0) - (delayedDiff<0)) <  100){
+                //Valid debounced signal
+                break;
+            }          
+       }
+       
        *updateFlag = 1;
-       if(toReturn > 130000){
-           toReturn = 0;
+       if(toReturnOld > 130000){
+           toReturnOld = 0;
            *errorFlag = 1;
        }
-       return toReturn;
+       return toReturnOld;
     }
     *errorFlag = 2;
     return 0;
