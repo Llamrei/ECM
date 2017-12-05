@@ -11,11 +11,18 @@
 #define rightIR 1
 #define leftIR 3
 
+#define falling 0
+#define rising 1
+
 #define resetEnable 1
 #define resetDisable 0
 
-void initIRCapture(char ICPinNumber, char resetTimerFlag);
-int readIRCapture(char ICPinNumber, char* updateFlag);
+char readFlag1 = 0, readFlag2 = 0;
+int time1 = 0, time2 = 0;
+
+void initIRCapture();
+void setEdgeCapture(char CCPselect, char edgeType);
+int readIRCapture(char CCPselect, char* updateFlag);
 
 
 #endif	/* IR_HANDLING_H */

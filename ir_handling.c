@@ -2,53 +2,55 @@
 #include "ir_handling.h"
 
 //TODO: add prescaler as function argument
-void initIRCapture(char ICPinNumber, char resetTimerFlag) {
-    //Only mess with memory if we are given a valid pin number - 1:3
-    if(ICPinNumber > 0 && ICPinNumber < 4) {
-       TRISA |= 1 << ICPinNumber + 1;   //Set relevant TRISA register to input mode
-       
-       // Resetting analogue (removes 'bug')
-       ANSEL0 = 0;
-       ANSEL1 = 0;
+void initIRCapture() {
+       TRISC |= 1 << 1;   //Set relevant TRISC register to input mode
+       TRISC |= 1 << 2;
+       INTCONbits.GIE = 1;
+       PIE1bits.CCP1IE = 1;
+       PIE2bits.CCP2IE = 1;
+               
        // T5CON is configured by:
-       // T5CON <7-5> - Irrelevant
-       // T5CON <4-3> - Prescale bits: 11 (1:8), 10 (1:4), 01 (1:2), 00 (1:1)
-       // T5CON <2> - 1 = not synchronized with external clock input
-       // T5CON <1> - 1 = clock source from pin, 0 = internal clock source
-       // T5CON <0> - 1 = enable Timer5
-       T5CON = 0b00011101;
-       //Choice dictated by the time unit desired, 
-       
-       int registerToAddress = 0xF63 - (ICPinNumber-1);
-       char* CAPxCON = registerToAddress;
-       // CAPxCON is configured by:
-       // CAPxCON <7> - Irrelevant
-       // CAPxCON <6> - Time base reset enable, 1 for enabled
-       // CAPxCON <5:4> - Irrelevant
-       // CAPxCON <3:0> - Various modes, 0110  - falling to rising, 0111 rising to falling, 0101 period measurement
-       if(resetTimerFlag){
-           *CAPxCON = 0b01000110;
+       //See datasheet, configured to 2 8 bit operations and 1:8 prescaler with internal clock source
+       T1CON = 0b01111001;
+       //Prescaler choice dictated by the time unit desired, timer cycle = prescaler/(Fosc/4) 
+}
+
+void setEdgeCapture(char CCPselect, char edgeType) {
+    if(CCPselect > 0 && CCPselect < 3) {       
+       //Changing CCPxCon sets capture interrupt flag so we want to disable during change
+       PIE1bits.CCP1IE = 0;
+       PIE2bits.CCP2IE = 0;
+       int registerToAddress = 0xFBD + (CCPselect-1)*3;
+       char* CCPxCON = registerToAddress;
+       if(edgeType = falling) {
+           CCPxCON = 0b00000100;
+       } else if (edgeType = rising) {
+           CCPxCON = 0b00000101;
        } else {
-           *CAPxCON = 0b00000110;
+           //Default to falling
+           CCPxCON = 0b00000100;
        }
+       //re-enable after changing mode and clear any changes made
+       PIR1bits.CCP1IF = 0;
+       PIR2bits.CCP2IF = 0;
+       PIE1bits.CCP1IE = 1;
+       PIE2bits.CCP2IE = 1;
     } 
 }
 
-int readIRCapture(char ICPinNumber, char* updateFlag) {
+int readIRCapture(char CCPselect, char* updateFlag) {
    
    //Only mess with memory if we are given a valid pin number - 1:3
-    if( (ICPinNumber > 0) && (ICPinNumber < 4) ) {
-       int registerToAddressH = 0xF69 - (2*(ICPinNumber-1));
-       int registerToAddressL = 0xF69 - (2*(ICPinNumber-1) + 1);
-       char* CAPxBUFH = registerToAddressH;
-       char* CAPxBUFL = registerToAddressL;
-       unsigned int toReturn = ((unsigned int) *CAPxBUFH << 8) + *CAPxBUFL; //TODO: Done in 2 lines to help debug - change later
-       *updateFlag = 1;
-       if(toReturn > 130000){
-           toReturn = -1;
-       }
-       return toReturn;
+    if(CCPselect > 0 && CCPselect < 3) {       
+        if(CCPselect == 1) {
+           while(!readFlag1);
+           readFlag1 = 0;
+           return time1;
+        } else if (CCPselect == 2) {
+           while(!readFlag2);
+           readFlag2 = 0;
+           return time2;
+        }
     }
-    
     return -7;
 }
