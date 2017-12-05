@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=anRead.c binled.c buttonInterrupts.c dc_motor.c eusart.c lcd.c servoControl.c main.c
+SOURCEFILES_QUOTED_IF_SPACED=anRead.c binled.c buttonInterrupts.c dc_motor.c eusart.c lcd.c servoControl.c main.c rfid_reader.c ir_handling.c navigation.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/anRead.p1 ${OBJECTDIR}/binled.p1 ${OBJECTDIR}/buttonInterrupts.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/eusart.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/servoControl.p1 ${OBJECTDIR}/main.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/anRead.p1.d ${OBJECTDIR}/binled.p1.d ${OBJECTDIR}/buttonInterrupts.p1.d ${OBJECTDIR}/dc_motor.p1.d ${OBJECTDIR}/eusart.p1.d ${OBJECTDIR}/lcd.p1.d ${OBJECTDIR}/servoControl.p1.d ${OBJECTDIR}/main.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/anRead.p1 ${OBJECTDIR}/binled.p1 ${OBJECTDIR}/buttonInterrupts.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/eusart.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/servoControl.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/rfid_reader.p1 ${OBJECTDIR}/ir_handling.p1 ${OBJECTDIR}/navigation.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/anRead.p1.d ${OBJECTDIR}/binled.p1.d ${OBJECTDIR}/buttonInterrupts.p1.d ${OBJECTDIR}/dc_motor.p1.d ${OBJECTDIR}/eusart.p1.d ${OBJECTDIR}/lcd.p1.d ${OBJECTDIR}/servoControl.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/rfid_reader.p1.d ${OBJECTDIR}/ir_handling.p1.d ${OBJECTDIR}/navigation.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/anRead.p1 ${OBJECTDIR}/binled.p1 ${OBJECTDIR}/buttonInterrupts.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/eusart.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/servoControl.p1 ${OBJECTDIR}/main.p1
+OBJECTFILES=${OBJECTDIR}/anRead.p1 ${OBJECTDIR}/binled.p1 ${OBJECTDIR}/buttonInterrupts.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/eusart.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/servoControl.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/rfid_reader.p1 ${OBJECTDIR}/ir_handling.p1 ${OBJECTDIR}/navigation.p1
 
 # Source Files
-SOURCEFILES=anRead.c binled.c buttonInterrupts.c dc_motor.c eusart.c lcd.c servoControl.c main.c
+SOURCEFILES=anRead.c binled.c buttonInterrupts.c dc_motor.c eusart.c lcd.c servoControl.c main.c rfid_reader.c ir_handling.c navigation.c
 
 
 CFLAGS=
@@ -149,22 +149,6 @@ ${OBJECTDIR}/servoControl.p1: servoControl.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/servoControl.d ${OBJECTDIR}/servoControl.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/servoControl.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/ir_handling.p1: ir_handling.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ir_handling.p1.d 
-	@${RM} ${OBJECTDIR}/ir_handling.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/ir_handling.p1  ir_handling.c 
-	@-${MV} ${OBJECTDIR}/ir_handling.d ${OBJECTDIR}/ir_handling.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ir_handling.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/rfid_reader.p1: rfid_reader.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/rfid_reader.p1.d 
-	@${RM} ${OBJECTDIR}/rfid_reader.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/rfid_reader.p1  rfid_reader.c 
-	@-${MV} ${OBJECTDIR}/rfid_reader.d ${OBJECTDIR}/rfid_reader.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/rfid_reader.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.p1.d 
@@ -172,6 +156,30 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/rfid_reader.p1: rfid_reader.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/rfid_reader.p1.d 
+	@${RM} ${OBJECTDIR}/rfid_reader.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/rfid_reader.p1  rfid_reader.c 
+	@-${MV} ${OBJECTDIR}/rfid_reader.d ${OBJECTDIR}/rfid_reader.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/rfid_reader.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/ir_handling.p1: ir_handling.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ir_handling.p1.d 
+	@${RM} ${OBJECTDIR}/ir_handling.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/ir_handling.p1  ir_handling.c 
+	@-${MV} ${OBJECTDIR}/ir_handling.d ${OBJECTDIR}/ir_handling.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ir_handling.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/navigation.p1: navigation.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/navigation.p1.d 
+	@${RM} ${OBJECTDIR}/navigation.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/navigation.p1  navigation.c 
+	@-${MV} ${OBJECTDIR}/navigation.d ${OBJECTDIR}/navigation.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/navigation.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/anRead.p1: anRead.c  nbproject/Makefile-${CND_CONF}.mk
@@ -230,22 +238,6 @@ ${OBJECTDIR}/servoControl.p1: servoControl.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/servoControl.d ${OBJECTDIR}/servoControl.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/servoControl.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/ir_handling.p1: ir_handling.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ir_handling.p1.d 
-	@${RM} ${OBJECTDIR}/ir_handling.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/ir_handling.p1  ir_handling.c 
-	@-${MV} ${OBJECTDIR}/ir_handling.d ${OBJECTDIR}/ir_handling.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ir_handling.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/rfid_reader.p1: rfid_reader.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/rfid_reader.p1.d 
-	@${RM} ${OBJECTDIR}/rfid_reader.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/rfid_reader.p1  rfid_reader.c 
-	@-${MV} ${OBJECTDIR}/rfid_reader.d ${OBJECTDIR}/rfid_reader.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/rfid_reader.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.p1.d 
@@ -253,6 +245,30 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/rfid_reader.p1: rfid_reader.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/rfid_reader.p1.d 
+	@${RM} ${OBJECTDIR}/rfid_reader.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/rfid_reader.p1  rfid_reader.c 
+	@-${MV} ${OBJECTDIR}/rfid_reader.d ${OBJECTDIR}/rfid_reader.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/rfid_reader.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/ir_handling.p1: ir_handling.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ir_handling.p1.d 
+	@${RM} ${OBJECTDIR}/ir_handling.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/ir_handling.p1  ir_handling.c 
+	@-${MV} ${OBJECTDIR}/ir_handling.d ${OBJECTDIR}/ir_handling.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ir_handling.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/navigation.p1: navigation.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/navigation.p1.d 
+	@${RM} ${OBJECTDIR}/navigation.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/navigation.p1  navigation.c 
+	@-${MV} ${OBJECTDIR}/navigation.d ${OBJECTDIR}/navigation.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/navigation.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

@@ -13,7 +13,7 @@
       <itemPath>eusart.h</itemPath>
       <itemPath>ir_handling.h</itemPath>
       <itemPath>rfid_reader.h</itemPath>
-      <itemPath>ir_reader.h</itemPath>
+      <itemPath>navigation.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -30,8 +30,9 @@
         <itemPath>eusart.c</itemPath>
         <itemPath>lcd.c</itemPath>
         <itemPath>servoControl.c</itemPath>
-        <itemPath>ir_handling.c</itemPath>
         <itemPath>rfid_reader.c</itemPath>
+        <itemPath>ir_handling.c</itemPath>
+        <itemPath>navigation.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
