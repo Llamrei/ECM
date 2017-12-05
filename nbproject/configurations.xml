@@ -11,11 +11,9 @@
       <itemPath>servoControl.h</itemPath>
       <itemPath>dc_motor.h</itemPath>
       <itemPath>eusart.h</itemPath>
-<<<<<<< Updated upstream
-=======
       <itemPath>ir_handling.h</itemPath>
       <itemPath>rfid_reader.h</itemPath>
->>>>>>> Stashed changes
+      <itemPath>ir_reader.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -42,6 +40,9 @@
     </logicalFolder>
     <itemPath>.gitignore</itemPath>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
@@ -52,7 +53,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>1.35</languageToolchainVersion>
+        <languageToolchainVersion>1.44</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -67,6 +68,8 @@
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
+        <subordinates>
+        </subordinates>
       </compileType>
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
