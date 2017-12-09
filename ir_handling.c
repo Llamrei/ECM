@@ -56,7 +56,7 @@ int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag) {
        toReturnOld = ((int) *CAPxBUFH << 8) + *CAPxBUFL;
             __delay_us(100);
             int delayedDiff = ((int) *CAPxBUFH << 8) + *CAPxBUFL - toReturnOld;
-            if(delayedDiff * ((delayedDiff>0) - (delayedDiff<0)) <  100){
+            if(delayedDiff * ((delayedDiff>0) - (delayedDiff<0)) <  debounceTol){
                 //Valid debounced signal
                 break;
             }          

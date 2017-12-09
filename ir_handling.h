@@ -14,6 +14,8 @@
 #define resetEnable 1
 #define resetDisable 0
 
+#define debounceTol 100
+
 void initIRCapture(char ICPinNumber, char resetTimerFlag);
 int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag);
 

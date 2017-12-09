@@ -6,6 +6,7 @@
 
 #include "lcd.h"
 #include "navigation.h"
+#include "buttonInterrupts.h"
 #include "ir_handling.h"
 #include "dc_motor.h"
 #include "rfid_reader.h"
@@ -17,8 +18,8 @@
 #endif
 #define PWMcycle 100 
 #define bufSize 20
-#define turnLeftThresh 200
-#define turnRightThresh 200
+#define turnLeftThresh 30
+#define turnRightThresh 30
 #define spinThresh 500
 
 void delay_s(int time);
@@ -56,6 +57,7 @@ void main(void){
     initIRCapture(rightIR, resetEnable);
     initEUSART(9600, 1);
     initPWM(PTPER);                 //setup PWM registers
+    initButton();
     initTimers();                   //Left wheel encoder on T1, right on T0
     
     //Ansel bugs?
@@ -94,7 +96,7 @@ void main(void){
                    ir_l = readIRCapture(leftIR,&updateFlag,&errorFlag);
                    
                    if(updateFlag) {
-                       char irValues[20];
+                       char irValues[100];
                        char dispValues[100];
                        clearLCD();
                        setLine(1);
@@ -217,5 +219,10 @@ void interrupt InterruptHandlerHigh() {
         readRFID(&bombID, bufSize, &checkSumError);
         atSource = 1;
         PIR1bits.TXIF = 0;
+    }
+    
+    if(INTCON3bits.INT1IF) {
+        RESET();
+        INTCON3bits.INT1IF = 0;
     }
 }
