@@ -8,8 +8,8 @@
 #ifndef NAVIGATION_H
 #define	NAVIGATION_H
 
-int readTimer1();
-int readTimer0();
+unsigned int readTimer1();
+unsigned int readTimer0();
 void resetTimers();
 
 

@@ -12,7 +12,7 @@ void initTimers() {
     //<2> external clock sync on
     //<1> select external clock as source
     //<0> enable bit
-    T1CON = 0b10000011;
+    T1CON = 0b10110011;
     TRISCbits.TRISC0 = 1;
     
     //Timer 0:
@@ -20,17 +20,17 @@ void initTimers() {
     //<6> 16bit
     //<5> external clock
     //<4> low to high
-    //<3> no prescaler
+    //<3> prescaler
     //<2-0> prescaler value (not relevant)
-    T0CON = 0b10101000;
+    T0CON = 0b10100010;
     TRISCbits.TRISC3 = 1;
 }
 
-int readTimer1() {
+unsigned int readTimer1() {
     return ((int) TMR1H << 8) + TMR1L;    
 }
 
-int readTimer0() {
+unsigned int readTimer0() {
     return ((int) TMR0H << 8) + TMR0L;   
 }
 

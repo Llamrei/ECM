@@ -18,12 +18,20 @@
 #endif
 #define PWMcycle 100 
 #define bufSize 20
+
+//Configuring navigation
 #define turnLeftThresh 30
 #define turnRightThresh 30
 #define spinThresh 500
 
+//Configuring return
+#define tolL 10
+#define tolR 0
+
+//For dead reckoning - not implemented
+#define M_PI 3.14159265358979323846
+
 void delay_s(int time);
-char abs(char input);
     
 //Declare motors
 struct DC_motor motorL, motorR; //declare 2 motor structures     
@@ -35,12 +43,16 @@ volatile char bombID[bufSize];
 volatile char atSource = 0;
 char returning = 0;
 char direction = 'i';
-int displacementL = 0;
-int displacementR = 0;
+char directions[100];
+unsigned int rotationL[50];
+unsigned int rotationR[50];
+char directionIndex = 0;
 
-//Debugging flags
+//Debugging flags/vars
 char updateFlag = 0;
 char errorFlag = 0;
+char irValues[20];
+char dispValues[20];
 
 void main(void){
     // <editor-fold defaultstate="collapsed" desc="Initialising hardware and motor">
@@ -95,9 +107,8 @@ void main(void){
                    ir_r = readIRCapture(rightIR,&updateFlag,&errorFlag);
                    ir_l = readIRCapture(leftIR,&updateFlag,&errorFlag);
                    
+                   // <editor-fold defaultstate="collapsed" desc="Update screen">
                    if(updateFlag) {
-                       char irValues[100];
-                       char dispValues[100];
                        clearLCD();
                        setLine(1);
                        sprintf(irValues, "L %d R %d", ir_r, ir_l);
@@ -107,82 +118,57 @@ void main(void){
                        sendStrLCD(dispValues);
                        __delay_ms(10);
                    }
-                   if(ir_r < spinThresh && ir_l < spinThresh) {
-                       if(direction != 'L') {
-                           switch(direction) {
-                               case 'R':
-                                   displacementL += readTimer1();
-                                   displacementR -= readTimer0();
-                               case 'F':
-                                   displacementL += readTimer1();
-                                   displacementR += readTimer0();  
-                           }
-                           resetTimers();
-                       }
-                       turnLeft(&motorL, &motorR, 50);        //Could implement proportional control
-                       direction = 'L';
-                   } else {
-                        if(ir_r - ir_l > turnRightThresh) {
-                           if(direction != 'R') {
-                               switch(direction) {
-                                   case 'L':
-                                       displacementL -= readTimer1();
-                                       displacementR += readTimer0();
-                                   case 'F':
-                                       displacementL += readTimer1();
-                                       displacementR += readTimer0();  
-                               }
-                               resetTimers();
-                           }
-                           turnRight(&motorL, &motorR, 50);        //Could implement proportional control
-                           direction = 'R';
-                       } else if(ir_l - ir_r > turnLeftThresh) {
-                           if(direction != 'L') {
-                               switch(direction) {
-                                   case 'R':
-                                       displacementL += readTimer1();
-                                       displacementR -= readTimer0();
-                                   case 'F':
-                                       displacementL += readTimer1();
-                                       displacementR += readTimer0();  
-                               }
-                               resetTimers();
-                           }
-                           turnLeft(&motorL, &motorR, 50);        //Could implement proportional control
-                           direction = 'L';
-                       } else {
-                           if(direction != 'F') {
-                               switch(direction) {
-                                   case 'R':
-                                       displacementL += readTimer1();
-                                       displacementR -= readTimer0();
-                                   case 'L':
-                                       displacementL -= readTimer1();
-                                       displacementR += readTimer0();  
-                               }
-                               resetTimers();
-                           }
-                           forward(&motorL, &motorR, 50);        //Could implement proportional control
-                           direction = 'F';
-                       }   
+                   // </editor-fold>
+                   if(!(directionIndex > 49)){
+                        if(ir_r < spinThresh && ir_l < spinThresh) {
+                            // No signal found
+                        if(direction != 'L') {
+                             rotationL[directionIndex] = readTimer1();
+                             rotationR[directionIndex++] = readTimer0();
+                             resetTimers();
+                        }
+                        turnLeft(&motorL, &motorR, 50);        //Could implement proportional control
+                        direction = 'L';
+                        directions[directionIndex] = direction;
+                        } else {
+                             if(ir_r - ir_l > turnRightThresh) {
+                                if(direction != 'R') {
+                                    rotationL[directionIndex] = readTimer1();
+                                    rotationR[directionIndex++] = readTimer0(); 
+                                    resetTimers();
+                                }
+                                turnRight(&motorL, &motorR, 50);        //Could implement proportional control
+                                direction = 'R';
+                                directions[directionIndex] = direction;
+                            } else if(ir_l - ir_r > turnLeftThresh) {
+                                if(direction != 'L') {
+                                     rotationL[directionIndex] = readTimer1();
+                                     rotationR[directionIndex++] = readTimer0();
+                                     resetTimers();
+                                }
+                                turnLeft(&motorL, &motorR, 50);        //Could implement proportional control
+                                direction = 'L';
+                                directions[directionIndex] = direction;
+                            } else {
+                                if(direction != 'F') {
+                                     rotationL[directionIndex] = readTimer1();
+                                     rotationR[directionIndex++] = readTimer0();
+                                     resetTimers();
+                                }
+                                forward(&motorL, &motorR, 50);        //Could implement proportional control
+                                direction = 'F';
+                                directions[directionIndex] = direction;
+                            }   
+                        }                    
                    }
                  // </editor-fold>     
                } else  {
                // <editor-fold defaultstate="collapsed" desc="Final storing of wheel pos and disp ID">
                     // At source
-                   CLRWDT();
-                   stop(&motorL, &motorR);
-                   switch(direction) {
-                        case 'R':
-                            displacementL += readTimer1();
-                            displacementR -= readTimer0();
-                        case 'L':
-                            displacementL -= readTimer1();
-                            displacementR += readTimer0(); 
-                        case 'F':
-                            displacementL += readTimer1();
-                            displacementR += readTimer0(); 
-                    }
+                    CLRWDT();
+                    stop(&motorL, &motorR);
+                    rotationL[directionIndex] = readTimer1();
+                    rotationR[directionIndex] = readTimer0();
                     resetTimers();
                     returning = 1;
                     clearLCD();
@@ -193,10 +179,43 @@ void main(void){
                     } else {
                         sendStrLCD("Checksum success");
                     }
+                    delay_s(1);
                     // </editor-fold>     
                }
            } else {
-               //Returning algorithm
+               // <editor-fold defaultstate="collapsed" desc="Returning home">
+               for(directionIndex; directionIndex > 0; directionIndex--){
+                   while(readTimer1() < rotationL[directionIndex] + tolL && readTimer0() < rotationR[directionIndex] + tolR){
+                       clearLCD();
+                       setLine(1);
+                       sprintf(irValues, "Ls %d Rs %d", readTimer1(), readTimer0());
+                       sendStrLCD(irValues);
+                       setLine(2);
+                       sprintf(dispValues, "%c %d", directions[directionIndex], directionIndex);
+                       sendStrLCD(dispValues);
+                       __delay_ms(10);
+                       switch(directions[directionIndex]) {
+                           case 'F':
+                               stop(&motorL, &motorR);
+                               motorL.direction = 0;
+                               motorR.direction = 0;
+                               setSpeedAhead(&motorL, &motorR, 50);                        
+                           case 'L':
+                               turnRight(&motorL, &motorR, 50);
+                               break;
+                           case 'R':
+                               turnLeft(&motorL,&motorR,50);
+                               break;
+                       }
+                   }
+                   resetTimers();
+                   CLRWDT();
+                   
+               }
+               clearLCD();
+               sendStrLCD("Done");
+               stop(&motorL, &motorR);
+               //</editor-fold>
            }
         }
     }
@@ -206,10 +225,6 @@ void delay_s(int time) {
     for(int i = 0; i < time*20; i++){
            __delay_ms(50);
     }
-}
-
-char abs(char input) {
-    return input * ((input>0) - (input<0));
 }
 
 void interrupt InterruptHandlerHigh() {
