@@ -8,7 +8,6 @@
 #include "navigation.h"
 #include "ir_handling.h"
 #include "dc_motor.h"
-#include "buttonInterrupts.h"
 #include "rfid_reader.h"
 #include "eusart.h"
 
@@ -17,10 +16,10 @@
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
 #endif
 #define PWMcycle 100 
-#define bufSize 16
-#define turnLeftThresh 100
-#define turnRightThresh 100
-#define forwardThresh 100
+#define bufSize 20
+#define turnLeftThresh 200
+#define turnRightThresh 200
+#define spinThresh 500
 
 void delay_s(int time);
 char abs(char input);
@@ -46,7 +45,7 @@ void main(void){
     // <editor-fold defaultstate="collapsed" desc="Initialising hardware and motor">
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
-    INTCONbits.GIE = 0;      //enable interrupts
+    INTCONbits.GIEH = 1;      //enable interrupts
     
     //Construct PWM signal
     int PTPER = getPT(PWMcycle, 8, 1);   //Get pwm cycle length for 10kHz
@@ -55,9 +54,8 @@ void main(void){
     initLCD();
     initIRCapture(leftIR, resetEnable);
     initIRCapture(rightIR, resetEnable);
-    initEUSART(9600, 0);
+    initEUSART(9600, 1);
     initPWM(PTPER);                 //setup PWM registers
-//    initButtonHigh();
     initTimers();                   //Left wheel encoder on T1, right on T0
     
     //Ansel bugs?
@@ -86,7 +84,9 @@ void main(void){
         
     while(1){
         if(on) {
+           CLRWDT();
            if(!returning){
+               // <editor-fold defaultstate="collapsed" desc="Navigation routine">
                if(!atSource) {
                    CLRWDT();
                    //Searching for source
@@ -94,31 +94,18 @@ void main(void){
                    ir_l = readIRCapture(leftIR,&updateFlag,&errorFlag);
                    
                    if(updateFlag) {
-                       char irValues[16];
+                       char irValues[20];
+                       char dispValues[100];
                        clearLCD();
                        setLine(1);
                        sprintf(irValues, "L %d R %d", ir_r, ir_l);
                        sendStrLCD(irValues);
                        setLine(2);
-                       sendStrLCD(&direction);
+                       sprintf(dispValues, "%c", direction);
+                       sendStrLCD(dispValues);
                        __delay_ms(10);
                    }
-                   
-                   if(ir_r - ir_l > turnRightThresh) {
-                       if(direction != 'R') {
-                           switch(direction) {
-                               case 'L':
-                                   displacementL -= readTimer1();
-                                   displacementR += readTimer0();
-                               case 'F':
-                                   displacementL += readTimer1();
-                                   displacementR += readTimer0();  
-                           }
-                           resetTimers();
-                       }
-                       turnRight(&motorL, &motorR, 50);        //Could implement proportional control
-                       direction = 'R';
-                   } else if(ir_l - ir_r > turnLeftThresh) {
+                   if(ir_r < spinThresh && ir_l < spinThresh) {
                        if(direction != 'L') {
                            switch(direction) {
                                case 'R':
@@ -133,23 +120,55 @@ void main(void){
                        turnLeft(&motorL, &motorR, 50);        //Could implement proportional control
                        direction = 'L';
                    } else {
-                       if(direction != 'F') {
-                           switch(direction) {
-                               case 'R':
-                                   displacementL += readTimer1();
-                                   displacementR -= readTimer0();
-                               case 'L':
-                                   displacementL -= readTimer1();
-                                   displacementR += readTimer0();  
+                        if(ir_r - ir_l > turnRightThresh) {
+                           if(direction != 'R') {
+                               switch(direction) {
+                                   case 'L':
+                                       displacementL -= readTimer1();
+                                       displacementR += readTimer0();
+                                   case 'F':
+                                       displacementL += readTimer1();
+                                       displacementR += readTimer0();  
+                               }
+                               resetTimers();
                            }
-                           resetTimers();
-                       }
-                       forward(&motorL, &motorR, 50);        //Could implement proportional control
-                       direction = 'F';
+                           turnRight(&motorL, &motorR, 50);        //Could implement proportional control
+                           direction = 'R';
+                       } else if(ir_l - ir_r > turnLeftThresh) {
+                           if(direction != 'L') {
+                               switch(direction) {
+                                   case 'R':
+                                       displacementL += readTimer1();
+                                       displacementR -= readTimer0();
+                                   case 'F':
+                                       displacementL += readTimer1();
+                                       displacementR += readTimer0();  
+                               }
+                               resetTimers();
+                           }
+                           turnLeft(&motorL, &motorR, 50);        //Could implement proportional control
+                           direction = 'L';
+                       } else {
+                           if(direction != 'F') {
+                               switch(direction) {
+                                   case 'R':
+                                       displacementL += readTimer1();
+                                       displacementR -= readTimer0();
+                                   case 'L':
+                                       displacementL -= readTimer1();
+                                       displacementR += readTimer0();  
+                               }
+                               resetTimers();
+                           }
+                           forward(&motorL, &motorR, 50);        //Could implement proportional control
+                           direction = 'F';
+                       }   
                    }
-                   
+                 // </editor-fold>     
                } else  {
+               // <editor-fold defaultstate="collapsed" desc="Final storing of wheel pos and disp ID">
                     // At source
+                   CLRWDT();
                    stop(&motorL, &motorR);
                    switch(direction) {
                         case 'R':
@@ -164,6 +183,7 @@ void main(void){
                     }
                     resetTimers();
                     returning = 1;
+                    clearLCD();
                     sendStrLCD(bombID);
                     setLine(2);
                     if(errorFlag) {
@@ -171,6 +191,7 @@ void main(void){
                     } else {
                         sendStrLCD("Checksum success");
                     }
+                    // </editor-fold>     
                }
            } else {
                //Returning algorithm
@@ -189,12 +210,12 @@ char abs(char input) {
     return input * ((input>0) - (input<0));
 }
 
-//void interrupt InterruptHandlerHigh() {
-////    if(PIR1bits.TXIF) {
-////        char tmp;
-//////        readUSART(&bombID, bufSize, 0x02, 0x03, &tmp);
-//////        readRFID(&bombID, bufSize, &checkSumError);
-//////        atSource = 1;
-////        //PIR1bits.TXIF = 0;
-////    }
-//}
+void interrupt InterruptHandlerHigh() {
+    if(PIR1bits.RCIF) {
+        char tmp;
+        readUSART(&bombID, bufSize, 0x02, 0x03, &tmp);
+        readRFID(&bombID, bufSize, &checkSumError);
+        atSource = 1;
+        PIR1bits.TXIF = 0;
+    }
+}

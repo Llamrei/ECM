@@ -16,7 +16,8 @@ void initEUSART(int baudRate, char error) {
     BAUDCONbits.BRG16=1; //set baud rate scaling to 16 bit mode
     TXSTAbits.BRGH=1; //high baud rate select bit
     TXSTAbits.SYNC = 0; //Set to asynchronous
-    PIE1bits.TXIE = 1;  //Enable eusart interrupts
+    RCREG;              //Clears reading flag
+    PIE1bits.RCIE = 1;  //Enable eusart recieve interrupts
     INTCONbits.PEIE = 1;
     
     //Finish configuration and enable
@@ -37,7 +38,6 @@ void sendCharSerial(char message) {
 
 void readUSART(char *buf, int bufSize, char startChar, char endChar, char *flag) {
     char byteIn = getCharSerial();
-    sendCharSerial(byteIn);     //Debugging
     memset(buf, 0, bufSize);
     if(byteIn == startChar) {
         char reading = 1;
@@ -45,7 +45,6 @@ void readUSART(char *buf, int bufSize, char startChar, char endChar, char *flag)
         while(reading) {
             //Will discard 1st byte read - assuming it was right
             byteIn = getCharSerial();
-            sendCharSerial(byteIn); //Debugging
 
             //Stop reading if we see an end char or we fill the buffer
             if(byteIn == endChar || i == bufSize) {
