@@ -15,7 +15,7 @@
 #define resetDisable 0
 
 void initIRCapture(char ICPinNumber, char resetTimerFlag);
-unsigned int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag);
+int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag);
 
 
 #endif	/* IR_HANDLING_H */

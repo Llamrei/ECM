@@ -8,8 +8,8 @@
 #ifndef NAVIGATION_H
 #define	NAVIGATION_H
 
-void findSource();
-int compareIR();
+int readTimer1();
+int readTimer0();
 
 
 #endif	/* NAVIGATION_H */

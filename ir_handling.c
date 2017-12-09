@@ -34,7 +34,7 @@ void initIRCapture(char ICPinNumber, char resetTimerFlag) {
     } 
 }
 
-unsigned int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag) {
+int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag) {
    
    //Only mess with memory if we are given a valid pin number - 1:3
     if( (ICPinNumber > 0) && (ICPinNumber < 4) ) {
@@ -44,7 +44,7 @@ unsigned int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag) 
        while(! (PIR3 & 0b1 < 1 + ICPinNumber));
        char* CAPxBUFH = registerToAddressH;
        char* CAPxBUFL = registerToAddressL;
-       unsigned int toReturn = ((unsigned int) *CAPxBUFH << 8) + *CAPxBUFL; //TODO: Done in 2 lines to help debug - change later
+       int toReturn = ((unsigned int) *CAPxBUFH << 8) + *CAPxBUFL; //TODO: Done in 2 lines to help debug - change later
        *updateFlag = 1;
        if(toReturn > 130000){
            toReturn = 0;

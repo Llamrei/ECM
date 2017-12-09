@@ -42,8 +42,9 @@ void sendLCD(unsigned char Byte, char type){
 void initLCD(void){
  // Set initial relevant TRIS registers to output
     TRISAbits.RA6 = 0;
-    TRISC &= 0b11111000;
+    TRISC &= 0b11111001;
     TRISD &= 0b11111100;
+    TRISE &= 0b11111110;
  // Set initial LAT output values
     dispEnableL = 0;
     dispDataL = 0;

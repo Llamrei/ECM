@@ -16,33 +16,42 @@
     #define _XTAL_FREQ 8000000              // Set 8MHz clock for delay routines
 #endif
 #define PWMcycle 100 
+#define bufSize 16
+#define turnLeftThresh 35
+#define turnRightThresh 35
+#define forwardThresh 35
 
 void delay_s(int time);
-
-volatile char on = 0;
-volatile char cardPresent = 0;
-volatile char CAP1update = 1;
-volatile char CAP3update = 1;
-char searching = 1;
+char abs(char input);
     
 //Declare motors
 struct DC_motor motorL, motorR; //declare 2 motor structures     
 
+//Declare planned globals
+volatile char on = 1;           //1 for debugging, should be 0 for production
+volatile char checkSumTrue = 0;
+volatile char bombID[bufSize];
+char returning = 0;
+char atSource = 0;
+char direction;
+int displacementL = 0;
+int displacementR = 0;
+
 void main(void){
-    
+    // <editor-fold defaultstate="collapsed" desc="Initialising hardware and motor">
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
     
     //Construct PWM signal
     int PTPER = getPT(PWMcycle, 8, 1);   //Get pwm cycle length for 10kHz
-    initPWM(PTPER);  //setup PWM registers
-    initButtonHigh();
-    initEUSART(9600, 0); 
         
     //Initialise hardware
     initLCD();
     initIRCapture(leftIR, resetEnable);
-    initIRCapture(rightIR, resetEnable); 
+    initIRCapture(rightIR, resetEnable);
+    initEUSART(9600, 0);
+    initPWM(PTPER);                 //setup PWM registers
+    initButtonHigh();
     
     //Initialise motors
     motorL.PWMperiod    = PWMcycle; //us
@@ -59,51 +68,39 @@ void main(void){
     motorR.power        =  0; //Power out of 100 
     setMotorPWM(&motorR);
     setMotorPWM(&motorL);
-  
-    char textbuf[16];
-    char updated = 0;
-    unsigned int IRvalueL = 0, IRvalueR = 0;
-    char bombCode[16] = "z";
-            
+    // </editor-fold>
+    
+    int ir_r = 0; 
+    int ir_l = 0;
+    
+    //Debugging flags
+    char updateFlag = 0;
+    char errorFlag = 0;
+    
+    sendStrLCD("Test message");
     while(1){
-        while(bombCode[0] = 'z'){
-            CLRWDT();
-            if(cardPresent){
-                readUSART(bombCode, 16, 0x02, 0x03, 0);
-                readRFID(bombCode, 16);  
-            }                       
-            
-            char leftError = 0, rightError = 0;
-            IRvalueL = readIRCapture(leftIR, &updated, &leftError);  
-            IRvalueR = readIRCapture(rightIR, &updated, &rightError);            
-
-            if(updated) {
-                clearLCD();
-                updated = 0;
-            }
-            setLine(1);
-            sprintf(textbuf, "L %d R %d", leftError ? leftError : IRvalueL, rightError ? rightError : IRvalueR);
-            sendStrLCD(textbuf);
-
-            if(searching) {
-
-                if(IRvalueL - IRvalueR > 0 ? IRvalueL - IRvalueR < 100 : IRvalueL - IRvalueR < 100) {
-                    forward(&motorL, &motorR, 50);
-                    setLine(2);
-                    sendStrLCD("Forward");
-                } else if(IRvalueR > IRvalueL) {
-                    turnRight(&motorL, &motorR, 50);
-                    setLine(2);
-                    sendStrLCD("Right");
-                } else if (IRvalueR < IRvalueL) {
-                    turnLeft(&motorL, &motorR, 50);
-                    setLine(2);
-                    sendStrLCD("Left");
-                }
-            }
-
-            __delay_ms(50);
-        }
+//        if(on) {
+//           if(!returning){
+//               if(!atSource) {
+//                   ir_r = readIRCapture(rightIR,&updateFlag,&errorFlag);
+//                   ir_l = readIRCapture(leftIR,&updateFlag,&errorFlag);
+//                   
+//                   if(ir_r - ir_l > turnRightThresh) {
+//                       if(direction != 'F') {
+//                           switch(direction) {
+//                               case 'L':
+//                                   displacementL -=                                        
+//                           }
+//                       }
+//                   }
+//                   
+//               } else  {
+//                   
+//               }
+//           } else {
+//               //Returning algorithm
+//           }
+//        }
     }
 }
 
@@ -113,28 +110,23 @@ void delay_s(int time) {
     }
 }
 
+char abs(char input) {
+    return input * ((input>0) - (input<0));
+}
+
 void interrupt InterruptHandlerHigh() {
     if(INTCONbits.INT0IF){
-        if(on) {
-            on = 0;
-            stop(&motorL,&motorR);
-        } else {
-            on = 1;
-        }
         INTCONbits.INT0F = 0;
     }
     
     if(PIR3bits.IC1IF) {
-        CAP1update = 1;
         PIR3bits.IC1IF = 0;
     }
     
     if(PIR3bits.IC3DRIF) {
-        CAP3update = 1;
         PIR3bits.IC3DRIF = 0;
     }
     
     if (PIR1bits.RCIF) {
-        cardPresent = 1;
     }
 }

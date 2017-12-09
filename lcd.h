@@ -11,7 +11,7 @@
 #ifndef LCD_H
 #define	LCD_H
 
-#define dispEnableL LATCbits.LC0        // Alias pins for use in display
+#define dispEnableL LATEbits.LATE0        // Alias pins for use in display
 #define dispDataL LATAbits.LATA6
 #define disp7L LATDbits.LD1             // LD1 vs latd1
 #define disp6L LATDbits.LD0
