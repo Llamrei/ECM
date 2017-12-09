@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/H:/MPLABXProjects/ECM/ir_handling.h</file>
+            <file>file:/H:/MPLABXProjects/ECM/main.c</file>
+            <file>file:/H:/MPLABXProjects/ECM/rfid_reader.c</file>
+            <file>file:/H:/MPLABXProjects/ECM/dc_motor.c</file>
+            <file>file:/H:/MPLABXProjects/ECM/dc_motor.h</file>
+            <file>file:/H:/MPLABXProjects/ECM/buttonInterrupts.c</file>
+            <file>file:/H:/MPLABXProjects/ECM/ir_handling.c</file>
+            <file>file:/H:/MPLABXProjects/ECM/.gitignore</file>
+            <file>file:/H:/MPLABXProjects/ECM/lcd.c</file>
+            <file>file:/H:/MPLABXProjects/ECM/eusart.c</file>
+            <file>file:/H:/MPLABXProjects/ECM/navigation.h</file>
+            <file>file:/H:/MPLABXProjects/ECM/eusart.h</file>
+            <file>file:/H:/MPLABXProjects/ECM/rfid_reader.h</file>
+            <file>file:/H:/MPLABXProjects/ECM/lcd.h</file>
+            <file>file:/H:/MPLABXProjects/ECM/navigation.c</file>
+        </group>
     </open-files>
 </project-private>

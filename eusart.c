@@ -16,6 +16,8 @@ void initEUSART(int baudRate, char error) {
     BAUDCONbits.BRG16=1; //set baud rate scaling to 16 bit mode
     TXSTAbits.BRGH=1; //high baud rate select bit
     TXSTAbits.SYNC = 0; //Set to asynchronous
+    PIE1bits.TXIE = 1;  //Enable eusart interrupts
+    INTCONbits.PEIE = 1;
     
     //Finish configuration and enable
     RCSTAbits.SPEN=1; //enable serial port, other settings default

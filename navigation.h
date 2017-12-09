@@ -10,6 +10,7 @@
 
 int readTimer1();
 int readTimer0();
+void resetTimers();
 
 
 #endif	/* NAVIGATION_H */

@@ -2,17 +2,16 @@
 #include <string.h>
 #include "rfid_reader.h"
 
-void readRFID(char* bufIn, int bufSize) {   
+void readRFID(char* bufIn, int bufSize, char* errorFlag) {   
     // Check checksum works
     checkRFIDSum(bufIn, sizeof(bufIn));
+    *errorFlag = bufIn[13] == 0xFF;
     
-    // Check for errors
-    if(bufIn[13] !=  0xFF){
-        // If error not present extract first 10 bytes
-        for (char i = 10; i < bufSize; i++) {
-            bufIn[i] = '\0';
-        }
-    } 
+    //Extract first 10 bytes
+    for (char i = 10; i < bufSize; i++) {
+        bufIn[i] = '\0';
+    }
+    
 }
 
 void checkRFIDSum(char* buf, int bufSize) {
