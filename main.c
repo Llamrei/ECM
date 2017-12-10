@@ -174,7 +174,7 @@ void main(void){
                     clearLCD();
                     sendStrLCD(bombID);
                     setLine(2);
-                    if(errorFlag) {
+                    if(checkSumError) {
                         sendStrLCD("Checksum failed");
                     } else {
                         sendStrLCD("Checksum success");
@@ -212,9 +212,15 @@ void main(void){
                    CLRWDT();
                    
                }
-               clearLCD();
-               sendStrLCD("Done");
                stop(&motorL, &motorR);
+               clearLCD();
+                    sendStrLCD(bombID);
+                    setLine(2);
+                    if(checkSumError) {
+                        sendStrLCD("Checksum failed");
+                    } else {
+                        sendStrLCD("Checksum success");
+                    }
                //</editor-fold>
            }
         }
