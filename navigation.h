@@ -1,9 +1,4 @@
-/* 
- * File:   navigation.h
- * Author: lt2415
- *
- * Created on 05 December 2017, 09:27
- */
+//Alex Larionov and Lewis Tran
 
 #ifndef NAVIGATION_H
 #define	NAVIGATION_H

@@ -1,9 +1,4 @@
-/* 
- * File:   ir_handling.h
- * Author: lt2415
- *
- * Created on 28 November 2017, 18:30
- */
+//Alex Larionov and Lewis Tran
 
 #ifndef IR_HANDLING_H
 #define	IR_HANDLING_H

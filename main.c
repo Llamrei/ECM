@@ -1,3 +1,4 @@
+//Alex Larionov and Lewis Tran
 #pragma config OSC = IRCIO  // internal oscillator
 
 #include <string.h>

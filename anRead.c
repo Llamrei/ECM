@@ -1,3 +1,5 @@
+//Alex Larionov and Lewis Tran
+
 #include <xc.h>
 #include "anRead.h"
 

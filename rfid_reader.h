@@ -1,9 +1,4 @@
-/* 
- * File:   ir_reader.h
- * Author: lt2415
- *
- * Created on 28 November 2017, 10:42
- */
+//Alex Larionov and Lewis Tran
 
 #ifndef IR_READER_H
 #define	IR_READER_H

@@ -1,3 +1,4 @@
+//Alex Larionov and Lewis Tran
 #include "navigation.h"
 #include <xc.h>
 

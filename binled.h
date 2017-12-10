@@ -1,9 +1,4 @@
-/* 
- * File:   binled.h
- * Author: al3615
- * Controls 10 bit LED as configured in lab 2
- * Created on 24 October 2017, 10:12
- */
+//Alex Larionov and Lewis Tran
 
 #ifndef BINLED_H
 #define	BINLED_H

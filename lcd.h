@@ -1,6 +1,5 @@
 /* 
- * File:   lcd.h
- * Author: lt2415
+ * Alex Larionov and Lewis Tran
  *
  * Created on 31 October 2017, 15:32
  * Requires:

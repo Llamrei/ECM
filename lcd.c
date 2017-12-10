@@ -1,3 +1,4 @@
+//Alex Larionov and Lewis Tran
 #include <xc.h>
 #include "lcd.h"
 

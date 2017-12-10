@@ -1,9 +1,4 @@
-/* 
- * File:   buttonInterrupts.h
- * Author: al3615
- *
- * Created on 13 November 2017, 14:43
- */
+//Alex Larionov and Lewis Tran
 
 #ifndef BUTTONINTERRUPTS_H
 #define	BUTTONINTERRUPTS_H

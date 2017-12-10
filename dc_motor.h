@@ -1,3 +1,4 @@
+//Alex Larionov and Lewis Tran
 #ifndef _DC_MOTOR_H
 #define _DC_MOTOR_H
 

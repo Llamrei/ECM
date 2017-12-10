@@ -1,9 +1,4 @@
-/* 
- * File:   ldr.h
- * Author: lt2415
- *
- * Created on 31 October 2017, 16:16
- */
+//Alex Larionv and Lewis Tran
 #include <xc.h>
 
 #ifndef LDR_H

@@ -1,9 +1,4 @@
-/* 
- * File:   eusart.h
- * Author: al3615
- *
- * Created on 14 November 2017, 11:21
- */
+//Alex Larionov and Lewis Tran
 
 #ifndef EUSART_H
 #define	EUSART_H

@@ -1,9 +1,4 @@
-/* 
- * File:   servoControl.h
- * Author: al3615
- *
- * Created on 13 November 2017, 14:45
- */
+//Alex Larionov and Lewis Tran
 
 #ifndef SERVOCONTROL_H
 #define	SERVOCONTROL_H
