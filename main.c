@@ -155,7 +155,7 @@ void main(void){
                                      rotationR[directionIndex++] = readTimer0();
                                      resetTimers();
                                 }
-                                forward(&motorL, &motorR, 50);        //Could implement proportional control
+                                forward(&motorL, &motorR, 80);        //Could implement proportional control
                                 direction = 'F';
                                 directions[directionIndex] = direction;
                             }   
@@ -188,7 +188,7 @@ void main(void){
                    while(readTimer1() < rotationL[directionIndex] + tolL && readTimer0() < rotationR[directionIndex] + tolR){
                        clearLCD();
                        setLine(1);
-                       sprintf(irValues, "Ls %d Rs %d", readTimer1(), readTimer0());
+                       sprintf(irValues, "L %d R %d", readTimer1()*100/rotationL[directionIndex], readTimer0()*100/rotationR[directionIndex]);
                        sendStrLCD(irValues);
                        setLine(2);
                        sprintf(dispValues, "%c %d", directions[directionIndex], directionIndex);
@@ -196,10 +196,10 @@ void main(void){
                        __delay_ms(10);
                        switch(directions[directionIndex]) {
                            case 'F':
-                               stop(&motorL, &motorR);
                                motorL.direction = 0;
                                motorR.direction = 0;
-                               setSpeedAhead(&motorL, &motorR, 50);                        
+                               setSpeedAhead(&motorL, &motorR, 80);
+                               break;
                            case 'L':
                                turnRight(&motorL, &motorR, 50);
                                break;
