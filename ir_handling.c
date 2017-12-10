@@ -44,8 +44,6 @@ int readIRCapture(char ICPinNumber, char* updateFlag, char* errorFlag) {
     if( (ICPinNumber > 0) && (ICPinNumber < 4) ) {
        int registerToAddressH = 0xF69 - (2*(ICPinNumber-1));
        int registerToAddressL = 0xF69 - (2*(ICPinNumber-1) + 1);
-       //wait for reading
-       //while(! (PIR3 & 0b1 < 1 + ICPinNumber));
        char* CAPxBUFH = registerToAddressH;
        char* CAPxBUFL = registerToAddressL;
        char debouncing = 1;
