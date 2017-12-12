@@ -26,8 +26,8 @@
 #define spinThresh 500
 
 //Configuring return
-#define tolL 10
-#define tolR 0
+#define tolL 0
+#define tolR 10
 
 //For dead reckoning - not implemented
 #define M_PI 3.14159265358979323846
@@ -156,7 +156,7 @@ void main(void){
                                      rotationR[directionIndex++] = readTimer0();
                                      resetTimers();
                                 }
-                                forward(&motorL, &motorR, 80);        //Could implement proportional control
+                                forward(&motorL, &motorR, 70);        //Could implement proportional control
                                 direction = 'F';
                                 directions[directionIndex] = direction;
                             }   
@@ -199,7 +199,7 @@ void main(void){
                            case 'F':
                                motorL.direction = 0;
                                motorR.direction = 0;
-                               setSpeedAhead(&motorL, &motorR, 80);
+                               setSpeedAhead(&motorL, &motorR, 60);
                                break;
                            case 'L':
                                turnRight(&motorL, &motorR, 50);
@@ -244,7 +244,10 @@ void interrupt InterruptHandlerHigh() {
     }
     
     if(INTCON3bits.INT1IF) {
-        RESET();
-        INTCON3bits.INT1IF = 0;
+        __delay_ms(15);
+        if(PORTCbits.RC4){
+           RESET();
+        }
+        INTCON3bits.INT1IF = 0; 
     }
 }
