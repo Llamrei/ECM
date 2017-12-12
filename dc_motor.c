@@ -119,15 +119,15 @@ void setSpeedAhead(struct DC_motor *mL, struct DC_motor *mR, char power) {
     if(power > 98){
         power = 98;
     }
-    while(mL->power != power || mR->power != power - 5) {
+    while(mL->power != power || mR->power != power) {
         if(mL->power < power){
             mL->power++;
         } else if(mL->power > power) {
             mL->power--;
         }
-        if(mR->power < power - 5){
+        if(mR->power < power){
             mR->power++;
-        } else if(mR->power > power - 5) {
+        } else if(mR->power > power) {
             mR->power--;
         }
         setMotorPWM(mL);
