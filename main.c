@@ -27,35 +27,33 @@
 
 //Configuring return
 #define tolL 0
-#define tolR 10
+#define tolR 0
 
-//For dead reckoning - not implemented
-#define M_PI 3.14159265358979323846
-
-void delay_s(int time);
-    
-//Declare motors
-struct DC_motor motorL, motorR; //declare 2 motor structures     
+void delay_s(int time);   
 
 //Declare planned globals
-volatile char on = 1;           //1 for debugging, should be 0 for production
 volatile char checkSumError = 0;
 volatile char bombID[bufSize];
 volatile char atSource = 0;
-char returning = 0;
-char direction = 'i';
-char directions[100];
-unsigned int rotationL[50];
-unsigned int rotationR[50];
-char directionIndex = 0;
 
-//Debugging flags/vars
-char updateFlag = 0;
-char errorFlag = 0;
-char irValues[20];
-char dispValues[20];
 
 void main(void){
+    // <editor-fold defaultstate="collapsed" desc="Declaring high level algorithm vars">
+    //Declare motors
+    struct DC_motor motorL, motorR; //declare 2 motor structures 
+    char returning = 0;
+    char direction = 'i';
+    char directions[100];
+    unsigned int rotationL[50];
+    unsigned int rotationR[50];     //Store both wheel rotations with stretch of implementing dead reckoning
+    char directionIndex = 0;
+
+    //Debugging flags/vars
+    char updateFlag = 0;
+    char errorFlag = 0;
+    char irValues[20];
+    char dispValues[20];
+    //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Initialising hardware and motor">
     OSCCON = 0x72; //8MHz clock
     while(!OSCCONbits.IOFS); //wait until stable
@@ -98,7 +96,6 @@ void main(void){
     int ir_l = 0;
         
     while(1){
-        if(on) {
            CLRWDT();
            if(!returning){
                // <editor-fold defaultstate="collapsed" desc="Navigation routine">
@@ -224,7 +221,6 @@ void main(void){
                     }
                //</editor-fold>
            }
-        }
     }
 }
 
@@ -234,7 +230,8 @@ void delay_s(int time) {
     }
 }
 
-void interrupt InterruptHandlerHigh() {
+void interrupt InterruptHandler() {
+    //No need to split on priority as a reset will clear whole runtime anyway
     if(PIR1bits.RCIF) {
         char tmp;
         readUSART(&bombID, bufSize, 0x02, 0x03, &tmp);
@@ -244,6 +241,7 @@ void interrupt InterruptHandlerHigh() {
     }
     
     if(INTCON3bits.INT1IF) {
+        // Debounce press
         __delay_ms(15);
         if(PORTCbits.RC4){
            RESET();
